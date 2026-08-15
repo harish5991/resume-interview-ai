@@ -1,0 +1,1726 @@
+[
+  {
+    "id": "65d03fce-6449-4aa6-887e-a30082f5f8bb",
+    "question": "What are database transactions, and how do ACID properties ensure data consistency?",
+    "based_on": "Resume Skill: PostgreSQL",
+    "skill": "PostgreSQL",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in PostgreSQL listed on your resume.",
+    "expected_answer_points": [
+      "Atomicity, Consistency, Isolation, Durability",
+      "Commit and Rollback",
+      "Isolation levels (Read Committed, Repeatable Read, Serializable)"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of PostgreSQL with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.594460",
+    "session_id": "test-session",
+    "_id": "f9e96fb1-0046-4f73-a590-817c2cc6f6ea"
+  },
+  {
+    "id": "5d8402ec-b937-4327-bd02-27f0ce6f923e",
+    "question": "How do you handle disagreements with a peer or team member regarding architectural choices or code reviews?",
+    "based_on": "Candidate Experience: Collaboration & Teamwork",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Tests professional communication, constructive feedback, and ego-free decision making.",
+    "expected_answer_points": [
+      "Focus on data, benchmarks, and project requirements rather than personal preferences",
+      "Active listening to alternate viewpoints",
+      "Testing prototypes to decide objectively",
+      "Committing to the final consensus"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.594471",
+    "session_id": "test-session",
+    "_id": "d83c7b8c-ba99-41e5-b3ad-dbc24da0788f"
+  },
+  {
+    "id": "b24b002b-98e3-458a-9311-ce4a8cc6bd23",
+    "question": "How do Python generators and the `yield` keyword optimize memory in data-heavy pipelines?",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in Python listed on your resume.",
+    "expected_answer_points": [
+      "Generators yield items one by one instead of loading full list in RAM",
+      "State retention between yield calls",
+      "Memory profiling comparison"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of Python with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.594477",
+    "session_id": "test-session",
+    "_id": "e70b7476-a3f6-487e-8411-074235dbf5f2"
+  },
+  {
+    "id": "772a16c2-b6db-4b84-9433-96832804e137",
+    "question": "If 'Resume Interview AI' were to experience a 50x increase in concurrent users, what would be the first bottleneck and how would you scale it?",
+    "based_on": "Project: Resume Interview AI",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Assesses system design, caching, database query optimization, and horizontal scaling.",
+    "expected_answer_points": [
+      "Identifying bottlenecks (DB read/write, API compute, memory)",
+      "Introducing caching (Redis) or CDN",
+      "Database indexing and connection pooling",
+      "Horizontal pod autoscaling"
+    ],
+    "sample_answer": "In 'Resume Interview AI', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.594483",
+    "session_id": "test-session",
+    "_id": "aaed0067-81cb-4eec-8154-ce54a3c351a0"
+  },
+  {
+    "id": "f3559514-74a5-457b-accf-50414e3cf8c2",
+    "question": "The target job requires solid experience with React. How have you applied React in your projects, or how would you ramp up?",
+    "based_on": "JD Requirement: React (Present in Resume)",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Job Description Based",
+    "why_this_question": "Directly assesses qualification for the key required skill 'React' in the job description.",
+    "expected_answer_points": [
+      "Core understanding of React",
+      "Practical project application or learning plan",
+      "Best practices"
+    ],
+    "sample_answer": "Explain your hands-on experience or outline your fast learning roadmap for React.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.594490",
+    "session_id": "test-session",
+    "_id": "bb090196-f695-4b4c-aa74-62b70f9e33e5"
+  },
+  {
+    "id": "5ef297fe-de75-4027-a43f-48dc284d50da",
+    "question": "Explain how `useEffect` works, including its dependency array and cleanup function.",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in React listed on your resume.",
+    "expected_answer_points": [
+      "Runs after render",
+      "Empty array = run once on mount; with dependencies = run when values change",
+      "Cleanup function runs on unmount or before re-run"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of React with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.596152",
+    "session_id": "test-session",
+    "_id": "3ec18c47-c87f-4f44-9d6e-55949fc4f9ca"
+  },
+  {
+    "id": "1f539a54-4675-45ca-9acf-dd38551b1df7",
+    "question": "Explain how Python decorators work under the hood and provide an example use case like logging or authentication.",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in Python listed on your resume.",
+    "expected_answer_points": [
+      "Functions as first-class objects",
+      "Wrapper function around the original function",
+      "Common use cases: caching, RBAC, execution timing"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of Python with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.596159",
+    "session_id": "test-session",
+    "_id": "60797ae3-2a8c-436e-9321-a14c042168b6"
+  },
+  {
+    "id": "6f28a59a-19ec-4688-9cea-522816056f80",
+    "question": "How do dependency injection and `Depends()` work in FastAPI for database sessions or JWT auth?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in FastAPI listed on your resume.",
+    "expected_answer_points": [
+      "Hierarchical dependency resolution",
+      "Yield dependencies for cleanup (closing DB sessions)",
+      "Security scopes and reusable auth middleware"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of FastAPI with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.596164",
+    "session_id": "test-session",
+    "_id": "20dabbc2-3244-4b9d-a3e1-8fa8667a14db"
+  },
+  {
+    "id": "2fd52bc9-1c75-46a2-848c-8e8f54717957",
+    "question": "When would you choose embedding documents versus referencing (linking) documents in MongoDB?",
+    "based_on": "Resume Skill: MongoDB",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in MongoDB listed on your resume.",
+    "expected_answer_points": [
+      "Embed for 1-to-1 or 1-to-few relationships accessed together",
+      "Reference for 1-to-many unbounded relationships to avoid 16MB document limit",
+      "Atomicity within a single document"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of MongoDB with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.596168",
+    "session_id": "test-session",
+    "_id": "dec49b9e-5d22-47c3-985a-7fa8b8caac20"
+  },
+  {
+    "id": "895eae38-fbde-4904-abf1-473d981af942",
+    "question": "If 'Distributed Task Queue' were to experience a 50x increase in concurrent users, what would be the first bottleneck and how would you scale it?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Assesses system design, caching, database query optimization, and horizontal scaling.",
+    "expected_answer_points": [
+      "Identifying bottlenecks (DB read/write, API compute, memory)",
+      "Introducing caching (Redis) or CDN",
+      "Database indexing and connection pooling",
+      "Horizontal pod autoscaling"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:47:40.596172",
+    "session_id": "test-session",
+    "_id": "35b9b30a-ff72-43ca-9f2c-34af87fd737f"
+  },
+  {
+    "id": "237138ae-784b-4105-a338-7ea33ec6104c",
+    "question": "Explain how Python decorators work under the hood and provide an example use case like logging or authentication.",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in Python listed on your resume.",
+    "expected_answer_points": [
+      "Functions as first-class objects",
+      "Wrapper function around the original function",
+      "Common use cases: caching, RBAC, execution timing"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of Python with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.130494",
+    "session_id": "test-session",
+    "_id": "4d324287-ba7c-4423-beeb-b2bc4a84f86a"
+  },
+  {
+    "id": "08f85df0-8056-4112-a4ca-fe1e43294164",
+    "question": "If 'Distributed Task Queue' were to experience a 50x increase in concurrent users, what would be the first bottleneck and how would you scale it?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Assesses system design, caching, database query optimization, and horizontal scaling.",
+    "expected_answer_points": [
+      "Identifying bottlenecks (DB read/write, API compute, memory)",
+      "Introducing caching (Redis) or CDN",
+      "Database indexing and connection pooling",
+      "Horizontal pod autoscaling"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.130505",
+    "session_id": "test-session",
+    "_id": "7035d714-d1b5-435b-9aac-ffc78d56e682"
+  },
+  {
+    "id": "51be337b-4c52-4785-9fc6-e8f08d1ecb9e",
+    "question": "How do you handle disagreements with a peer or team member regarding architectural choices or code reviews?",
+    "based_on": "Candidate Experience: Collaboration & Teamwork",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Tests professional communication, constructive feedback, and ego-free decision making.",
+    "expected_answer_points": [
+      "Focus on data, benchmarks, and project requirements rather than personal preferences",
+      "Active listening to alternate viewpoints",
+      "Testing prototypes to decide objectively",
+      "Committing to the final consensus"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.130511",
+    "session_id": "test-session",
+    "_id": "0f647b5d-5561-42f5-94a3-fe28ba05148e"
+  },
+  {
+    "id": "b907a57f-0532-4298-9a30-040931902aba",
+    "question": "How do dependency injection and `Depends()` work in FastAPI for database sessions or JWT auth?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in FastAPI listed on your resume.",
+    "expected_answer_points": [
+      "Hierarchical dependency resolution",
+      "Yield dependencies for cleanup (closing DB sessions)",
+      "Security scopes and reusable auth middleware"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of FastAPI with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.130515",
+    "session_id": "test-session",
+    "_id": "68bf98ac-90e3-4bfa-ba80-e06cd1336bd7"
+  },
+  {
+    "id": "c5859b27-efd5-4d13-806e-99fae6fc76a0",
+    "question": "Can you walk me through the end-to-end data flow in 'Resume Interview AI' from when a user triggers an action to when data is persisted?",
+    "based_on": "Project: Resume Interview AI",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Tests full-stack clarity and complete mental model of the project implementation.",
+    "expected_answer_points": [
+      "Client UI event dispatch",
+      "API request payload & routing",
+      "Business logic execution",
+      "Database query and response formatting"
+    ],
+    "sample_answer": "In 'Resume Interview AI', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.130520",
+    "session_id": "test-session",
+    "_id": "7fe65e21-15cb-427c-b9f3-551bdbbb2322"
+  },
+  {
+    "id": "9859ac6b-764d-4864-b6bf-6322513ef412",
+    "question": "How does the MongoDB Aggregation Pipeline work, and what are common stages like `$match`, `$group`, `$lookup`?",
+    "based_on": "Resume Skill: MongoDB",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in MongoDB listed on your resume.",
+    "expected_answer_points": [
+      "Pipeline passes documents through transform stages",
+      "$match early for index usage",
+      "$lookup for relational joins",
+      "$group for aggregations"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of MongoDB with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.132866",
+    "session_id": "test-session",
+    "_id": "797df0f9-0a5a-47e2-a94d-20b7b80c4394"
+  },
+  {
+    "id": "2932c590-f4de-4216-8fcb-adef70ebe9d8",
+    "question": "Tell me about a time when a production feature you built failed or had an unexpected bug. How did you respond?",
+    "based_on": "Candidate Experience: Accountability & Post-Mortem",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Assesses ownership, incident response, and root-cause analysis.",
+    "expected_answer_points": [
+      "Immediate mitigation and rollback/hotfix",
+      "Transparent communication with stakeholders",
+      "Blameless post-mortem and adding regression tests"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.132872",
+    "session_id": "test-session",
+    "_id": "38d4b362-c7f3-4bf5-812f-ca19391346c1"
+  },
+  {
+    "id": "452565fd-1088-48ee-881b-e0c41fd47144",
+    "question": "How did you ensure data integrity, API validation, and error handling across 'Resume Interview AI'?",
+    "based_on": "Project: Resume Interview AI",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Evaluates production-readiness, robust input validation, and defensive programming.",
+    "expected_answer_points": [
+      "Request validation mechanisms",
+      "Global exception handlers and clear HTTP status codes",
+      "Database transaction safety"
+    ],
+    "sample_answer": "In 'Resume Interview AI', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.132877",
+    "session_id": "test-session",
+    "_id": "8a4f37d0-52e9-4fa4-9ca2-cd81f6761ba6"
+  },
+  {
+    "id": "cf3e2a62-6862-4902-a61e-edf2d01acef0",
+    "question": "How do multi-stage Docker builds reduce image size and improve container security?",
+    "based_on": "Resume Skill: Docker",
+    "skill": "Docker",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in Docker listed on your resume.",
+    "expected_answer_points": [
+      "Separate build environment with heavy compilers from lean runtime image",
+      "Excludes source build tools and intermediate artifacts",
+      "Reduces vulnerability attack surface"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of Docker with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.132880",
+    "session_id": "test-session",
+    "_id": "8c01fd2d-a055-4911-8ef8-f22c28500253"
+  },
+  {
+    "id": "54b14b23-b296-4128-b137-e8c49b50d96c",
+    "question": "In your project 'Resume Interview AI', what was the primary architectural trade-off you made when selecting Python?",
+    "based_on": "Project: Resume Interview AI",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Tests architectural justification and practical decision-making in real project contexts.",
+    "expected_answer_points": [
+      "Why Python was selected over alternatives",
+      "Performance or scalability implications",
+      "Limitations or challenges encountered"
+    ],
+    "sample_answer": "In 'Resume Interview AI', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:00.132884",
+    "session_id": "test-session",
+    "_id": "6741d0cd-99ad-4151-91ec-549851acfd1d"
+  },
+  {
+    "id": "08f2dc3d-55c3-46c3-a9b8-812804583bf1",
+    "question": "The target job requires solid experience with React. How have you applied React in your projects, or how would you ramp up?",
+    "based_on": "JD Requirement: React (Present in Resume)",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Job Description Based",
+    "why_this_question": "Directly assesses qualification for the key required skill 'React' in the job description.",
+    "expected_answer_points": [
+      "Core understanding of React",
+      "Practical project application or learning plan",
+      "Best practices"
+    ],
+    "sample_answer": "Explain your hands-on experience or outline your fast learning roadmap for React.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.673873+00:00",
+    "session_id": "test-session",
+    "_id": "950656df-01dd-4320-955c-fec155afc83d"
+  },
+  {
+    "id": "1de976a3-3fce-4bd8-8803-3f7bdad9bc81",
+    "question": "How do multi-stage Docker builds reduce image size and improve container security?",
+    "based_on": "Resume Skill: Docker",
+    "skill": "Docker",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in Docker listed on your resume.",
+    "expected_answer_points": [
+      "Separate build environment with heavy compilers from lean runtime image",
+      "Excludes source build tools and intermediate artifacts",
+      "Reduces vulnerability attack surface"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of Docker with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.673884+00:00",
+    "session_id": "test-session",
+    "_id": "e5393b1b-ce2e-45e8-88cd-a20e80fa98f2"
+  },
+  {
+    "id": "47639d5d-11c1-4dc9-865b-01a2ce0141a6",
+    "question": "How do you handle disagreements with a peer or team member regarding architectural choices or code reviews?",
+    "based_on": "Candidate Experience: Collaboration & Teamwork",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Tests professional communication, constructive feedback, and ego-free decision making.",
+    "expected_answer_points": [
+      "Focus on data, benchmarks, and project requirements rather than personal preferences",
+      "Active listening to alternate viewpoints",
+      "Testing prototypes to decide objectively",
+      "Committing to the final consensus"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.673890+00:00",
+    "session_id": "test-session",
+    "_id": "6a63131e-9eb4-433b-92aa-dee583529a38"
+  },
+  {
+    "id": "b531518e-16f8-4f86-a34d-8d3674fdf2b9",
+    "question": "How does FastAPI utilize Pydantic models for request validation and serialization?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in FastAPI listed on your resume.",
+    "expected_answer_points": [
+      "Automatic 422 Unprocessable Entity responses for invalid types",
+      "Serialization to JSON",
+      "Nested models and field validators"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of FastAPI with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.673897+00:00",
+    "session_id": "test-session",
+    "_id": "d44be60b-9fc1-447f-9773-18d1c99fd652"
+  },
+  {
+    "id": "ddb75f9c-ea9d-4b05-a71d-9e1ac2eeb0da",
+    "question": "How do dependency injection and `Depends()` work in FastAPI for database sessions or JWT auth?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in FastAPI listed on your resume.",
+    "expected_answer_points": [
+      "Hierarchical dependency resolution",
+      "Yield dependencies for cleanup (closing DB sessions)",
+      "Security scopes and reusable auth middleware"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of FastAPI with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.673902+00:00",
+    "session_id": "test-session",
+    "_id": "31d423b8-232e-4ebf-aed2-27d341b62f71"
+  },
+  {
+    "id": "9c0e19c1-3898-49d5-8c00-079bbc24e723",
+    "question": "How do indexes work internally in relational databases (B-Tree vs Hash), and when does an index slow down queries?",
+    "based_on": "Resume Skill: PostgreSQL",
+    "skill": "PostgreSQL",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in PostgreSQL listed on your resume.",
+    "expected_answer_points": [
+      "B-Tree indexes support range and equality scans",
+      "Index maintenance cost on INSERT/UPDATE/DELETE",
+      "Table scans vs index seek"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of PostgreSQL with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.676594+00:00",
+    "session_id": "test-session",
+    "_id": "76f876c6-aa31-49bd-93a8-d3c3b1ccf513"
+  },
+  {
+    "id": "7f96829f-ae62-4055-b5d7-57f36a97648e",
+    "question": "Tell me about a challenging technical hurdle you faced in one of your projects and how you diagnosed and resolved it.",
+    "based_on": "Candidate Experience: Project Experience",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Evaluates problem-solving methodology, debugging persistence, and ownership.",
+    "expected_answer_points": [
+      "Clearly define the problem",
+      "Explain diagnostic steps and tools used",
+      "Describe the solution and measurable outcome",
+      "What you learned"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.676602+00:00",
+    "session_id": "test-session",
+    "_id": "177caca2-a0bc-4dbe-a7d0-4ba3a1ccd61d"
+  },
+  {
+    "id": "4fd3e552-7e9c-4aa2-8d05-c7c4ff5077a8",
+    "question": "The target job requires solid experience with FastAPI. How have you applied FastAPI in your projects, or how would you ramp up?",
+    "based_on": "JD Requirement: FastAPI (Present in Resume)",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Job Description Based",
+    "why_this_question": "Directly assesses qualification for the key required skill 'FastAPI' in the job description.",
+    "expected_answer_points": [
+      "Core understanding of FastAPI",
+      "Practical project application or learning plan",
+      "Best practices"
+    ],
+    "sample_answer": "Explain your hands-on experience or outline your fast learning roadmap for FastAPI.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.676607+00:00",
+    "session_id": "test-session",
+    "_id": "74cf45d0-9640-4022-bf9f-d69d94433768"
+  },
+  {
+    "id": "e4c466c6-5db0-4726-8bcd-c2fc14839de2",
+    "question": "Can you walk me through the end-to-end data flow in 'Distributed Task Queue' from when a user triggers an action to when data is persisted?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Tests full-stack clarity and complete mental model of the project implementation.",
+    "expected_answer_points": [
+      "Client UI event dispatch",
+      "API request payload & routing",
+      "Business logic execution",
+      "Database query and response formatting"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.676613+00:00",
+    "session_id": "test-session",
+    "_id": "fafccfa6-a906-458d-b6f9-c1170062503f"
+  },
+  {
+    "id": "a16b5be6-c7b7-45cc-b344-f938972acee6",
+    "question": "What are the differences between client-side state (useState/Zustand) and server state (React Query/SWR)?",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in React listed on your resume.",
+    "expected_answer_points": [
+      "Server state requires caching, deduplication, invalidation, loading states",
+      "Client UI state is ephemeral",
+      "Minimizing global state pollution"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of React with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:48:37.676620+00:00",
+    "session_id": "test-session",
+    "_id": "3ed1473b-2e67-4f05-a9a7-9c7331820add"
+  },
+  {
+    "id": "10bc0a0a-cf15-426e-80e9-171644885fe7",
+    "question": "Tell me about a time when a production feature you built failed or had an unexpected bug. How did you respond?",
+    "based_on": "Candidate Experience: Accountability & Post-Mortem",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Assesses ownership, incident response, and root-cause analysis.",
+    "expected_answer_points": [
+      "Immediate mitigation and rollback/hotfix",
+      "Transparent communication with stakeholders",
+      "Blameless post-mortem and adding regression tests"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.894592+00:00",
+    "session_id": "test-session",
+    "_id": "cccf9882-fd29-41fc-8169-0c0236e72709"
+  },
+  {
+    "id": "7657a8e8-25c6-4892-be1f-fc8fbd58bfef",
+    "question": "How do dependency injection and `Depends()` work in FastAPI for database sessions or JWT auth?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in FastAPI listed on your resume.",
+    "expected_answer_points": [
+      "Hierarchical dependency resolution",
+      "Yield dependencies for cleanup (closing DB sessions)",
+      "Security scopes and reusable auth middleware"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of FastAPI with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.894602+00:00",
+    "session_id": "test-session",
+    "_id": "e7cf49f3-ac5f-4101-a320-3e151520e89e"
+  },
+  {
+    "id": "3c6dbc17-b186-469f-916f-c10e4a0037c9",
+    "question": "The target job requires solid experience with Python. How have you applied Python in your projects, or how would you ramp up?",
+    "based_on": "JD Requirement: Python (Present in Resume)",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Job Description Based",
+    "why_this_question": "Directly assesses qualification for the key required skill 'Python' in the job description.",
+    "expected_answer_points": [
+      "Core understanding of Python",
+      "Practical project application or learning plan",
+      "Best practices"
+    ],
+    "sample_answer": "Explain your hands-on experience or outline your fast learning roadmap for Python.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.894609+00:00",
+    "session_id": "test-session",
+    "_id": "d7be1505-4f8c-45d5-be63-e6e58b4f7ca6"
+  },
+  {
+    "id": "877c0ea7-fc8e-4443-83ec-9fbef83b0ec0",
+    "question": "Explain how `useEffect` works, including its dependency array and cleanup function.",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in React listed on your resume.",
+    "expected_answer_points": [
+      "Runs after render",
+      "Empty array = run once on mount; with dependencies = run when values change",
+      "Cleanup function runs on unmount or before re-run"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of React with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.894616+00:00",
+    "session_id": "test-session",
+    "_id": "84c03bd4-7384-4aee-b353-45acf5e82e1f"
+  },
+  {
+    "id": "89082f5a-b371-4ec2-9de8-398fa48055d1",
+    "question": "In your project 'Distributed Task Queue', what was the primary architectural trade-off you made when selecting Python?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Tests architectural justification and practical decision-making in real project contexts.",
+    "expected_answer_points": [
+      "Why Python was selected over alternatives",
+      "Performance or scalability implications",
+      "Limitations or challenges encountered"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.894621+00:00",
+    "session_id": "test-session",
+    "_id": "fb9530e7-f863-41dc-95ff-efcad188f39c"
+  },
+  {
+    "id": "3865725a-3575-405e-9c06-2c8a9f1418d9",
+    "question": "How did you ensure data integrity, API validation, and error handling across 'Distributed Task Queue'?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Evaluates production-readiness, robust input validation, and defensive programming.",
+    "expected_answer_points": [
+      "Request validation mechanisms",
+      "Global exception handlers and clear HTTP status codes",
+      "Database transaction safety"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.897436+00:00",
+    "session_id": "test-session",
+    "_id": "9dc04282-3bee-4727-8763-b321705413d8"
+  },
+  {
+    "id": "c499996d-52c2-4926-b721-f3365a8c49f0",
+    "question": "The target job requires solid experience with TypeScript. How have you applied TypeScript in your projects, or how would you ramp up?",
+    "based_on": "JD Requirement: TypeScript (Present in Resume)",
+    "skill": "TypeScript",
+    "difficulty": "Medium",
+    "question_type": "Job Description Based",
+    "why_this_question": "Directly assesses qualification for the key required skill 'TypeScript' in the job description.",
+    "expected_answer_points": [
+      "Core understanding of TypeScript",
+      "Practical project application or learning plan",
+      "Best practices"
+    ],
+    "sample_answer": "Explain your hands-on experience or outline your fast learning roadmap for TypeScript.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.897444+00:00",
+    "session_id": "test-session",
+    "_id": "a11e3f1a-962d-445c-99d1-9e223f527fbf"
+  },
+  {
+    "id": "fec0eaee-afe1-459b-8511-5b2adc617146",
+    "question": "Describe a situation where you had to quickly learn a new framework or technology to deliver a feature under a tight deadline.",
+    "based_on": "Candidate Experience: Adaptability & Learning",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Assesses continuous learning, agility, and time management.",
+    "expected_answer_points": [
+      "Context of the project requirement",
+      "Systematic approach to learning (docs, tutorials, prototyping)",
+      "Timely execution and quality delivery"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.897460+00:00",
+    "session_id": "test-session",
+    "_id": "68a3fc69-6368-41b3-bfca-820c723c0b50"
+  },
+  {
+    "id": "d80a0b62-84fd-4821-9aad-fa6d7e1312c4",
+    "question": "Can you explain a key performance or architectural decision you made when working with Python?",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in Python.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why Python was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.897466+00:00",
+    "session_id": "test-session",
+    "_id": "e928f42b-5b25-4ca4-8c67-8f6d63eb87e5"
+  },
+  {
+    "id": "f77893c8-5201-43b1-b9d6-c62ad911f055",
+    "question": "Can you explain a key performance or architectural decision you made when working with JavaScript?",
+    "based_on": "Resume Skill: JavaScript",
+    "skill": "JavaScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in JavaScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why JavaScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 13:49:15.897471+00:00",
+    "session_id": "test-session",
+    "_id": "61184ea3-32a0-4c43-b7d8-fb4f217b25f3"
+  },
+  {
+    "id": "9232bb54-08ca-4b9c-b077-6265e2ab07c1",
+    "question": "If 'Distributed Task Queue' were to experience a 50x increase in concurrent users, what would be the first bottleneck and how would you scale it?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Assesses system design, caching, database query optimization, and horizontal scaling.",
+    "expected_answer_points": [
+      "Identifying bottlenecks (DB read/write, API compute, memory)",
+      "Introducing caching (Redis) or CDN",
+      "Database indexing and connection pooling",
+      "Horizontal pod autoscaling"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.443477+00:00",
+    "session_id": "test-session",
+    "_id": "a203e744-2b7f-4d3c-97ff-ecbdbd7eb42b"
+  },
+  {
+    "id": "69cd43c8-cc19-4d6e-9374-5eaa5dd5777f",
+    "question": "What are database transactions, and how do ACID properties ensure data consistency?",
+    "based_on": "Resume Skill: PostgreSQL",
+    "skill": "PostgreSQL",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in PostgreSQL listed on your resume.",
+    "expected_answer_points": [
+      "Atomicity, Consistency, Isolation, Durability",
+      "Commit and Rollback",
+      "Isolation levels (Read Committed, Repeatable Read, Serializable)"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of PostgreSQL with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.443486+00:00",
+    "session_id": "test-session",
+    "_id": "474787cb-dd08-4758-83aa-166d0e53db55"
+  },
+  {
+    "id": "13501ec0-4004-4dea-8dc1-0318c4a49b2d",
+    "question": "Can you walk me through the end-to-end data flow in 'Resume Interview AI' from when a user triggers an action to when data is persisted?",
+    "based_on": "Project: Resume Interview AI",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Tests full-stack clarity and complete mental model of the project implementation.",
+    "expected_answer_points": [
+      "Client UI event dispatch",
+      "API request payload & routing",
+      "Business logic execution",
+      "Database query and response formatting"
+    ],
+    "sample_answer": "In 'Resume Interview AI', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.443492+00:00",
+    "session_id": "test-session",
+    "_id": "42868f2b-af89-4ce0-bb44-031fe31b5ed8"
+  },
+  {
+    "id": "e9c43241-2ad9-4b09-b597-a7e827081e7d",
+    "question": "In your project 'Resume Interview AI', what was the primary architectural trade-off you made when selecting Python?",
+    "based_on": "Project: Resume Interview AI",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Tests architectural justification and practical decision-making in real project contexts.",
+    "expected_answer_points": [
+      "Why Python was selected over alternatives",
+      "Performance or scalability implications",
+      "Limitations or challenges encountered"
+    ],
+    "sample_answer": "In 'Resume Interview AI', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.443498+00:00",
+    "session_id": "test-session",
+    "_id": "1c1327a0-8cd2-4b6d-a191-543015b695b8"
+  },
+  {
+    "id": "c726f307-fbfa-4e81-869d-9749fe61466b",
+    "question": "In your project 'Distributed Task Queue', what was the primary architectural trade-off you made when selecting Python?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Tests architectural justification and practical decision-making in real project contexts.",
+    "expected_answer_points": [
+      "Why Python was selected over alternatives",
+      "Performance or scalability implications",
+      "Limitations or challenges encountered"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.443502+00:00",
+    "session_id": "test-session",
+    "_id": "15a188f7-1f0d-40d6-8e57-afd1f38d2577"
+  },
+  {
+    "id": "319afa15-00fe-482f-9767-313ff2555674",
+    "question": "Can you explain a key performance or architectural decision you made when working with Python?",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in Python.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why Python was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.446821+00:00",
+    "session_id": "test-session",
+    "_id": "cc8b35f7-39da-429e-b7c8-d80e39d21d13"
+  },
+  {
+    "id": "067bebff-60c7-4d5b-903f-90b41ec2bed5",
+    "question": "Can you explain a key performance or architectural decision you made when working with JavaScript?",
+    "based_on": "Resume Skill: JavaScript",
+    "skill": "JavaScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in JavaScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why JavaScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.446830+00:00",
+    "session_id": "test-session",
+    "_id": "353b37fd-0ab1-410f-87eb-cb5fadfe14c1"
+  },
+  {
+    "id": "1c7492f5-7515-4330-8f88-e569e0ce9d3f",
+    "question": "Can you explain a key performance or architectural decision you made when working with TypeScript?",
+    "based_on": "Resume Skill: TypeScript",
+    "skill": "TypeScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in TypeScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why TypeScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.446835+00:00",
+    "session_id": "test-session",
+    "_id": "4f6f6aa6-03a7-478e-b577-49612871f6e5"
+  },
+  {
+    "id": "d127b49a-5582-4830-998e-5d44655598ac",
+    "question": "Can you explain a key performance or architectural decision you made when working with React?",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in React.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why React was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.446840+00:00",
+    "session_id": "test-session",
+    "_id": "6801c552-32d1-4262-90ee-a7fdcf7f5822"
+  },
+  {
+    "id": "566a37d8-7594-4ecf-b27f-beeb47dff111",
+    "question": "Can you explain a key performance or architectural decision you made when working with FastAPI?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in FastAPI.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why FastAPI was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:08:09.446843+00:00",
+    "session_id": "test-session",
+    "_id": "46eab1a9-4670-4d45-be99-b037f607ff7b"
+  },
+  {
+    "id": "64d335c6-08bc-41cd-9dca-516b1daee6e9",
+    "question": "How does the MongoDB Aggregation Pipeline work, and what are common stages like `$match`, `$group`, `$lookup`?",
+    "based_on": "Resume Skill: MongoDB",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in MongoDB listed on your resume.",
+    "expected_answer_points": [
+      "Pipeline passes documents through transform stages",
+      "$match early for index usage",
+      "$lookup for relational joins",
+      "$group for aggregations"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of MongoDB with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.663744+00:00",
+    "session_id": "test-session",
+    "_id": "9b8a7bb3-7e4b-494a-a8aa-912b4d29750b"
+  },
+  {
+    "id": "3bd1db9c-4580-470a-b474-926fe1497cee",
+    "question": "How do multi-stage Docker builds reduce image size and improve container security?",
+    "based_on": "Resume Skill: Docker",
+    "skill": "Docker",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in Docker listed on your resume.",
+    "expected_answer_points": [
+      "Separate build environment with heavy compilers from lean runtime image",
+      "Excludes source build tools and intermediate artifacts",
+      "Reduces vulnerability attack surface"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of Docker with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.663755+00:00",
+    "session_id": "test-session",
+    "_id": "e9f972b9-53fe-4d39-b11e-2e63e2b32e6d"
+  },
+  {
+    "id": "a8b79890-7b31-464b-93eb-f00debc5b77f",
+    "question": "What are the differences between client-side state (useState/Zustand) and server state (React Query/SWR)?",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in React listed on your resume.",
+    "expected_answer_points": [
+      "Server state requires caching, deduplication, invalidation, loading states",
+      "Client UI state is ephemeral",
+      "Minimizing global state pollution"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of React with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.663761+00:00",
+    "session_id": "test-session",
+    "_id": "9fd586a4-6923-4497-968d-7e77a7410338"
+  },
+  {
+    "id": "75c46a3a-8a0e-4f7c-b413-54ee804d9471",
+    "question": "Explain how `useEffect` works, including its dependency array and cleanup function.",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in React listed on your resume.",
+    "expected_answer_points": [
+      "Runs after render",
+      "Empty array = run once on mount; with dependencies = run when values change",
+      "Cleanup function runs on unmount or before re-run"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of React with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.663766+00:00",
+    "session_id": "test-session",
+    "_id": "8fbd418a-7646-4acf-95f8-b6d09f24a8de"
+  },
+  {
+    "id": "d9304892-2eae-49af-945d-eeaac82da38f",
+    "question": "In your project 'Distributed Task Queue', what was the primary architectural trade-off you made when selecting Python?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Tests architectural justification and practical decision-making in real project contexts.",
+    "expected_answer_points": [
+      "Why Python was selected over alternatives",
+      "Performance or scalability implications",
+      "Limitations or challenges encountered"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.663771+00:00",
+    "session_id": "test-session",
+    "_id": "c28010ae-ec7e-46bc-bc60-5491c66b4733"
+  },
+  {
+    "id": "91200aac-63f8-4dc7-9054-fb8dfd49d0cd",
+    "question": "Can you explain a key performance or architectural decision you made when working with Python?",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in Python.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why Python was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.668103+00:00",
+    "session_id": "test-session",
+    "_id": "03d2de37-ab5b-47a3-892c-2eb46c6824b5"
+  },
+  {
+    "id": "32102c1d-6047-4ad6-8299-f8a87e821206",
+    "question": "Can you explain a key performance or architectural decision you made when working with JavaScript?",
+    "based_on": "Resume Skill: JavaScript",
+    "skill": "JavaScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in JavaScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why JavaScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.668111+00:00",
+    "session_id": "test-session",
+    "_id": "392cc66c-7887-49c3-947e-0c99c79d5a86"
+  },
+  {
+    "id": "c57dd94a-e2ed-4bff-a67b-e1432be2cc85",
+    "question": "Can you explain a key performance or architectural decision you made when working with TypeScript?",
+    "based_on": "Resume Skill: TypeScript",
+    "skill": "TypeScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in TypeScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why TypeScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.668117+00:00",
+    "session_id": "test-session",
+    "_id": "1cc3e8f7-5fd5-4751-b2b5-bcfe18af7916"
+  },
+  {
+    "id": "646cbdd4-5e5f-4d0e-bec0-e1552bfb7b89",
+    "question": "Can you explain a key performance or architectural decision you made when working with React?",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in React.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why React was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.668121+00:00",
+    "session_id": "test-session",
+    "_id": "0f08a7e2-2c03-43c4-8267-8affbf290918"
+  },
+  {
+    "id": "64f5eaa6-38ff-40d8-80d7-aadbd9735726",
+    "question": "Can you explain a key performance or architectural decision you made when working with FastAPI?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in FastAPI.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why FastAPI was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 14:27:54.668126+00:00",
+    "session_id": "test-session",
+    "_id": "eb7681f5-cd67-46d8-8736-c3b7abb19fd5"
+  },
+  {
+    "id": "db6a1230-1c97-4921-8dfd-f9070b9c211c",
+    "question": "What are the differences between client-side state (useState/Zustand) and server state (React Query/SWR)?",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in React listed on your resume.",
+    "expected_answer_points": [
+      "Server state requires caching, deduplication, invalidation, loading states",
+      "Client UI state is ephemeral",
+      "Minimizing global state pollution"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of React with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.202440+00:00",
+    "session_id": "test-session",
+    "_id": "41a1da9f-d2f6-42da-8881-e1ffac69148b"
+  },
+  {
+    "id": "d8089a2b-11d4-4f77-983d-86f535eee626",
+    "question": "Tell me about a time when a production feature you built failed or had an unexpected bug. How did you respond?",
+    "based_on": "Candidate Experience: Accountability & Post-Mortem",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Assesses ownership, incident response, and root-cause analysis.",
+    "expected_answer_points": [
+      "Immediate mitigation and rollback/hotfix",
+      "Transparent communication with stakeholders",
+      "Blameless post-mortem and adding regression tests"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.202450+00:00",
+    "session_id": "test-session",
+    "_id": "0c9b55f2-0567-45e8-ac7f-1fb22bc3d6a9"
+  },
+  {
+    "id": "5cd62baa-aaf6-498b-99b6-ade3b9a26168",
+    "question": "How did you ensure data integrity, API validation, and error handling across 'Resume Interview AI'?",
+    "based_on": "Project: Resume Interview AI",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Evaluates production-readiness, robust input validation, and defensive programming.",
+    "expected_answer_points": [
+      "Request validation mechanisms",
+      "Global exception handlers and clear HTTP status codes",
+      "Database transaction safety"
+    ],
+    "sample_answer": "In 'Resume Interview AI', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.202456+00:00",
+    "session_id": "test-session",
+    "_id": "b9632941-f52d-4264-b345-e5363c872fa0"
+  },
+  {
+    "id": "cad4f1d6-7ac6-4412-9264-8355d2a7579f",
+    "question": "Describe a situation where you had to quickly learn a new framework or technology to deliver a feature under a tight deadline.",
+    "based_on": "Candidate Experience: Adaptability & Learning",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "question_type": "Behavioral",
+    "why_this_question": "Assesses continuous learning, agility, and time management.",
+    "expected_answer_points": [
+      "Context of the project requirement",
+      "Systematic approach to learning (docs, tutorials, prototyping)",
+      "Timely execution and quality delivery"
+    ],
+    "sample_answer": "Use the STAR method (Situation, Task, Action, Result) highlighting measurable impact and team collaboration.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.202461+00:00",
+    "session_id": "test-session",
+    "_id": "0cfd3bb0-1430-4b57-944e-f928de1afd8b"
+  },
+  {
+    "id": "d27cd8cf-06ff-46fb-9879-0ea19d5bbdda",
+    "question": "How do dependency injection and `Depends()` work in FastAPI for database sessions or JWT auth?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in FastAPI listed on your resume.",
+    "expected_answer_points": [
+      "Hierarchical dependency resolution",
+      "Yield dependencies for cleanup (closing DB sessions)",
+      "Security scopes and reusable auth middleware"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of FastAPI with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.202465+00:00",
+    "session_id": "test-session",
+    "_id": "1025eeaa-c3cd-4467-89c3-7e29c8190c67"
+  },
+  {
+    "id": "d66a7e70-f31f-4373-84b7-eaf1871ef1a9",
+    "question": "Can you explain a key performance or architectural decision you made when working with Python?",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in Python.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why Python was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.206876+00:00",
+    "session_id": "test-session",
+    "_id": "2c449bfa-43ac-414b-bc37-40970e3c1578"
+  },
+  {
+    "id": "d2a823ef-012f-4dcf-b887-091529b0c209",
+    "question": "Can you explain a key performance or architectural decision you made when working with JavaScript?",
+    "based_on": "Resume Skill: JavaScript",
+    "skill": "JavaScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in JavaScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why JavaScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.206884+00:00",
+    "session_id": "test-session",
+    "_id": "c5596465-cc60-46d9-84cb-fda4f7392453"
+  },
+  {
+    "id": "56a795cb-9654-45f7-9935-5c93eeebeb59",
+    "question": "Can you explain a key performance or architectural decision you made when working with TypeScript?",
+    "based_on": "Resume Skill: TypeScript",
+    "skill": "TypeScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in TypeScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why TypeScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.206888+00:00",
+    "session_id": "test-session",
+    "_id": "9de8beb7-0e58-4d27-b549-8b72066b8465"
+  },
+  {
+    "id": "80bb8fa7-f1cb-4342-b5bc-906376c40d26",
+    "question": "Can you explain a key performance or architectural decision you made when working with React?",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in React.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why React was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.206892+00:00",
+    "session_id": "test-session",
+    "_id": "01fcafe5-4e38-4f97-8b0a-cd600cb73bc8"
+  },
+  {
+    "id": "244c4d1d-5ed3-4e58-9e92-7b266ada92ca",
+    "question": "Can you explain a key performance or architectural decision you made when working with FastAPI?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in FastAPI.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why FastAPI was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 16:58:54.206896+00:00",
+    "session_id": "test-session",
+    "_id": "aab11bd5-bf0b-497e-a520-f057e2163afc"
+  },
+  {
+    "id": "2b3b319f-bf82-49be-8229-9ecff9626262",
+    "question": "When would you choose embedding documents versus referencing (linking) documents in MongoDB?",
+    "based_on": "Resume Skill: MongoDB",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in MongoDB listed on your resume.",
+    "expected_answer_points": [
+      "Embed for 1-to-1 or 1-to-few relationships accessed together",
+      "Reference for 1-to-many unbounded relationships to avoid 16MB document limit",
+      "Atomicity within a single document"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of MongoDB with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.755855+00:00",
+    "session_id": "test-session",
+    "_id": "45d40ac1-6fbc-4109-9384-d6dbecd0287b"
+  },
+  {
+    "id": "7f925712-5517-4742-87f9-1fe7e3144860",
+    "question": "How does the MongoDB Aggregation Pipeline work, and what are common stages like `$match`, `$group`, `$lookup`?",
+    "based_on": "Resume Skill: MongoDB",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in MongoDB listed on your resume.",
+    "expected_answer_points": [
+      "Pipeline passes documents through transform stages",
+      "$match early for index usage",
+      "$lookup for relational joins",
+      "$group for aggregations"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of MongoDB with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.755866+00:00",
+    "session_id": "test-session",
+    "_id": "cdcc6e3f-185d-4770-8f29-eb23bc93eb31"
+  },
+  {
+    "id": "8a43f0d1-1e1d-4abb-9add-9300bfacb3bd",
+    "question": "How do indexes work internally in relational databases (B-Tree vs Hash), and when does an index slow down queries?",
+    "based_on": "Resume Skill: PostgreSQL",
+    "skill": "PostgreSQL",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in PostgreSQL listed on your resume.",
+    "expected_answer_points": [
+      "B-Tree indexes support range and equality scans",
+      "Index maintenance cost on INSERT/UPDATE/DELETE",
+      "Table scans vs index seek"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of PostgreSQL with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.755871+00:00",
+    "session_id": "test-session",
+    "_id": "a51d380b-cea0-4a82-89fb-f938f6ab6282"
+  },
+  {
+    "id": "1758108c-8ef8-45fa-be54-23b1c9d23f32",
+    "question": "Explain how Python decorators work under the hood and provide an example use case like logging or authentication.",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in Python listed on your resume.",
+    "expected_answer_points": [
+      "Functions as first-class objects",
+      "Wrapper function around the original function",
+      "Common use cases: caching, RBAC, execution timing"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of Python with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.755876+00:00",
+    "session_id": "test-session",
+    "_id": "696fda8c-0c9b-4ed7-b59c-97f70e93eb6f"
+  },
+  {
+    "id": "8ebd850d-20ae-4e13-9d9c-9ebc90a493c3",
+    "question": "Explain how `useEffect` works, including its dependency array and cleanup function.",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in React listed on your resume.",
+    "expected_answer_points": [
+      "Runs after render",
+      "Empty array = run once on mount; with dependencies = run when values change",
+      "Cleanup function runs on unmount or before re-run"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of React with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.755880+00:00",
+    "session_id": "test-session",
+    "_id": "a471a898-1ab2-4655-8f3c-dad55fd14516"
+  },
+  {
+    "id": "b1fee1cd-c615-44c3-b94a-1951a6b07e3d",
+    "question": "Can you explain a key performance or architectural decision you made when working with Python?",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in Python.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why Python was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.760449+00:00",
+    "session_id": "test-session",
+    "_id": "c3060d0a-c675-4448-9e70-0971c416b3d2"
+  },
+  {
+    "id": "295ffce3-92c4-4c0c-a2a4-7920571d54fa",
+    "question": "Can you explain a key performance or architectural decision you made when working with JavaScript?",
+    "based_on": "Resume Skill: JavaScript",
+    "skill": "JavaScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in JavaScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why JavaScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.760457+00:00",
+    "session_id": "test-session",
+    "_id": "adba4cce-2a89-4c61-a739-d5698fd45502"
+  },
+  {
+    "id": "6741c6eb-11d3-46af-b506-437e28a299dd",
+    "question": "Can you explain a key performance or architectural decision you made when working with TypeScript?",
+    "based_on": "Resume Skill: TypeScript",
+    "skill": "TypeScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in TypeScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why TypeScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.760462+00:00",
+    "session_id": "test-session",
+    "_id": "f670826a-f4ec-44fe-b7e5-29ea9982591d"
+  },
+  {
+    "id": "f7a4e01b-c467-42d8-aaca-efdb6ff5e9c0",
+    "question": "Can you explain a key performance or architectural decision you made when working with React?",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in React.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why React was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.760471+00:00",
+    "session_id": "test-session",
+    "_id": "e48709f4-73ba-4c97-9005-be208b6ebf3a"
+  },
+  {
+    "id": "be181908-ed87-400b-a917-805b2ae1164a",
+    "question": "Can you explain a key performance or architectural decision you made when working with FastAPI?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in FastAPI.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why FastAPI was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-14 17:04:54.760475+00:00",
+    "session_id": "test-session",
+    "_id": "9ef1d9fe-a65d-4e2a-8283-4e62d0407763"
+  },
+  {
+    "id": "86cfe571-500f-4f5e-ab5a-e12e888dd8a5",
+    "question": "The target job requires solid experience with React. How have you applied React in your projects, or how would you ramp up?",
+    "based_on": "JD Requirement: React (Present in Resume)",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Job Description Based",
+    "why_this_question": "Directly assesses qualification for the key required skill 'React' in the job description.",
+    "expected_answer_points": [
+      "Core understanding of React",
+      "Practical project application or learning plan",
+      "Best practices"
+    ],
+    "sample_answer": "Explain your hands-on experience or outline your fast learning roadmap for React.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.807301+00:00",
+    "session_id": "test-session",
+    "_id": "cb239704-7797-40e4-a25d-d5ea4ea8671b"
+  },
+  {
+    "id": "bc70e8f3-9527-4856-90b7-58d63598263c",
+    "question": "How do Python generators and the `yield` keyword optimize memory in data-heavy pipelines?",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in Python listed on your resume.",
+    "expected_answer_points": [
+      "Generators yield items one by one instead of loading full list in RAM",
+      "State retention between yield calls",
+      "Memory profiling comparison"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of Python with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.807310+00:00",
+    "session_id": "test-session",
+    "_id": "206370bd-d3c6-4069-ae88-1002980bb677"
+  },
+  {
+    "id": "00eb2123-dc1e-4ee6-8250-afc9d6a2933f",
+    "question": "How do indexes work internally in relational databases (B-Tree vs Hash), and when does an index slow down queries?",
+    "based_on": "Resume Skill: PostgreSQL",
+    "skill": "PostgreSQL",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in PostgreSQL listed on your resume.",
+    "expected_answer_points": [
+      "B-Tree indexes support range and equality scans",
+      "Index maintenance cost on INSERT/UPDATE/DELETE",
+      "Table scans vs index seek"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of PostgreSQL with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.807316+00:00",
+    "session_id": "test-session",
+    "_id": "427666fa-862b-4ab4-8086-e94740e2d39e"
+  },
+  {
+    "id": "06d461b3-9d90-4f8d-b157-5d582b046f78",
+    "question": "What are database transactions, and how do ACID properties ensure data consistency?",
+    "based_on": "Resume Skill: PostgreSQL",
+    "skill": "PostgreSQL",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests in-depth expertise in PostgreSQL listed on your resume.",
+    "expected_answer_points": [
+      "Atomicity, Consistency, Isolation, Durability",
+      "Commit and Rollback",
+      "Isolation levels (Read Committed, Repeatable Read, Serializable)"
+    ],
+    "sample_answer": "A strong answer should clearly address the core mechanism of PostgreSQL with concrete production examples.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.807320+00:00",
+    "session_id": "test-session",
+    "_id": "06a51064-2903-49fc-a4c2-e55dc72c4ed0"
+  },
+  {
+    "id": "6703f35b-786a-4fe6-97eb-7a6ddfd51cb3",
+    "question": "How did you ensure data integrity, API validation, and error handling across 'Distributed Task Queue'?",
+    "based_on": "Project: Distributed Task Queue",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "why_this_question": "Evaluates production-readiness, robust input validation, and defensive programming.",
+    "expected_answer_points": [
+      "Request validation mechanisms",
+      "Global exception handlers and clear HTTP status codes",
+      "Database transaction safety"
+    ],
+    "sample_answer": "In 'Distributed Task Queue', we utilized Python to handle core business logic efficiently with modular separation of concerns.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.807324+00:00",
+    "session_id": "test-session",
+    "_id": "a2f2004a-c09b-4d20-8a76-780a36068657"
+  },
+  {
+    "id": "c6777f52-3e32-4afe-b8a5-469f371c01bc",
+    "question": "Can you explain a key performance or architectural decision you made when working with Python?",
+    "based_on": "Resume Skill: Python",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in Python.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why Python was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.812586+00:00",
+    "session_id": "test-session",
+    "_id": "0b9bf961-4c22-4882-8a22-7abc8c1d9d33"
+  },
+  {
+    "id": "48d2f3bc-abbe-4d89-8bc8-7145ae140443",
+    "question": "Can you explain a key performance or architectural decision you made when working with JavaScript?",
+    "based_on": "Resume Skill: JavaScript",
+    "skill": "JavaScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in JavaScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why JavaScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.812593+00:00",
+    "session_id": "test-session",
+    "_id": "ebea777d-5a09-468e-8ac1-0cbd1160c43a"
+  },
+  {
+    "id": "b2c2135b-03bf-4b00-a3f7-8bab48ecc2d7",
+    "question": "Can you explain a key performance or architectural decision you made when working with TypeScript?",
+    "based_on": "Resume Skill: TypeScript",
+    "skill": "TypeScript",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in TypeScript.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why TypeScript was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.812597+00:00",
+    "session_id": "test-session",
+    "_id": "00f64632-fb79-45d6-b6c6-90e11fc78cfb"
+  },
+  {
+    "id": "b50e9183-0c50-4491-979f-f0ce6a887b51",
+    "question": "Can you explain a key performance or architectural decision you made when working with React?",
+    "based_on": "Resume Skill: React",
+    "skill": "React",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in React.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why React was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.812601+00:00",
+    "session_id": "test-session",
+    "_id": "fcb18f31-a1af-4ffc-a530-dab3f666510e"
+  },
+  {
+    "id": "c8bbaaf8-cb03-4a40-b8d7-92e626f94838",
+    "question": "Can you explain a key performance or architectural decision you made when working with FastAPI?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "why_this_question": "Tests practical design and trade-off evaluation in FastAPI.",
+    "expected_answer_points": [
+      "Clear problem statement",
+      "Why FastAPI was applied",
+      "Measurable result"
+    ],
+    "sample_answer": "Discuss the technical challenge, solution, and performance outcome.",
+    "is_bookmarked": false,
+    "created_at": "2026-08-15 02:25:01.812604+00:00",
+    "session_id": "test-session",
+    "_id": "c71a51ed-73ab-451d-9ba8-df05e6e50177"
+  }
+]

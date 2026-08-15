@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume Interview AI — CTS Panel Project Division & Presentation Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      line-height: 1.45;
+      padding: 24px;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    .header-title h1 {
+      font-size: 24px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+    }
+
+    .header-title p {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .print-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+
+    .print-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #1e3a8a;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .member-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .member-card {
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 14px 16px;
+      background: #f8fafc;
+    }
+
+    .sec-1 .member-card { background: #f0fdf4; border-color: #bbf7d0; }
+    .sec-2 .member-card { background: #eff6ff; border-color: #bfdbfe; }
+    .sec-3 .member-card { background: #faf5ff; border-color: #e9d5ff; }
+    .sec-4 .member-card { background: #fffbeb; border-color: #fde68a; }
+
+    .member-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .member-name {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .member-role {
+      font-size: 11px;
+      font-weight: 700;
+      color: #2563eb;
+      background: white;
+      padding: 2px 8px;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .meta-row {
+      font-size: 12px;
+      color: #334155;
+      margin-bottom: 4px;
+    }
+
+    .meta-row b {
+      color: #1e293b;
+    }
+
+    .speech-box {
+      font-size: 11.5px;
+      font-style: italic;
+      color: #0369a1;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      border-left: 3px solid #0284c7;
+    }
+
+    .qa-box {
+      font-size: 11.5px;
+      color: #334155;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 6px 10px;
+      border-radius: 6px;
+      border-left: 3px solid #10b981;
+    }
+
+    .qa-box i {
+      color: #0f172a;
+      font-weight: 600;
+      font-style: normal;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      font-size: 11.5px;
+    }
+
+    th, td {
+      padding: 8px 12px;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+    }
+
+    th {
+      background: #1e293b;
+      color: white;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding: 0;
+      }
+      .container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+      .print-btn {
+        display: none;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <div class="header-title">
+        <h1>Resume Interview AI</h1>
+        <p>CTS Panel Project Division & Presentation Guide (8-Member Team Structure)</p>
+      </div>
+      <button class="print-btn" onclick="window.print()">
+        🖨️ Print / Save as PDF
+      </button>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="section-title">SECTION 1: FRONTEND ARCHITECTURE, UI/UX & VOICE INTEGRATION</div>
+    <div class="member-grid sec-1">
+      <div class="member-card">
+        <div class="member-header">
+          <span class="member-name">MEMBER 1: Frontend Architecture & UI/UX Design Lead</span>
+          <span class="member-role">UI Architecture & Component System Engineer</span>
+        </div>
+        <div class="meta-row"><b>Tech Stack:</b> React 19, Vite, Tailwind CSS, Lucide Icons</div>
+        <div class="meta-row"><b>Modules:</b> 12 platform views, Sidebar navigation, ScoreRing/Badge/Modal design system, Multi-device responsive layouts.</div>
+        <div class="speech-box"><b>Speech Script:</b> "I was responsible for the core frontend architecture and design system using React 19 and Tailwind CSS. I built the modular layout, interactive gauges, and responsive navigation across all 12 platform views."</div>
+        <div class="qa-box"><b>Panel Q:</b> <i>How did you structure the component hierarchy for reusability?</i><br><b>Ans:</b> "We created atomic components in components/common/ like ScoreRing and Badge, ensuring consistent props, visual tokens, and zero-runtime CSS overhead."</div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-header">
+          <span class="member-name">MEMBER 2: Frontend State Management & Voice UI Engineer</span>
+          <span class="member-role">Client State & Speech-to-Text Specialist</span>
+        </div>
+        <div class="meta-row"><b>Tech Stack:</b> React Context API, Web Speech API, Axios Interceptors, sessionStorage</div>
+        <div class="meta-row"><b>Modules:</b> SessionContext global store, Voice dictation in Mock Interview, Live backend health badge (Online/Offline), 502 error handling.</div>
+        <div class="speech-box"><b>Speech Script:</b> "I engineered the frontend state management and browser voice capabilities. I built SessionContext with ephemeral sessionStorage, integrated SpeechRecognition for voice dictation, and added live backend health status monitoring."</div>
+        <div class="qa-box"><b>Panel Q:</b> <i>How does voice dictation work in the browser?</i><br><b>Ans:</b> "We hook into window.SpeechRecognition with continuous streaming, appending transcribed text tokens directly to the user's answer state in real-time."</div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="section-title">SECTION 2: DOCUMENT PROCESSING, NLP & SEMANTIC MATCH ENGINE</div>
+    <div class="member-grid sec-2">
+      <div class="member-card">
+        <div class="member-header">
+          <span class="member-name">MEMBER 3: Resume Ingestion & Document Parsing Lead</span>
+          <span class="member-role">Document Parsing & Resume Scoring Engineer</span>
+        </div>
+        <div class="meta-row"><b>Tech Stack:</b> Python 3.13, PyMuPDF (fitz), Python-docx, Regex Heuristics</div>
+        <div class="meta-row"><b>Modules:</b> PDF & Word text extraction, Section segmentation (Summary/Skills/Experience/Education), 5-factor quality scoring.</div>
+        <div class="speech-box"><b>Speech Script:</b> "I built the resume ingestion and parsing pipeline using PyMuPDF and python-docx. I developed algorithms to extract structured text from resumes, segment key sections, and compute an explainable 5-factor resume quality score."</div>
+        <div class="qa-box"><b>Panel Q:</b> <i>How do you handle multi-column resumes or unstructured formats?</i><br><b>Ans:</b> "PyMuPDF extracts raw text blocks preserving reading order, followed by multi-pass regex scanning for standard section headers to segment sections reliably."</div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-header">
+          <span class="member-name">MEMBER 4: Semantic Matching & Skill Gap Engineer</span>
+          <span class="member-role">Job Description Matching & Gap Analysis Specialist</span>
+        </div>
+        <div class="meta-row"><b>Tech Stack:</b> Scikit-learn (TfidfVectorizer, cosine_similarity), NLP Tokenizer</div>
+        <div class="meta-row"><b>Modules:</b> Semantic similarity score calculation, Skill classification (Matched, Missing Gaps, Strengths), Resume improvements engine.</div>
+        <div class="speech-box"><b>Speech Script:</b> "I developed the semantic matching and skill gap engine using Scikit-Learn. I implemented TF-IDF vectorization and Cosine Similarity to calculate match scores and automatically classify technical skills into matched proficiencies, missing gaps, and candidate strengths."</div>
+        <div class="qa-box"><b>Panel Q:</b> <i>Why choose TF-IDF with Cosine Similarity over large deep learning embeddings?</i><br><b>Ans:</b> "TF-IDF executes in <50ms with zero API cost/GPU overhead, providing transparent keyword weights so candidates can see exactly which terms influenced their score."</div>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SECTION 3 -->
+    <div class="section-title">SECTION 3: GROUNDED QUESTION GENERATION & MOCK EVALUATION</div>
+    <div class="member-grid sec-3">
+      <div class="member-card">
+        <div class="member-header">
+          <span class="member-name">MEMBER 5: Grounded Question Generator Lead</span>
+          <span class="member-role">Question Generation & Anti-Hallucination Specialist</span>
+        </div>
+        <div class="meta-row"><b>Tech Stack:</b> FastAPI, Google Gemini API / Grounded Deterministic Engine, Pydantic v2</div>
+        <div class="meta-row"><b>Modules:</b> Grounded question engine anchored to candidate projects, Filters (Easy/Med/Hard/Expert, Tech/Behavioral), Zero-duplicate tracking.</div>
+        <div class="speech-box"><b>Speech Script:</b> "I led the Grounded Question Generation engine. I enforced strict algorithmic constraints to ensure every question is anchored to verified candidate projects or target JD requirements, with zero-duplicate history tracking."</div>
+        <div class="qa-box"><b>Panel Q:</b> <i>How do you prevent the AI from generating generic questions?</i><br><b>Ans:</b> "Every generation payload passes parsed resume project entities and requires an explicit based_on field linking each question to an identified project or tool."</div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-header">
+          <span class="member-name">MEMBER 6: Mock Interview & 6-Axis Evaluation Specialist</span>
+          <span class="member-role">Answer Evaluation & STAR Diagnostics Engineer</span>
+        </div>
+        <div class="meta-row"><b>Tech Stack:</b> Python, STAR Method Heuristics, Domain Concept Dictionary</div>
+        <div class="meta-row"><b>Modules:</b> 6-Axis evaluation matrix (Accuracy/Completeness/Clarity/etc.), STAR diagnostic analyzer, Senior model answers & follow-up questions.</div>
+        <div class="speech-box"><b>Speech Script:</b> "I developed the 6-axis answer evaluation engine and mock interview logic. I built algorithms that extract domain concepts, check for technical anti-patterns, evaluate STAR structure, and formulate senior model answers with interactive follow-ups."</div>
+        <div class="qa-box"><b>Panel Q:</b> <i>How does the system evaluate technical accuracy without a human interviewer?</i><br><b>Ans:</b> "We match candidate answers against a domain concept dictionary (e.g. B-Trees for SQL, Event Loop for JS) and penalize misconceptions, returning explicit lists of covered vs missed concepts."</div>
+      </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section-title">SECTION 4: BACKEND INFRASTRUCTURE, DATABASE & REPORTING</div>
+    <div class="member-grid sec-4">
+      <div class="member-card">
+        <div class="member-header">
+          <span class="member-name">MEMBER 7: REST API & Dual-Database Architect</span>
+          <span class="member-role">Backend Architecture & Database Engine Specialist</span>
+        </div>
+        <div class="meta-row"><b>Tech Stack:</b> FastAPI, Motor / PyMongo (MongoDB), AsyncIO, JSON Database Engine</div>
+        <div class="meta-row"><b>Modules:</b> Asynchronous REST routing, Dual-Database manager with automated MongoDB + Local JSON fallback, Session lifecycle APIs.</div>
+        <div class="speech-box"><b>Speech Script:</b> "I architected the FastAPI backend and dual-mode database layer. I designed asynchronous REST endpoints and built a database manager that connects to MongoDB or falls back to an async local JSON database if MongoDB is not present."</div>
+        <div class="qa-box"><b>Panel Q:</b> <i>How does the system handle database operations asynchronously?</i><br><b>Ans:</b> "We use Motor for MongoDB and asynchronous file I/O for the local database, allowing queries to run non-blockingly on FastAPI's async event loop without thread pool contention."</div>
+      </div>
+
+      <div class="member-card">
+        <div class="member-header">
+          <span class="member-name">MEMBER 8: Readiness Analytics, PDF Reports & Automation Lead</span>
+          <span class="member-role">Analytics Dashboard, PDF Generation & Deployment Engineer</span>
+        </div>
+        <div class="meta-row"><b>Tech Stack:</b> ReportLab, Recharts, Cross-Platform Shell Scripts (run.py, run.bat, run.sh)</div>
+        <div class="meta-row"><b>Modules:</b> Automated ReportLab PDF readiness report export, Readiness analytics charts, 1-click cross-platform launchers for Windows/Mac/Linux.</div>
+        <div class="speech-box"><b>Speech Script:</b> "I engineered the Readiness Analytics dashboard, the ReportLab PDF export engine, and cross-platform automation. I built the automated PDF generator for evaluation reports and created 1-click execution scripts for Windows, Mac, and Linux environments."</div>
+        <div class="qa-box"><b>Panel Q:</b> <i>How is the PDF generated on the fly?</i><br><b>Ans:</b> "We use Python's ReportLab library to compile layout flowables, tables, and styled paragraphs into an in-memory binary stream, returning a downloadable PDF in under 100 milliseconds."</div>
+      </div>
+    </div>
+
+    <!-- PRESENTATION TIMELINE TABLE -->
+    <div class="section-title">⏱️ 8-Minute CTS Panel Presentation Order (1 Min per Member)</div>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 40px;">#</th>
+          <th style="width: 110px;">Member</th>
+          <th>Presentation Topic</th>
+          <th>Live Screen / Demo Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>1</b></td>
+          <td><b>Member 1</b></td>
+          <td>Introduction & UI Layout System</td>
+          <td>Dashboard & Responsive Sidebar Navigation</td>
+        </tr>
+        <tr>
+          <td><b>2</b></td>
+          <td><b>Member 2</b></td>
+          <td>State Management & Voice Dictation</td>
+          <td>Live Status Badge & Speech-to-Text Microphone</td>
+        </tr>
+        <tr>
+          <td><b>3</b></td>
+          <td><b>Member 3</b></td>
+          <td>Resume Ingestion & 5-Factor Quality Score</td>
+          <td>Upload Resume & Parsed Score Breakdown</td>
+        </tr>
+        <tr>
+          <td><b>4</b></td>
+          <td><b>Member 4</b></td>
+          <td>Semantic Match & Skill Gap Diagnostics</td>
+          <td>TF-IDF Match % & Missing vs Matched Skills</td>
+        </tr>
+        <tr>
+          <td><b>5</b></td>
+          <td><b>Member 5</b></td>
+          <td>Grounded Question Generator & Filters</td>
+          <td>Generate Filtered Questions Grounded in Resume</td>
+        </tr>
+        <tr>
+          <td><b>6</b></td>
+          <td><b>Member 6</b></td>
+          <td>Mock Interview & 6-Axis Evaluation</td>
+          <td>Submit Answer &rarr; 6-Axis Matrix & Model Answer</td>
+        </tr>
+        <tr>
+          <td><b>7</b></td>
+          <td><b>Member 7</b></td>
+          <td>FastAPI Architecture & Dual-Database</td>
+          <td>Interactive Swagger Docs (/docs) & DB Engine</td>
+        </tr>
+        <tr>
+          <td><b>8</b></td>
+          <td><b>Member 8</b></td>
+          <td>Readiness Analytics & PDF Report Export</td>
+          <td>Analytics Trends & Download PDF Report</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

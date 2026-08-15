@@ -1,0 +1,334 @@
+[
+  {
+    "id": "8ad21ad4-99df-48d6-bfa5-fad8f48b39ab",
+    "question_id": "q-test-1",
+    "overall_score": 65,
+    "relevance_score": 47,
+    "technical_accuracy_score": 70,
+    "completeness_score": 53,
+    "clarity_score": 85,
+    "confidence_score": 85,
+    "communication_score": 90,
+    "strengths": [
+      "Good elaboration with structured context."
+    ],
+    "weaknesses": [
+      "Stay closer to the specific question asked about MongoDB.",
+      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
+    ],
+    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
+    "next_recommended_difficulty": "Medium",
+    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
+    "evaluated_at": "2026-08-14 13:47:40.597751",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "13a281dd-f93b-477d-b584-f0e3f2bb9cb1"
+  },
+  {
+    "id": "6a59fd75-0643-45cd-abc3-a4fcc1b78d84",
+    "question_id": "q-test-1",
+    "overall_score": 65,
+    "relevance_score": 47,
+    "technical_accuracy_score": 70,
+    "completeness_score": 53,
+    "clarity_score": 85,
+    "confidence_score": 85,
+    "communication_score": 90,
+    "strengths": [
+      "Good elaboration with structured context."
+    ],
+    "weaknesses": [
+      "Stay closer to the specific question asked about MongoDB.",
+      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
+    ],
+    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
+    "next_recommended_difficulty": "Medium",
+    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
+    "evaluated_at": "2026-08-14 13:48:00.134773",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "e47c29ab-3309-4644-a99e-7072e35a4a18"
+  },
+  {
+    "id": "c3abdc97-7159-4c1a-a6ac-500436b6dec7",
+    "question_id": "q-test-1",
+    "overall_score": 65,
+    "relevance_score": 47,
+    "technical_accuracy_score": 70,
+    "completeness_score": 53,
+    "clarity_score": 85,
+    "confidence_score": 85,
+    "communication_score": 90,
+    "strengths": [
+      "Good elaboration with structured context."
+    ],
+    "weaknesses": [
+      "Stay closer to the specific question asked about MongoDB.",
+      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
+    ],
+    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
+    "next_recommended_difficulty": "Medium",
+    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
+    "evaluated_at": "2026-08-14 13:48:37.679113+00:00",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "22a3110d-7fb2-4859-bb7b-e970a629087e"
+  },
+  {
+    "id": "af82ee0a-f5f4-4eb4-b964-f4b7811568d1",
+    "question_id": "q-test-1",
+    "overall_score": 65,
+    "relevance_score": 47,
+    "technical_accuracy_score": 70,
+    "completeness_score": 53,
+    "clarity_score": 85,
+    "confidence_score": 85,
+    "communication_score": 90,
+    "strengths": [
+      "Good elaboration with structured context."
+    ],
+    "weaknesses": [
+      "Stay closer to the specific question asked about MongoDB.",
+      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
+    ],
+    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
+    "next_recommended_difficulty": "Medium",
+    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
+    "evaluated_at": "2026-08-14 13:49:15.900314+00:00",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "86ad72b9-6e60-40ef-8a16-edb752dbbc21"
+  },
+  {
+    "id": "8cab047a-d786-4b11-ad18-d7c26fc6a2cd",
+    "question_id": "q-test-1",
+    "overall_score": 65,
+    "relevance_score": 47,
+    "technical_accuracy_score": 70,
+    "completeness_score": 53,
+    "clarity_score": 85,
+    "confidence_score": 85,
+    "communication_score": 90,
+    "strengths": [
+      "Good elaboration with structured context."
+    ],
+    "weaknesses": [
+      "Stay closer to the specific question asked about MongoDB.",
+      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
+    ],
+    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
+    "next_recommended_difficulty": "Medium",
+    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
+    "evaluated_at": "2026-08-14 14:08:09.449994+00:00",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "89720576-20aa-4f0d-8e83-23ba82de2ce8"
+  },
+  {
+    "id": "776f8af2-7216-4c5c-ba81-be0666505e73",
+    "question_id": "q-test-1",
+    "overall_score": 84,
+    "relevance_score": 85,
+    "technical_accuracy_score": 90,
+    "completeness_score": 77,
+    "clarity_score": 88,
+    "confidence_score": 90,
+    "communication_score": 75,
+    "verdict_rating": "Strong Technical Answer",
+    "concepts_covered": [
+      "BSON Document Model",
+      "16MB Document Limit"
+    ],
+    "concepts_missed": [
+      "Compound Indexing",
+      "Embedding vs Referencing",
+      "Aggregation Pipeline",
+      "Horizontal Scalability"
+    ],
+    "strengths": [
+      "Correctly identified key mechanisms: BSON Document Model, 16MB Document Limit.",
+      "Provided clear causal reasoning explaining the rationale behind design choices.",
+      "Supported assertions with concrete impact metrics / numbers."
+    ],
+    "weaknesses": [
+      "Missed discussing core architectural points: Compound Indexing, Embedding vs Referencing.",
+      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
+    ],
+    "improved_answer": "A senior engineer response for 'Why did you choose MongoDB for your Resume Interview AI project?': We selected MongoDB to leverage BSON Document Model, Compound Indexing, Embedding vs Referencing. In our architecture, this decoupled data persistence from synchronous request bottlenecks. We established compound indexing and query projection, mitigating potential 16MB document boundary issues and reducing p99 latency to <50ms. The key trade-off was accepting eventual consistency in exchange for horizontal partition tolerance.",
+    "follow_up_question": "If this MongoDB implementation encountered a 20x spike in concurrent requests, where would the first bottleneck emerge and how would you resolve it?",
+    "next_recommended_difficulty": "Hard",
+    "feedback_summary": "Scored 84/100 (Strong Technical Answer). Demonstrated solid grasp of technical mechanisms.",
+    "star_feedback": {
+      "situation": "Clearly stated system background.",
+      "task": "Target technical goal was addressed.",
+      "action": "Mentioned concrete actions with MongoDB.",
+      "result": "Quantified impact included."
+    },
+    "evaluated_at": "2026-08-14 14:27:54.672360+00:00",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "87a4a824-e83e-4853-80fe-47b962062c8c"
+  },
+  {
+    "id": "3d860f9b-52b2-4904-935c-6a764174629c",
+    "question_id": "q-test-1",
+    "overall_score": 84,
+    "relevance_score": 85,
+    "technical_accuracy_score": 90,
+    "completeness_score": 77,
+    "clarity_score": 88,
+    "confidence_score": 90,
+    "communication_score": 75,
+    "verdict_rating": "Strong Technical Answer",
+    "concepts_covered": [
+      "BSON Document Model",
+      "16MB Document Limit"
+    ],
+    "concepts_missed": [
+      "Compound Indexing",
+      "Embedding vs Referencing",
+      "Aggregation Pipeline",
+      "Horizontal Scalability"
+    ],
+    "strengths": [
+      "Correctly identified key mechanisms: BSON Document Model, 16MB Document Limit.",
+      "Provided clear causal reasoning explaining the rationale behind design choices.",
+      "Supported assertions with concrete impact metrics / numbers."
+    ],
+    "weaknesses": [
+      "Missed discussing core architectural points: Compound Indexing, Embedding vs Referencing.",
+      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
+    ],
+    "improved_answer": "A senior engineer response for 'Why did you choose MongoDB for your Resume Interview AI project?': We selected MongoDB to leverage BSON Document Model, Compound Indexing, Embedding vs Referencing. In our architecture, this decoupled data persistence from synchronous request bottlenecks. We established compound indexing and query projection, mitigating potential 16MB document boundary issues and reducing p99 latency to <50ms. The key trade-off was accepting eventual consistency in exchange for horizontal partition tolerance.",
+    "follow_up_question": "If this MongoDB implementation encountered a 20x spike in concurrent requests, where would the first bottleneck emerge and how would you resolve it?",
+    "next_recommended_difficulty": "Hard",
+    "feedback_summary": "Scored 84/100 (Strong Technical Answer). Demonstrated solid grasp of technical mechanisms.",
+    "star_feedback": {
+      "situation": "Clearly stated system background.",
+      "task": "Target technical goal was addressed.",
+      "action": "Mentioned concrete actions with MongoDB.",
+      "result": "Quantified impact included."
+    },
+    "evaluated_at": "2026-08-14 16:58:54.211176+00:00",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "63ba43ad-fc26-4f40-a067-526da92dc21f"
+  },
+  {
+    "id": "b3faa324-450a-4aa3-88fb-df67e0c8b0ce",
+    "question_id": "q-test-1",
+    "overall_score": 84,
+    "relevance_score": 85,
+    "technical_accuracy_score": 90,
+    "completeness_score": 77,
+    "clarity_score": 88,
+    "confidence_score": 90,
+    "communication_score": 75,
+    "verdict_rating": "Strong Technical Answer",
+    "concepts_covered": [
+      "BSON Document Model",
+      "16MB Document Limit"
+    ],
+    "concepts_missed": [
+      "Compound Indexing",
+      "Embedding vs Referencing",
+      "Aggregation Pipeline",
+      "Horizontal Scalability"
+    ],
+    "strengths": [
+      "Correctly identified key mechanisms: BSON Document Model, 16MB Document Limit.",
+      "Provided clear causal reasoning explaining the rationale behind design choices.",
+      "Supported assertions with concrete impact metrics / numbers."
+    ],
+    "weaknesses": [
+      "Missed discussing core architectural points: Compound Indexing, Embedding vs Referencing.",
+      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
+    ],
+    "improved_answer": "A senior engineer response for 'Why did you choose MongoDB for your Resume Interview AI project?': We selected MongoDB to leverage BSON Document Model, Compound Indexing, Embedding vs Referencing. In our architecture, this decoupled data persistence from synchronous request bottlenecks. We established compound indexing and query projection, mitigating potential 16MB document boundary issues and reducing p99 latency to <50ms. The key trade-off was accepting eventual consistency in exchange for horizontal partition tolerance.",
+    "follow_up_question": "If this MongoDB implementation encountered a 20x spike in concurrent requests, where would the first bottleneck emerge and how would you resolve it?",
+    "next_recommended_difficulty": "Hard",
+    "feedback_summary": "Scored 84/100 (Strong Technical Answer). Demonstrated solid grasp of technical mechanisms.",
+    "star_feedback": {
+      "situation": "Clearly stated system background.",
+      "task": "Target technical goal was addressed.",
+      "action": "Mentioned concrete actions with MongoDB.",
+      "result": "Quantified impact included."
+    },
+    "evaluated_at": "2026-08-14 17:04:54.764991+00:00",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "a3442df8-b7ea-497c-807b-e4bff262208a"
+  },
+  {
+    "id": "a34d1684-1a59-41bf-acc2-86426c6606ca",
+    "question_id": "q-test-1",
+    "overall_score": 84,
+    "relevance_score": 85,
+    "technical_accuracy_score": 90,
+    "completeness_score": 77,
+    "clarity_score": 88,
+    "confidence_score": 90,
+    "communication_score": 75,
+    "verdict_rating": "Strong Technical Answer",
+    "concepts_covered": [
+      "BSON Document Model",
+      "16MB Document Limit"
+    ],
+    "concepts_missed": [
+      "Compound Indexing",
+      "Embedding vs Referencing",
+      "Aggregation Pipeline",
+      "Horizontal Scalability"
+    ],
+    "strengths": [
+      "Correctly identified key mechanisms: BSON Document Model, 16MB Document Limit.",
+      "Provided clear causal reasoning explaining the rationale behind design choices.",
+      "Supported assertions with concrete impact metrics / numbers."
+    ],
+    "weaknesses": [
+      "Missed discussing core architectural points: Compound Indexing, Embedding vs Referencing.",
+      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
+    ],
+    "improved_answer": "A senior engineer response for 'Why did you choose MongoDB for your Resume Interview AI project?': We selected MongoDB to leverage BSON Document Model, Compound Indexing, Embedding vs Referencing. In our architecture, this decoupled data persistence from synchronous request bottlenecks. We established compound indexing and query projection, mitigating potential 16MB document boundary issues and reducing p99 latency to <50ms. The key trade-off was accepting eventual consistency in exchange for horizontal partition tolerance.",
+    "follow_up_question": "If this MongoDB implementation encountered a 20x spike in concurrent requests, where would the first bottleneck emerge and how would you resolve it?",
+    "next_recommended_difficulty": "Hard",
+    "feedback_summary": "Scored 84/100 (Strong Technical Answer). Demonstrated solid grasp of technical mechanisms.",
+    "star_feedback": {
+      "situation": "Clearly stated system background.",
+      "task": "Target technical goal was addressed.",
+      "action": "Mentioned concrete actions with MongoDB.",
+      "result": "Quantified impact included."
+    },
+    "evaluated_at": "2026-08-15 02:25:01.817913+00:00",
+    "session_id": "test-session",
+    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
+    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
+    "skill": "MongoDB",
+    "difficulty": "Medium",
+    "_id": "ab139349-51a3-4685-bce2-ac8bf367cd0d"
+  }
+]
