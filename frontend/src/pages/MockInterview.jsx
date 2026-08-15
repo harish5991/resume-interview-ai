@@ -33,7 +33,6 @@ export const MockInterview = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState('Medium');
   const [isAdaptiveMode, setIsAdaptiveMode] = useState(false);
   const [copiedModel, setCopiedModel] = useState(false);
-  const [showHint, setShowHint] = useState(false);
 
   // Speech Recognition instance
   const [recognition, setRecognition] = useState(null);
@@ -134,7 +133,6 @@ export const MockInterview = () => {
       setEvaluation(null);
       setUserAnswer('');
     }
-    setShowHint(false);
   };
 
   const toggleRecording = () => {
@@ -185,18 +183,57 @@ export const MockInterview = () => {
         expected_points: currentQuestion?.expected_answer_points || [],
       });
 
-      setEvaluation(res.data);
+      let evalData = res.data;
+
+      // Strict Zero-Score Enforcement for Random / Gibberish / Off-Topic / Short answers
+      const cleaned = userAnswer.trim().toLowerCase();
+      const words = cleaned.split(/\s+/).filter((w) => w.length > 0);
+      const isRandomOrGibberish =
+        words.length < 4 ||
+        (evalData.overall_score != null && evalData.overall_score <= 25) ||
+        /^[bcdfghjklmnpqrstvwxyz\W_]+$/i.test(cleaned) ||
+        cleaned.includes(';') ||
+        /(.)\1{4,}/.test(cleaned) ||
+        (evalData.verdict_rating && (
+          evalData.verdict_rating.toLowerCase().includes('incomplete') ||
+          evalData.verdict_rating.toLowerCase().includes('insufficient') ||
+          evalData.verdict_rating.toLowerCase().includes('random') ||
+          evalData.verdict_rating.toLowerCase().includes('irrelevant') ||
+          evalData.verdict_rating.toLowerCase().includes('no answer')
+        ));
+
+      if (isRandomOrGibberish) {
+        evalData = {
+          ...evalData,
+          overall_score: 0,
+          relevance_score: 0,
+          technical_accuracy_score: 0,
+          completeness_score: 0,
+          clarity_score: 0,
+          confidence_score: 0,
+          communication_score: 0,
+          verdict_rating: words.length < 4 ? 'No Answer Provided' : 'Irrelevant / Random Input',
+          feedback_summary: 'Random, off-topic, or insufficient input detected (0/100). Review the suggested model answer below.',
+          strengths: ['No relevant technical substance identified.'],
+          weaknesses: [
+            `The answer entered did not provide a valid technical explanation for ${currentQuestion?.skill || 'this question'}.`,
+            'Explain concrete system mechanisms, implementation choices, and practical trade-offs.'
+          ]
+        };
+      }
+
+      setEvaluation(evalData);
       if (currentQuestion?.id) {
         setAnsweredMap((prev) => ({
           ...prev,
           [currentQuestion.id]: {
-            evaluation: res.data,
+            evaluation: evalData,
             userAnswer: userAnswer,
           },
         }));
       }
 
-      showToast(`Answer scored: ${res.data.overall_score}/100.`);
+      showToast(`Answer scored: ${evalData.overall_score}/100.`);
     } catch (err) {
       console.error(err);
       const msg = err.response?.data?.detail || err.message || 'Failed to evaluate answer.';
@@ -238,11 +275,12 @@ export const MockInterview = () => {
   };
 
   const copyModelAnswer = () => {
-    if (!evaluation?.improved_answer) return;
-    navigator.clipboard.writeText(evaluation.improved_answer);
+    const textToCopy = evaluation?.improved_answer || currentQuestion?.sample_answer;
+    if (!textToCopy) return;
+    navigator.clipboard.writeText(textToCopy);
     setCopiedModel(true);
     setTimeout(() => setCopiedModel(false), 2000);
-    showToast('Model answer copied.');
+    showToast('Suggested model answer copied.');
   };
 
   const totalQuestions = questions?.length || 0;
@@ -356,50 +394,10 @@ export const MockInterview = () => {
             </h3>
 
             {currentQuestion.why_this_question && (
-              <p className="text-xs text-slate-500">
-                <b>Evaluation Goal:</b> {currentQuestion.why_this_question}
+              <p className="text-xs text-slate-500 pt-1 border-t border-slate-100">
+                <span className="font-semibold text-slate-700">Evaluation Goal:</span> {currentQuestion.why_this_question}
               </p>
             )}
-
-            {/* Suggested Answer Hint / Strategy Toggle */}
-            <div className="pt-2 border-t border-slate-100">
-              <button
-                type="button"
-                onClick={() => setShowHint(!showHint)}
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors"
-              >
-                {showHint ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-                <span>{showHint ? 'Hide Suggested Answer & Strategy' : '💡 View Suggested Model Answer & Strategy'}</span>
-              </button>
-
-              {showHint && (
-                <div className="mt-2.5 p-3.5 bg-blue-50/50 rounded-lg border border-blue-100 space-y-2 text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-blue-950 uppercase tracking-wide text-[11px]">
-                      Suggested Answer Strategy:
-                    </span>
-                  </div>
-                  <p className="text-slate-800 leading-relaxed bg-white p-3 rounded border border-blue-100/80 shadow-2xs font-normal">
-                    {currentQuestion.sample_answer || currentQuestion.why_this_question || "State the core mechanism, describe concrete implementation tools, explain performance trade-offs, and quantify results."}
-                  </p>
-                  {currentQuestion.expected_answer_points && currentQuestion.expected_answer_points.length > 0 && (
-                    <div className="space-y-1 pt-1">
-                      <span className="text-[11px] font-semibold text-slate-700 uppercase tracking-wider">
-                        Expected Talking Points:
-                      </span>
-                      <ul className="space-y-1 text-slate-600">
-                        {currentQuestion.expected_answer_points.map((pt, idx) => (
-                          <li key={idx} className="flex items-start gap-1.5">
-                            <span className="text-blue-500 font-bold">•</span>
-                            <span>{pt}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
           </div>
 
           {/* Answer Input Card */}
@@ -460,16 +458,21 @@ export const MockInterview = () => {
             <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-4">
               {/* Header Score & Verdict */}
               <div className="flex flex-col sm:flex-row items-center gap-6 pb-4 border-b border-slate-100">
-                <ScoreRing score={evaluation.overall_score} size={88} strokeWidth={7} label="Answer Score" />
+                <ScoreRing score={evaluation.overall_score ?? 0} size={88} strokeWidth={7} label="Answer Score" />
                 <div className="space-y-1.5 flex-1 text-center sm:text-left">
                   <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                     <h3 className="text-base font-bold text-slate-900">Answer Evaluation</h3>
-                    <Badge variant={evaluation.overall_score >= 75 ? 'success' : 'warning'}>
-                      {evaluation.verdict || (evaluation.overall_score >= 75 ? 'Strong Answer' : 'Adequate Answer')}
+                    <Badge variant={evaluation.overall_score >= 75 ? 'success' : evaluation.overall_score >= 50 ? 'warning' : 'danger'}>
+                      {evaluation.verdict_rating || evaluation.verdict || (
+                        evaluation.overall_score >= 85 ? 'Exceptional' :
+                        evaluation.overall_score >= 70 ? 'Strong Answer' :
+                        evaluation.overall_score >= 50 ? 'Adequate Answer' :
+                        evaluation.overall_score > 0 ? 'Needs Technical Depth' : 'No Answer Provided'
+                      )}
                     </Badge>
                   </div>
                   <p className="text-xs text-slate-600 leading-relaxed">
-                    {evaluation.rationale}
+                    {evaluation.feedback_summary || evaluation.rationale}
                   </p>
                 </div>
               </div>
@@ -477,12 +480,12 @@ export const MockInterview = () => {
               {/* 6-Axis Sub-Scores */}
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2">
                 {[
-                  { label: "Relevance", val: evaluation.axis_scores?.relevance || evaluation.relevance_score || 80 },
-                  { label: "Technical Depth", val: evaluation.axis_scores?.technical || evaluation.technical_accuracy_score || 75 },
-                  { label: "Completeness", val: evaluation.axis_scores?.completeness || evaluation.completeness_score || 70 },
-                  { label: "Clarity", val: evaluation.axis_scores?.clarity || evaluation.clarity_score || 85 },
-                  { label: "Confidence", val: evaluation.axis_scores?.confidence || 80 },
-                  { label: "Communication", val: evaluation.axis_scores?.communication || evaluation.communication_score || 80 },
+                  { label: "Relevance", val: evaluation.relevance_score ?? evaluation.axis_scores?.relevance ?? 0 },
+                  { label: "Technical Depth", val: evaluation.technical_accuracy_score ?? evaluation.axis_scores?.technical ?? 0 },
+                  { label: "Completeness", val: evaluation.completeness_score ?? evaluation.axis_scores?.completeness ?? 0 },
+                  { label: "Clarity", val: evaluation.clarity_score ?? evaluation.axis_scores?.clarity ?? 0 },
+                  { label: "Confidence", val: evaluation.confidence_score ?? evaluation.axis_scores?.confidence ?? 0 },
+                  { label: "Communication", val: evaluation.communication_score ?? evaluation.axis_scores?.communication ?? 0 },
                 ].map((axis, idx) => (
                   <div key={idx} className="p-2.5 bg-slate-50 rounded-lg border border-slate-100 text-center">
                     <div className="text-[11px] text-slate-500">{axis.label}</div>
@@ -527,36 +530,47 @@ export const MockInterview = () => {
               </div>
 
               {/* Model Answer */}
-              {(evaluation.improved_answer || currentQuestion.sample_answer) && (
-                <div className="p-4 bg-slate-50/80 rounded-xl border border-slate-200 space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                      Suggested Model Answer Recommendation:
-                    </span>
-                    <button
-                      onClick={copyModelAnswer}
-                      className="flex items-center gap-1 text-[11px] font-medium text-slate-600 hover:text-slate-900 bg-white px-2.5 py-1 rounded-md border border-slate-200 transition-colors shadow-2xs"
-                    >
-                      {copiedModel ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
-                      <span>{copiedModel ? 'Copied' : 'Copy Answer'}</span>
-                    </button>
-                  </div>
-                  <div className="text-xs text-slate-800 leading-relaxed bg-white p-3.5 rounded-lg border border-slate-200/80 shadow-2xs font-normal">
-                    {evaluation.improved_answer || currentQuestion.sample_answer}
-                  </div>
-                  {currentQuestion.expected_answer_points && currentQuestion.expected_answer_points.length > 0 && (
-                    <div className="text-[11px] text-slate-600 bg-slate-100/70 p-2.5 rounded-md border border-slate-200/60 flex flex-wrap items-center gap-1.5">
-                      <span className="font-semibold text-slate-800 mr-1">Interviewer Checkpoints:</span>
-                      {currentQuestion.expected_answer_points.map((pt, idx) => (
-                        <span key={idx} className="inline-flex items-center bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-700">
-                          {pt}
-                        </span>
-                      ))}
+              {(() => {
+                let rawAns = evaluation.improved_answer || currentQuestion.sample_answer;
+                if (!rawAns || rawAns.toLowerCase().startsWith("to answer effectively") || rawAns.toLowerCase().startsWith("a strong answer should")) {
+                  rawAns = `In our project, we implemented ${currentQuestion.skill || 'this technology'} to handle core processing with high reliability. We established clear architecture boundaries, optimized data validation and query execution, and handled edge cases defensively. This approach provided resilient throughput, minimal processing overhead, and predictable sub-50ms latency in production.`;
+                }
+                return (
+                  <div className="p-4 bg-slate-50/80 rounded-xl border border-slate-200 space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                        Suggested Model Answer (Ideal Interview Response):
+                      </span>
+                      <button
+                        onClick={() => {
+                          navigator.clipboard.writeText(rawAns);
+                          setCopiedModel(true);
+                          setTimeout(() => setCopiedModel(false), 2000);
+                          showToast('Suggested model answer copied.');
+                        }}
+                        className="flex items-center gap-1 text-[11px] font-medium text-slate-600 hover:text-slate-900 bg-white px-2.5 py-1 rounded-md border border-slate-200 transition-colors shadow-2xs"
+                      >
+                        {copiedModel ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                        <span>{copiedModel ? 'Copied' : 'Copy Answer'}</span>
+                      </button>
                     </div>
-                  )}
-                </div>
-              )}
+                    <div className="text-xs text-slate-800 leading-relaxed bg-white p-3.5 rounded-lg border border-slate-200/80 shadow-2xs font-normal">
+                      {rawAns}
+                    </div>
+                    {currentQuestion.expected_answer_points && currentQuestion.expected_answer_points.length > 0 && (
+                      <div className="text-[11px] text-slate-600 bg-slate-100/70 p-2.5 rounded-md border border-slate-200/60 flex flex-wrap items-center gap-1.5">
+                        <span className="font-semibold text-slate-800 mr-1">Interviewer Checkpoints:</span>
+                        {currentQuestion.expected_answer_points.map((pt, idx) => (
+                          <span key={idx} className="inline-flex items-center bg-white px-2 py-0.5 rounded border border-slate-200 text-slate-700">
+                            {pt}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })()}
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-between gap-3 pt-2">

@@ -28,10 +28,11 @@ KNOWN_SKILLS = {
     # Cloud & DevOps
     "aws", "amazon web services", "azure", "gcp", "google cloud", "docker", "kubernetes", "k8s", 
     "ci/cd", "github actions", "jenkins", "terraform", "ansible", "nginx", "linux", "git", "github", "gitlab",
-    # Data & AI/ML
-    "machine learning", "deep learning", "nlp", "computer vision", "tensorflow", "pytorch", 
-    "scikit-learn", "pandas", "numpy", "power bi", "tableau", "spark", "hadoop", "kafka", 
-    "llm", "langchain", "transformers", "huggingface", "data analysis", "data engineering",
+    # Computer Vision & AI/ML
+    "yolo", "yolov8", "yolov5", "opencv", "cv2", "machine learning", "deep learning", "nlp", "computer vision", 
+    "tensorflow", "pytorch", "keras", "scikit-learn", "pandas", "numpy", "power bi", "tableau", "spark", 
+    "hadoop", "kafka", "llm", "langchain", "transformers", "huggingface", "data analysis", "data engineering",
+    "onnx", "tensorrt", "cnn", "resnet", "xgboost", "matplotlib", "seaborn", "nltk", "spacy",
     # Concepts & Architecture
     "microservices", "system design", "distributed systems", "oop", "object oriented programming",
     "data structures", "algorithms", "agile", "scrum", "unit testing", "tdd", "ci/cd pipelines"
@@ -43,7 +44,7 @@ CATEGORY_MAP = {
     "Backend & APIs": ["node.js", "nodejs", "fastapi", "flask", "django", "express", "spring boot", "rest api", "graphql", "grpc", "microservices"],
     "Databases": ["mongodb", "postgresql", "postgres", "mysql", "redis", "sqlite", "elasticsearch", "dynamodb", "supabase", "firebase"],
     "Cloud & DevOps": ["aws", "azure", "gcp", "docker", "kubernetes", "git", "github", "ci/cd", "linux", "terraform", "jenkins"],
-    "AI & Data Science": ["machine learning", "deep learning", "nlp", "pandas", "numpy", "scikit-learn", "pytorch", "tensorflow", "power bi", "tableau", "llm"]
+    "AI & Data Science": ["yolo", "yolov8", "opencv", "machine learning", "deep learning", "nlp", "computer vision", "pandas", "numpy", "scikit-learn", "pytorch", "tensorflow", "power bi", "tableau", "llm", "xgboost"]
 }
 
 class ResumeParser:
@@ -146,7 +147,9 @@ class ResumeParser:
             "nlp": "NLP", "pandas": "Pandas", "numpy": "NumPy", "scikit-learn": "Scikit-Learn",
             "power bi": "Power BI", "tableau": "Tableau", "rest api": "REST APIs", "graphql": "GraphQL",
             "microservices": "Microservices", "system design": "System Design", "ci/cd": "CI/CD",
-            "html": "HTML5", "css": "CSS3", "sql": "SQL", "pytorch": "PyTorch", "tensorflow": "TensorFlow"
+            "html": "HTML5", "css": "CSS3", "sql": "SQL", "pytorch": "PyTorch", "tensorflow": "TensorFlow",
+            "yolo": "YOLO", "yolov8": "YOLOv8", "yolov5": "YOLOv5", "opencv": "OpenCV", "cv2": "OpenCV",
+            "onnx": "ONNX", "tensorrt": "TensorRT", "xgboost": "XGBoost", "keras": "Keras"
         }
 
         standardized_skills = []
@@ -171,16 +174,22 @@ class ResumeParser:
     @staticmethod
     def extract_sections(text: str) -> Dict[str, str]:
         section_headers = {
-            "summary": ["summary", "professional summary", "about me", "objective", "profile"],
-            "experience": ["experience", "work experience", "employment history", "professional experience", "work history"],
-            "projects": ["projects", "personal projects", "academic projects", "key projects", "notable projects"],
-            "skills": ["skills", "technical skills", "core competencies", "skills & tools", "technologies"],
-            "education": ["education", "academic background", "academics", "qualifications"],
-            "certifications": ["certifications", "licenses", "certificates", "courses"],
-            "achievements": ["achievements", "awards", "honors", "publications", "extracurricular"]
+            "summary": ["summary", "professional summary", "about me", "objective", "profile", "career objective"],
+            "experience": ["experience", "work experience", "employment history", "professional experience", "work history", "internships", "internship experience"],
+            "projects": ["projects", "personal projects", "academic projects", "key projects", "notable projects", "technical projects", "project work", "project details", "selected projects", "major projects", "featured projects"],
+            "skills": ["skills", "technical skills", "core competencies", "skills & tools", "technologies", "key skills", "skill set", "technical proficiencies", "technical expertise", "skills & abilities"],
+            "education": ["education", "academic background", "academics", "qualifications", "educational background", "academic qualifications"],
+            "certifications": ["certifications", "licenses", "certificates", "courses", "certifications & licenses", "online courses"],
+            "achievements": ["achievements", "awards", "honors", "publications", "extracurricular", "achievements & awards", "honors & awards", "activities"]
         }
 
-        # Build regex to split into sections
+        # Sub-labels that should NEVER be treated as top-level section headers
+        SUB_LABELS = {
+            "skills", "technologies", "tools", "technologies used", "tools used", "tech stack",
+            "description", "role", "key responsibilities", "responsibilities", "highlights", "duration",
+            "environment", "frameworks", "libraries", "database", "databases", "frontend", "backend"
+        }
+
         lines = text.split('\n')
         sections: Dict[str, List[str]] = {k: [] for k in section_headers}
         current_section = "summary"
@@ -190,10 +199,11 @@ class ResumeParser:
             if not trimmed:
                 continue
 
-            # Check if line matches a header (short length, uppercase or title case)
-            lower_line = trimmed.lower().rstrip(':')
+            lower_line = trimmed.lower().rstrip(':').strip()
+            
+            # Check if this line is a top-level section header
             detected = None
-            if len(trimmed.split()) <= 4:
+            if len(trimmed.split()) <= 4 and not trimmed.startswith(('•', '-', '*', '▪', '▫', '–', '—', '>', '●')) and lower_line not in SUB_LABELS:
                 for sec, aliases in section_headers.items():
                     if lower_line in aliases:
                         detected = sec
@@ -207,49 +217,103 @@ class ResumeParser:
         return {k: "\n".join(v).strip() for k, v in sections.items()}
 
     @classmethod
-    def parse_projects(cls, projects_text: str) -> List[ProjectItem]:
-        if not projects_text:
+    def parse_projects(cls, projects_text: str, full_resume_text: str = "") -> List[ProjectItem]:
+        if not projects_text and not full_resume_text:
             return []
         
-        items = []
-        blocks = re.split(r'\n\s*\n|•(?=[A-Z])', projects_text)
-        
-        for block in blocks:
-            lines = [l.strip() for l in block.split('\n') if l.strip()]
-            if not lines:
-                continue
-            
-            first_line = lines[0].lstrip('•-*| ')
-            # Look for project title patterns: "Resume Interview AI | React, FastAPI, Python"
-            parts = re.split(r'\||–|-|:', first_line)
-            title = parts[0].strip()
-            
-            # Extract technologies from the block
-            skills, _ = cls.extract_skills(block)
-            
-            highlights = [l.lstrip('•-*> ') for l in lines[1:] if len(l.strip()) > 10]
-            if not highlights and len(lines) == 1:
-                highlights = [first_line]
+        # Strategy 1: Parse the projects_text section
+        items = cls._extract_projects_from_text(projects_text)
 
-            if len(title) > 3 and not title.lower().startswith(("project", "academic", "github", "http")):
-                items.append(ProjectItem(
-                    title=title,
-                    description=block[:250],
-                    technologies=skills,
-                    highlights=highlights[:4]
-                ))
-
-        # Fallback if block splitting yielded nothing
-        if not items and projects_text:
-            skills, _ = cls.extract_skills(projects_text)
-            items.append(ProjectItem(
-                title="Highlighted Project",
-                description=projects_text[:200],
-                technologies=skills,
-                highlights=[l.lstrip('•-*> ') for l in projects_text.split('\n')[:3]]
-            ))
+        # Strategy 2: If < 2 projects found, search the full resume text for project markers
+        if len(items) < 2 and full_resume_text:
+            full_scan_items = cls._extract_projects_from_text(full_resume_text)
+            if len(full_scan_items) > len(items):
+                items = full_scan_items
 
         return items[:6]
+
+    @classmethod
+    def _extract_projects_from_text(cls, text: str) -> List[ProjectItem]:
+        if not text:
+            return []
+
+        lines = [l.strip() for l in text.split('\n') if l.strip()]
+        if not lines:
+            return []
+
+        # Project candidate boundary detection
+        project_blocks = []
+        current_header = None
+        current_lines = []
+
+        def is_project_header(line: str, next_line: Optional[str] = None) -> bool:
+            # Cannot start with standard bullet symbols
+            if line.startswith(('•', '-', '*', '▪', '▫', '–', '—', '>', '●', '✦')):
+                return False
+            # Check for title patterns
+            # 1. Has separators like | or – or - followed by tech/dates: "Project Name | React, Node.js"
+            if re.search(r'\b[A-Za-z0-9\s]{3,50}\s*(?:\||–|—|-)\s*(?:[A-Za-z0-9,\s]{3,}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|20\d\d))', line):
+                return True
+            # 2. Numbered prefix: "1. Traffic Management" or "Project 1: ..." or "Project #1"
+            if re.match(r'^(?:(?:\d+\.|\d+\)|\bProject\s*(?:#?\d+|[A-Z]):?))\s+[A-Za-z]', line, re.I):
+                return True
+            # 3. Contains parenthesis with date or tech: "Smart Traffic System (YOLOv8, OpenCV)"
+            if re.search(r'^[A-Za-z0-9\s]{3,50}\s*\([A-Za-z0-9,\s\-\–]+\)', line):
+                return True
+            # 4. Short non-bullet line (< 60 chars) followed by bullet points
+            if len(line.split()) <= 8 and len(line) < 65 and not line.endswith(('.', '!', '?')):
+                if next_line and next_line.startswith(('•', '-', '*', '▪', '▫', '–', '—', '>', '●')):
+                    return True
+                if line.isupper() or (line.istitle() and len(line.split()) <= 6):
+                    return True
+            return False
+
+        for i, line in enumerate(lines):
+            next_l = lines[i + 1] if i + 1 < len(lines) else None
+            if is_project_header(line, next_l):
+                if current_header and current_lines:
+                    project_blocks.append((current_header, current_lines))
+                current_header = line
+                current_lines = []
+            else:
+                if current_header:
+                    current_lines.append(line)
+                else:
+                    if i == 0:
+                        current_header = line
+                    else:
+                        current_lines.append(line)
+
+        if current_header:
+            project_blocks.append((current_header, current_lines))
+
+        items = []
+        for header, b_lines in project_blocks:
+            clean_head = re.sub(r'^(?:\d+\.|\d+\)|\bProject\s*(?:#?\d+|[A-Z]):?)\s*', '', header, flags=re.I).strip()
+            clean_head = clean_head.lstrip('•-*|–— ')
+            parts = re.split(r'\||–|—|-|\(|\[', clean_head)
+            title = parts[0].strip().rstrip(':')
+
+            if len(title) < 3 or title.lower() in {"projects", "academic projects", "technical projects", "key highlights", "technologies used", "github", "description"}:
+                continue
+
+            full_block = header + "\n" + "\n".join(b_lines)
+            skills, _ = cls.extract_skills(full_block)
+            
+            highlights = [l.lstrip('•-*▪▫–—>●✦ ') for l in b_lines if len(l.strip()) > 8]
+            if not highlights and b_lines:
+                highlights = [b_lines[0]]
+            
+            desc = " ".join(highlights[:2]) if highlights else f"Project focused on {', '.join(skills[:3]) if skills else title}."
+            
+            items.append(ProjectItem(
+                title=title,
+                description=desc[:300],
+                technologies=skills,
+                highlights=highlights[:5]
+            ))
+
+        return items
 
     @classmethod
     def parse_experience(cls, exp_text: str) -> List[ExperienceItem]:
@@ -319,11 +383,132 @@ class ResumeParser:
     @classmethod
     def parse_resume(cls, text: str, filename: Optional[str] = None) -> ExtractedResume:
         cleaned = cls.clean_text(text)
+
+        # 1. LLM-Powered parsing with Gemini (if API key is present)
+        from backend.app.config import settings
+        if settings.GEMINI_API_KEY:
+            try:
+                import json
+                from google import genai
+                client = genai.Client(api_key=settings.GEMINI_API_KEY)
+                prompt = f"""You are an expert resume parsing engine.
+Extract all structured data from the candidate's resume below with 100% accuracy.
+CRITICAL INSTRUCTION: Extract ALL projects listed in the resume (typically 2 to 4 projects). Do NOT miss any project!
+
+RESUME RAW TEXT:
+{cleaned[:5000]}
+
+OUTPUT VALID JSON ONLY with this schema:
+{{
+  "name": "Candidate Name",
+  "email": "email or null",
+  "phone": "phone or null",
+  "location": "location or null",
+  "summary": "1-2 sentence summary or null",
+  "skills": ["Skill1", "Skill2", ...],
+  "experience": [
+    {{
+      "role": "Role Title",
+      "company": "Company Name",
+      "duration": "Dates or null",
+      "responsibilities": ["Bullet 1", "Bullet 2"],
+      "technologies": ["Tech1", "Tech2"]
+    }}
+  ],
+  "projects": [
+    {{
+      "title": "Exact Project Name",
+      "description": "Brief summary",
+      "technologies": ["Tech1", "Tech2"],
+      "highlights": ["Bullet 1", "Bullet 2"]
+    }}
+  ],
+  "education": [
+    {{
+      "degree": "Degree",
+      "institution": "University",
+      "year": "Year or null"
+    }}
+  ],
+  "certifications": [{{"name": "Cert Name"}}],
+  "achievements": ["Achievement 1"]
+}}"""
+                response = client.models.generate_content(
+                    model='gemini-2.5-flash',
+                    contents=prompt
+                )
+                raw_json = response.text.strip()
+                if raw_json.startswith("```json"):
+                    raw_json = raw_json.split("```json")[1].split("```")[0].strip()
+                elif raw_json.startswith("```"):
+                    raw_json = raw_json.split("```")[1].split("```")[0].strip()
+                
+                data = json.loads(raw_json)
+                
+                # Format into ExtractedResume
+                extracted_skills, categories = cls.extract_skills(cleaned)
+                # Merge any extra skills identified by LLM
+                for s in data.get("skills", []):
+                    if s not in extracted_skills:
+                        extracted_skills.append(s)
+
+                projects = [
+                    ProjectItem(
+                        title=p.get("title", "Project"),
+                        description=p.get("description", "") or "Project implementation",
+                        technologies=p.get("technologies", []),
+                        highlights=p.get("highlights", [])
+                    ) for p in data.get("projects", []) if p.get("title")
+                ]
+
+                experience = [
+                    ExperienceItem(
+                        role=e.get("role", "Software Engineer"),
+                        company=e.get("company", "Company"),
+                        duration=e.get("duration"),
+                        responsibilities=e.get("responsibilities", []),
+                        technologies=e.get("technologies", [])
+                    ) for e in data.get("experience", []) if e.get("role")
+                ]
+
+                education = [
+                    EducationItem(
+                        degree=ed.get("degree", "Degree"),
+                        institution=ed.get("institution", "University"),
+                        year=ed.get("year")
+                    ) for ed in data.get("education", []) if ed.get("degree")
+                ]
+
+                certifications = [
+                    CertificationItem(name=c.get("name", "")) for c in data.get("certifications", []) if c.get("name")
+                ]
+
+                if projects:
+                    return ExtractedResume(
+                        name=data.get("name") or "Candidate",
+                        email=data.get("email"),
+                        phone=data.get("phone"),
+                        location=data.get("location"),
+                        summary=data.get("summary"),
+                        skills=extracted_skills,
+                        skill_categories=categories,
+                        experience=experience,
+                        projects=projects,
+                        education=education,
+                        certifications=certifications,
+                        achievements=data.get("achievements", []),
+                        raw_text=cleaned,
+                        filename=filename
+                    )
+            except Exception as e:
+                logger.warning(f"Gemini resume parsing fallback to advanced deterministic parser: {e}")
+
+        # 2. Deterministic Fallback Parser
         contact = cls.extract_contact_info(cleaned)
         skills, categories = cls.extract_skills(cleaned)
         sections = cls.extract_sections(cleaned)
         
-        projects = cls.parse_projects(sections.get("projects", ""))
+        projects = cls.parse_projects(sections.get("projects", ""), full_resume_text=cleaned)
         experience = cls.parse_experience(sections.get("experience", ""))
         education = cls.parse_education(sections.get("education", ""))
         

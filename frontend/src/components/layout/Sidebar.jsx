@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import {
   LayoutDashboard,
   FileText,
+  Layers,
   Target,
   HelpCircle,
   Mic,
@@ -21,6 +22,7 @@ export const Sidebar = () => {
   const workspaceNav = [
     { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
     { to: "/resume", label: "Resume", icon: FileText },
+    { to: "/projects", label: "Project Dashboard", icon: Layers },
     { to: "/match", label: "Job Match", icon: Target },
     { to: "/questions", label: "Questions", icon: HelpCircle },
     { to: "/mock-interview", label: "Mock Interview", icon: Mic },

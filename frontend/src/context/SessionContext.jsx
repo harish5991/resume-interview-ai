@@ -144,6 +144,32 @@ export const SessionProvider = ({ children }) => {
     }
   };
 
+  const addProject = async (newProj) => {
+    if (!resumeData) return;
+    const updatedProjects = [...(resumeData.projects || []), newProj];
+    const updated = { ...resumeData, projects: updatedProjects };
+    await updateResume(updated);
+    showToast(`Added project: ${newProj.title}`);
+  };
+
+  const updateProject = async (index, updatedProj) => {
+    if (!resumeData || !resumeData.projects) return;
+    const updatedProjects = [...resumeData.projects];
+    updatedProjects[index] = updatedProj;
+    const updated = { ...resumeData, projects: updatedProjects };
+    await updateResume(updated);
+    showToast(`Updated project: ${updatedProj.title}`);
+  };
+
+  const deleteProject = async (index) => {
+    if (!resumeData || !resumeData.projects) return;
+    const deletedTitle = resumeData.projects[index]?.title || 'Project';
+    const updatedProjects = resumeData.projects.filter((_, i) => i !== index);
+    const updated = { ...resumeData, projects: updatedProjects };
+    await updateResume(updated);
+    showToast(`Deleted ${deletedTitle}`);
+  };
+
   return (
     <SessionContext.Provider
       value={{
@@ -162,6 +188,9 @@ export const SessionProvider = ({ children }) => {
         setQuestions,
         createNewSession,
         clearSessionHistory,
+        addProject,
+        updateProject,
+        deleteProject,
         loading,
         toast,
         showToast,

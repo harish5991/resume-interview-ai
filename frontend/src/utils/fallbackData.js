@@ -48,6 +48,15 @@ export const FALLBACK_RESUMES = [
           "Handled 10k messages/minute with automatic retry and dead-letter queue recovery.",
           "Implemented token-bucket rate limiting middleware to prevent worker starvation."
         ]
+      },
+      {
+        title: "Smart Traffic Vision & Monitoring Platform",
+        description: "Real-time edge computer vision platform for vehicular density tracking and traffic light orchestration.",
+        technologies: ["Python", "YOLOv8", "OpenCV", "FastAPI", "Docker"],
+        highlights: [
+          "Trained YOLOv8 object detector achieving 38 FPS inference on HD video streams.",
+          "Constructed OpenCV ROI pipeline reducing false positive bounding boxes by 34%."
+        ]
       }
     ],
     education: [
@@ -64,7 +73,7 @@ export const FALLBACK_RESUMES = [
       "1st Place Winner at Berkeley AI Hackathon 2023",
       "Published open-source React component with 400+ GitHub stars"
     ],
-    raw_text: "Alex Chen\nFull Stack Software Engineer\nalex.chen@example.com | San Francisco, CA\n\nSKILLS\nLanguages: Python, JavaScript, TypeScript\nFrontend: React, Tailwind CSS\nBackend: FastAPI, Node.js, REST APIs\nDatabases: MongoDB, PostgreSQL\nDevOps: Docker, Git\n\nEXPERIENCE\nFull Stack Engineer | CloudScale Systems (2022 - Present)\n• Engineered asynchronous REST APIs using FastAPI and MongoDB serving 50k+ daily active users.\n• Built real-time dashboard in React with modular state management.\n• Containerized microservices using Docker and CI/CD pipelines.\n\nPROJECTS\nResume Interview AI | Python, FastAPI, React, MongoDB\n• Implemented TF-IDF cosine matching and PyMuPDF text extraction pipeline.\n• Designed 6-axis answer evaluation system with dynamic difficulty scaling.\n• Built clean responsive frontend with Recharts analytics and PDF report export.\n\nDistributed Task Queue | Python, Redis, Docker, PostgreSQL\n• Handled 10k messages/minute with automatic retry and dead-letter queue recovery.\n\nEDUCATION\nB.S. in Computer Science | UC Berkeley (2022)"
+    raw_text: "Alex Chen\nFull Stack Software Engineer\nalex.chen@example.com | San Francisco, CA\n\nSKILLS\nLanguages: Python, JavaScript, TypeScript\nFrontend: React, Tailwind CSS\nBackend: FastAPI, Node.js, REST APIs\nDatabases: MongoDB, PostgreSQL\nDevOps: Docker, Git\n\nEXPERIENCE\nFull Stack Engineer | CloudScale Systems (2022 - Present)\n• Engineered asynchronous REST APIs using FastAPI and MongoDB serving 50k+ daily active users.\n• Built real-time dashboard in React with modular state management.\n• Containerized microservices using Docker and CI/CD pipelines.\n\nPROJECTS\nResume Interview AI | Python, FastAPI, React, MongoDB\n• Implemented TF-IDF cosine matching and PyMuPDF text extraction pipeline.\n• Designed 6-axis answer evaluation system with dynamic difficulty scaling.\n• Built clean responsive frontend with Recharts analytics and PDF report export.\n\nDistributed Task Queue | Python, Redis, Docker, PostgreSQL\n• Handled 10k messages/minute with automatic retry and dead-letter queue recovery.\n\nSmart Traffic Vision & Monitoring Platform | Python, YOLOv8, OpenCV, FastAPI\n• Trained YOLOv8 object detector achieving 38 FPS inference on HD video streams.\n\nEDUCATION\nB.S. in Computer Science | UC Berkeley (2022)"
   },
   {
     id: "sample-backend",
@@ -98,11 +107,29 @@ export const FALLBACK_RESUMES = [
     projects: [
       {
         title: "Real-time Event Ingestion Service",
-        description: "Event-driven microservice streaming financial transactions with deduplication and partitioned PostgreSQL storage.",
-        technologies: ["Python", "FastAPI", "Kafka", "PostgreSQL", "Redis"],
+        description: "High-throughput asynchronous data streaming pipeline processing 25,000 events/sec with fault tolerance.",
+        technologies: ["Python", "FastAPI", "Kafka", "PostgreSQL"],
         highlights: [
-          "Processed 25,000 events/second using asynchronous connection pools and Redis caches.",
-          "Wrote automated pytest test suites achieving 92% code coverage."
+          "Architected Kafka partition consumers with batch database insertion.",
+          "Implemented dead-letter queues and Prometheus latency alerting metrics."
+        ]
+      },
+      {
+        title: "Intelligent Traffic Management System",
+        description: "Automated video stream vehicle detection and adaptive traffic light signal scheduling system.",
+        technologies: ["Python", "YOLOv8", "OpenCV", "FastAPI", "PostgreSQL"],
+        highlights: [
+          "Engineered OpenCV frame preprocessing with multi-lane vehicle detection using YOLOv8.",
+          "Integrated FastAPI telemetry endpoints delivering sub-30ms real-time status updates."
+        ]
+      },
+      {
+        title: "Distributed Redis Cache Gateway",
+        description: "High-concurrency caching layer providing sub-millisecond query offloading for database read replicas.",
+        technologies: ["Python", "Redis", "Docker", "FastAPI"],
+        highlights: [
+          "Reduced primary database read IOPS by 74% using write-through cache invalidation.",
+          "Implemented token-bucket rate limiting middleware for public API consumers."
         ]
       }
     ],

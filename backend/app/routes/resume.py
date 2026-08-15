@@ -113,6 +113,24 @@ SAMPLE_RESUMES = [
                     "Processed 25,000 events/second using asynchronous connection pools and Redis caches.",
                     "Wrote automated pytest test suites achieving 92% code coverage."
                 ]
+            },
+            {
+                "title": "Intelligent Traffic Management System",
+                "description": "Automated video stream vehicle detection and adaptive traffic light signal scheduling system.",
+                "technologies": ["Python", "YOLOv8", "OpenCV", "FastAPI", "PostgreSQL"],
+                "highlights": [
+                    "Engineered OpenCV frame preprocessing with multi-lane vehicle detection using YOLOv8.",
+                    "Integrated FastAPI telemetry endpoints delivering sub-30ms real-time status updates."
+                ]
+            },
+            {
+                "title": "Distributed Redis Cache Gateway",
+                "description": "High-concurrency caching layer providing sub-millisecond query offloading for database read replicas.",
+                "technologies": ["Python", "Redis", "Docker", "FastAPI"],
+                "highlights": [
+                    "Reduced primary database read IOPS by 74% using write-through cache invalidation.",
+                    "Implemented token-bucket rate limiting middleware for public API consumers."
+                ]
             }
         ],
         "education": [
@@ -128,7 +146,7 @@ SAMPLE_RESUMES = [
         "achievements": [
             "Delivered zero-downtime database migration for 10M+ user records"
         ],
-        "raw_text": "Samantha Ray\nBackend Software Engineer\nsamantha.ray@example.com | Austin, TX\n\nSKILLS: Python, FastAPI, Django, SQL, PostgreSQL, Redis, Docker, Kubernetes, AWS, Kafka, Microservices\n\nEXPERIENCE:\nBackend Engineer at Apex Data Corp (2021 - 2024)\n• Architected high-throughput data ingestion pipelines using Kafka and Python.\n• Optimized complex PostgreSQL queries reducing p99 latency by 85%.\n\nPROJECTS:\nReal-time Event Ingestion Service | Python, FastAPI, Kafka, PostgreSQL\n• Processed 25,000 events/second with async connection pooling.\n\nEDUCATION:\nB.Tech in Information Technology, Texas Tech University (2021)"
+        "raw_text": "Samantha Ray\nBackend Software Engineer\nsamantha.ray@example.com | Austin, TX\n\nSKILLS: Python, FastAPI, Django, SQL, PostgreSQL, Redis, Docker, Kubernetes, AWS, Kafka, Microservices\n\nEXPERIENCE:\nBackend Engineer at Apex Data Corp (2021 - 2024)\n• Architected high-throughput data ingestion pipelines using Kafka and Python.\n• Optimized complex PostgreSQL queries reducing p99 latency by 85%.\n\nPROJECTS:\nReal-time Event Ingestion Service | Python, FastAPI, Kafka, PostgreSQL\n• Processed 25,000 events/second with async connection pooling.\n\nIntelligent Traffic Management System | Python, YOLOv8, OpenCV, FastAPI\n• Engineered OpenCV frame preprocessing with multi-lane vehicle detection using YOLOv8.\n\nDistributed Redis Cache Gateway | Python, Redis, Docker, FastAPI\n• Reduced primary database read IOPS by 74%.\n\nEDUCATION:\nB.Tech in Information Technology, Texas Tech University (2021)"
     }
 ]
 
