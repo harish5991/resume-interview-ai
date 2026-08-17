@@ -10,8 +10,11 @@ router = APIRouter(prefix="/questions", tags=["Questions"])
 
 @router.post("/generate", response_model=List[GroundedQuestion])
 async def generate_questions(req: GenerateQuestionsRequest):
-    if not req.resume_data:
-        raise HTTPException(status_code=400, detail="Resume data is required to generate grounded interview questions.")
+    if not req.resume_data or req.resume_data.validation_status == "REJECTED":
+        raise HTTPException(
+            status_code=400, 
+            detail="A valid, verified resume is required to generate interview questions. Please upload a valid resume."
+        )
     
     questions = await AIEngine.generate_questions(
         resume=req.resume_data,
@@ -22,21 +25,33 @@ async def generate_questions(req: GenerateQuestionsRequest):
         exclude_hashes=req.exclude_question_hashes
     )
 
-    # Save to history collection for session
+    # Save to history collection for session with resume_id tracking
     if questions:
         col = db_manager.get_collection("questions_history")
         for q in questions:
             doc = q.model_dump()
             doc["session_id"] = req.session_id
+            doc["resume_id"] = req.resume_data.id
+            doc["resume_hash"] = getattr(req.resume_data, "resume_hash", None)
             await col.insert_one(doc)
 
     return questions
 
 @router.post("/regenerate", response_model=List[GroundedQuestion])
 async def regenerate_questions(req: GenerateQuestionsRequest):
-    """Guarantees new, distinct questions by excluding previous question hashes in the session."""
+    """Guarantees new, distinct questions by excluding previous question hashes for this active resume and session."""
+    if not req.resume_data or req.resume_data.validation_status == "REJECTED":
+        raise HTTPException(
+            status_code=400, 
+            detail="A valid, verified resume is required to generate interview questions. Please upload a valid resume."
+        )
+
     col = db_manager.get_collection("questions_history")
-    previous_docs = await col.find({"session_id": req.session_id})
+    query = {"session_id": req.session_id}
+    if req.resume_data and req.resume_data.id:
+        query["resume_id"] = req.resume_data.id
+
+    previous_docs = await col.find(query)
     prev_hashes = [AIEngine._generate_hash(d.get("question", "")) for d in previous_docs if "question" in d]
     
     all_exclude = list(set(prev_hashes + (req.exclude_question_hashes or [])))
@@ -54,6 +69,8 @@ async def regenerate_questions(req: GenerateQuestionsRequest):
         for q in new_questions:
             doc = q.model_dump()
             doc["session_id"] = req.session_id
+            doc["resume_id"] = req.resume_data.id
+            doc["resume_hash"] = getattr(req.resume_data, "resume_hash", None)
             await col.insert_one(doc)
 
     return new_questions

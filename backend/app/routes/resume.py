@@ -1,8 +1,9 @@
 import os
 from typing import List, Optional
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException
-from backend.app.schemas.models import ExtractedResume, ResumeScoreBreakdown
+from backend.app.schemas.models import ExtractedResume, ResumeScoreBreakdown, DocumentValidationResult
 from backend.app.services.parser import ResumeParser
+from backend.app.services.document_validator import DocumentValidator
 from backend.app.database.db import db_manager
 
 router = APIRouter(prefix="/resume", tags=["Resume"])
@@ -159,32 +160,75 @@ async def upload_resume(file: UploadFile = File(...)):
     filename = file.filename or "resume.pdf"
     ext = os.path.splitext(filename)[1].lower()
     
-    if ext not in [".pdf", ".docx", ".txt"]:
-        raise HTTPException(status_code=400, detail="Only PDF, DOCX, and TXT files are supported.")
-    
-    content = await file.read()
-    if not content:
-        raise HTTPException(status_code=400, detail="The uploaded file is empty.")
-    
-    extracted_text = ""
-    if ext == ".pdf":
-        extracted_text = ResumeParser.extract_text_from_pdf(content)
-    elif ext == ".docx":
-        extracted_text = ResumeParser.extract_text_from_docx(content)
-    elif ext == ".txt":
-        extracted_text = content.decode("utf-8", errors="ignore")
-
-    if not extracted_text.strip():
+    if ext != ".pdf":
         raise HTTPException(
             status_code=400, 
-            detail="Unable to extract text from the file. Please ensure the document is not an image-only scan or encrypted."
+            detail="Invalid file format. Only PDF resumes (.pdf) are accepted. Please upload a valid resume PDF."
+        )
+    
+    try:
+        content = await file.read()
+    except Exception:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid file. Failed to read the uploaded document. Please upload a valid resume PDF."
         )
 
-    parsed = ResumeParser.parse_resume(extracted_text, filename=filename)
+    if not content or len(content) == 0:
+        raise HTTPException(
+            status_code=400, 
+            detail="Invalid file. The uploaded file is empty. Please upload a valid resume PDF."
+        )
     
-    # Save to database collection
-    col = db_manager.get_collection("resumes")
-    await col.insert_one(parsed.model_dump())
+    if b"%PDF-" not in content[:1024]:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid file. The uploaded file is corrupted or not a valid PDF document. Please upload a valid resume PDF."
+        )
+    
+    # Run strict document validation & classification
+    try:
+        val_result = DocumentValidator.validate_and_classify(content, filename=filename, ext=ext)
+    except Exception:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid file. Document validation encountered an error. Please upload a valid resume PDF."
+        )
+
+    if not val_result.is_resume:
+        raise HTTPException(
+            status_code=422,
+            detail=val_result.error or "Invalid file. This document doesn't appear to be a resume or CV. Please upload a valid resume PDF."
+        )
+
+    # Extract text from verified document
+    extracted_text, extract_err = DocumentValidator.extract_text(content, ext)
+    if extract_err or not extracted_text.strip():
+        raise HTTPException(
+            status_code=400, 
+            detail=extract_err or "Invalid file. Unable to extract readable text from this PDF. Please ensure the document is not an image-only scan or encrypted."
+        )
+
+    try:
+        parsed = ResumeParser.parse_resume(extracted_text, filename=filename)
+        parsed.filename = filename
+        parsed.resume_hash = val_result.file_hash
+        parsed.validation_status = val_result.validation_status
+        parsed.resume_confidence = val_result.confidence
+        parsed.detected_document_type = val_result.document_type
+        parsed.validation_signals = val_result.positive_signals
+    except Exception:
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid file. Failed to parse resume content. Please upload a valid resume PDF."
+        )
+    
+    # Save to database collection only on valid verified success
+    try:
+        col = db_manager.get_collection("resumes")
+        await col.insert_one(parsed.model_dump())
+    except Exception:
+        pass
 
     return parsed
 

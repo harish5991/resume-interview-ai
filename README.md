@@ -1,147 +1,321 @@
 # Resume Interview AI 🎯
-> **Grounded, Explainable Resume-to-Interview Questions Generator & Adaptive Mock Interview Platform**
 
-Resume Interview AI is a full-stack web application that solves one of the biggest flaws in existing AI prep tools: **generic, ungrounded questions and unexplained "black-box" scores**.
+<div align="center">
 
-By parsing candidate resumes (PDF/DOCX) using PyMuPDF and matching them against target Job Descriptions (JDs) via TF-IDF cosine similarity, the application generates **strictly grounded questions** linked to the candidate's actual projects, verified skills, and role expectations. It features an **adaptive mock interview simulator** with real-time 6-axis scoring, speech-to-text recording, duplicate-free question generation, deep-dive project dossiers, and downloadable PDF readiness reports.
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![React](https://img.shields.io/badge/React-18+-61DAFB.svg?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org)
+[![Vite](https://img.shields.io/badge/Vite-5+-646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4+-38B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+**Grounded, Explainable Resume-to-Interview Question Generator & Adaptive Mock Interview Platform**
+
+</div>
 
 ---
 
-## 🌟 Key Features
+## 📌 Executive Summary
 
-1. **📄 Explainable Resume Text Extraction & Scoring**
-   - Extracts text, contact info, categorized skills, work history, projects, and education from PDF and DOCX files.
-   - Calculates a multi-dimensional Resume Score (0–100) with category-level breakdowns (Skills, Projects, Experience, Education, Completeness, Relevance) accompanied by natural-language justifications.
+**Resume Interview AI** is an intelligent, full-stack career readiness platform designed to solve the critical flaws of conventional AI interview prep tools: **generic, ungrounded questions and unexplained "black-box" scores**.
 
-2. **🎯 Semantic Resume-to-Job Matching**
-   - Calculates candidate-to-job match percentage using TF-IDF vectorization and cosine similarity.
-   - Categorizes competencies into **Matching Skills**, **Missing Skills**, and **Partial/Related Skills**.
-   - Highlights the most relevant candidate projects and experience tailored to the target role.
+By parsing candidate resumes (PDF/DOCX) using high-precision document extraction and aligning them against target Job Descriptions (JDs) via TF-IDF cosine similarity, the application generates **strictly grounded questions** tied directly to verified projects, technical skills, and role requirements. The platform provides an **adaptive mock interview simulator** with real-time 6-axis answer scoring, voice dictation, duplicate-free question regeneration, system architecture deep-dives, skill gap roadmaps, and downloadable ReportLab PDF readiness reports.
 
-3. **💡 Strictly Grounded & Explainable Interview Questions**
-   - Every generated question displays:
-     - **Question text**
-     - **Based On** (e.g., `Project: Resume Interview AI`, `Skill: MongoDB`)
-     - **Difficulty** (`Easy`, `Medium`, `Hard`, `Expert`)
-     - **Why This Question?** (Clear explainability rationale)
-     - **Expected Answer Talking Points & Model Answer Strategy**
-   - **Zero Hallucinations**: Questions never invent technologies or companies not in the resume.
+---
 
-4. **🔄 Zero-Duplicate Question Regeneration**
-   - Employs question hashing and session-level history tracking so clicking *"Generate Different Questions"* never repeats previously seen questions.
+## 🌟 Key Features & Innovations
 
-5. **🎙️ Adaptive AI Mock Interview Simulator**
-   - Interactive step-by-step interview terminal with **Voice Dictation (Speech-to-Text via Web Speech API)** and text input.
-   - Instant **6-Axis Evaluation**:
-     1. *Relevance*
-     2. *Technical Accuracy*
-     3. *Completeness*
-     4. *Clarity*
-     5. *Confidence*
-     6. *Communication*
-   - Returns verified strengths, areas for growth, concise model answers, and **adaptive difficulty progression** (e.g., scoring 85+ on Medium automatically elevates the next question to Hard/Expert).
+### 1. 📄 Explainable Resume Text Extraction & 6-Category Scoring
+- **Multi-Format Ingestion**: Parses PDF and DOCX files using PyMuPDF (`fitz`) and `python-docx` with contact, skill, project, work experience, and education extraction.
+- **Explainable Multi-Dimensional Score (0–100)**: Evaluates resumes across 6 key categories:
+  - *Skills Breadth & Depth* (25%)
+  - *Project Complexity & Verifiability* (25%)
+  - *Work Experience & Impact* (20%)
+  - *Education & Certifications* (10%)
+  - *Structural Completeness* (10%)
+  - *Relevance to Technical Standards* (10%)
+- **Natural Language Rationale**: Delivers actionable feedback and strength/gap justifications for every category score.
 
-6. **🧩 Skill Gap Analysis & Learning Roadmap**
-   - Side-by-side gap visualization with estimated preparation hours, critical concepts to master, and recommended learning resources.
+### 2. 🎯 Semantic Resume-to-Job Matching
+- **Deterministic TF-IDF & Cosine Similarity Engine**: Mathematically measures semantic alignment between candidate experience and job descriptions.
+- **Categorized Competency Breakdown**:
+  - ✅ **Matching Skills**: Verified overlap between resume and target role.
+  - ❌ **Missing Skills**: Core requirements absent from the candidate profile.
+  - ⚠️ **Partial / Related Skills**: Transferable competencies requiring domain adaptation.
+- **Project Tailoring**: Highlights the candidate's most relevant past projects tailored to the target job description.
 
-7. **🏛️ Project Deep-Dive & Architecture Dossier**
-   - Deep architectural breakdown for candidate projects: Objectives, High-Level Architecture, Database Choice, API Validation, Security, 10x Scalability, Challenges, and 5 Hard Project Questions.
+### 3. 💡 Strictly Grounded & Explainable Interview Questions
+- **Zero-Hallucination Guarantee**: Employs an anti-hallucination `grounding_validator` ensuring questions only reference verified projects, tools, and experiences in the resume.
+- **Rich Question Anatomy**:
+  - **Question Text**: Targeted technical, behavioral, or architectural prompt.
+  - **Based On**: Explicit anchor point (e.g., `Project: Resume Interview AI`, `Skill: MongoDB`).
+  - **Difficulty Level**: `Easy`, `Medium`, `Hard`, or `Expert`.
+  - **Why This Question?**: Clear explainability rationale linking the JD requirement to the resume item.
+  - **Expected Answer Talking Points & Model Strategy**: Guideposts for a structured candidate response.
 
-8. **📊 Recharts Readiness Analytics Dashboard**
-   - Multi-axis Competency Radar Chart, Score Progression Trendlines, and Difficulty Pass Rate Bar Charts.
-   - Priority Weak Topic Detection alerts with targeted remediation.
+### 4. 🔄 Zero-Duplicate Question Regeneration Engine
+- **Session-Tracked Question Hashing**: Uses SHA-256 content hashing and session-level history tracking.
+- Clicking *"Generate Different Questions"* guarantees 100% fresh questions without repeating previously seen prompts within the same session.
 
-9. **📑 PDF Interview Readiness Report Export**
-   - Downloadable executive PDF generated via ReportLab containing candidate metadata, match breakdown, mock interview transcript, and action plan.
+### 5. 🎙️ Adaptive AI Mock Interview Simulator
+- **Dual-Input Modality**: Supports typed text and hands-free **Voice Dictation (Speech-to-Text via the Web Speech API)**.
+- **Real-Time 6-Axis Evaluation**:
+  1. *Relevance* (0–100) — Alignment with the core question prompt.
+  2. *Technical Accuracy* (0–100) — Precision of concepts, algorithms, and tooling.
+  3. *Completeness* (0–100) — Thoroughness in covering all required aspects.
+  4. *Clarity* (0–100) — Logical organization and conciseness.
+  5. *Confidence* (0–100) — Assertive, authoritative communication style.
+  6. *Communication* (0–100) — Structure, vocabulary, and readability.
+- **Dynamic Difficulty Progression**: Scoring 85+ on Medium automatically adapts subsequent questions to Hard/Expert; scores below 50 gently scale down to reinforce foundational concepts.
 
-10. **🗂️ Multi-Session Management & Saved Question Bank**
-    - Manage multiple interview targets (e.g., "Session 1 — Python Backend", "Session 2 — Full Stack").
-    - Pin important questions to a dedicated Saved Questions Bank.
+### 6. 🏛️ Project Deep-Dive & Architecture Dossier
+- Comprehensive architectural breakdowns for candidate projects:
+  - **High-Level System Architecture & Component Interactions**
+  - **Database Choice & Data Modeling Trade-offs**
+  - **API Contract Validation & Error Handling**
+  - **Security & Authentication Posture**
+  - **10x Scalability Strategy & Bottleneck Mitigation**
+  - **5 Hard Project Defense Questions** with deep technical expected responses.
+
+### 7. 🧩 Skill Gap Analysis & 4-Week Study Roadmap
+- Side-by-side competency gap visualization.
+- Curates estimated learning hours, foundational concepts, best-practice methodologies, and recommended learning resources for every missing technology.
+
+### 8. ✍️ STAR-Format Resume Improvement Generator
+- Transforms passive resume bullet points into high-impact **STAR-method** (Situation, Task, Action, Result) accomplishments with quantified metrics.
+
+### 9. 📊 Visual Analytics & Competency Radar
+- **Recharts Analytics Dashboard**:
+  - Multi-Axis Competency Radar Chart.
+  - Mock Interview Score Progression Trendline.
+  - Difficulty Pass Rate Bar Chart.
+  - Priority Weak Topic Alerts with remediation advice.
+
+### 10. 📑 ReportLab PDF Readiness Report
+- One-click executive PDF export summarizing candidate metadata, resume score breakdown, JD match percentage, interview transcript, and personalized readiness recommendations.
+
+### 11. 💾 Dual-Mode Storage Architecture
+- **Automatic Fallback Engine**: Connects to **MongoDB** if available; seamlessly falls back to a **Local Persistent JSON Storage Engine** if MongoDB is absent. Requires zero database setup to run out of the box!
 
 ---
 
 ## 🛠️ Technology Stack
 
-| Layer | Technology | Purpose |
+| Layer | Technologies & Libraries | Key Responsibilities |
 | :--- | :--- | :--- |
-| **Frontend** | React 18/19, Vite, Tailwind CSS | High-performance, modular, accessible UI |
-| **Routing & Icons** | React Router v6, Lucide React | Seamless navigation and crisp modern iconography |
-| **Charts** | Recharts | Interactive Radar, Line, and Bar visual analytics |
-| **Backend API** | Python 3.13, FastAPI, Uvicorn | High-throughput async REST API with Pydantic validation |
-| **Document Parsing** | PyMuPDF (`fitz`), `python-docx` | Fast, deterministic PDF and DOCX text extraction |
-| **Matching Engine** | `scikit-learn` (TF-IDF), `numpy` | Deterministic cosine similarity and keyword extraction |
-| **AI Question Engine** | Google Gemini API (`google-genai`) / Deterministic Grounding Engine | Grounded questions, duplicate prevention, and 6-axis scoring |
-| **Database** | MongoDB (Motor/PyMongo) + Persistent JSON Storage Fallback | Dual-mode storage ensuring 100% plug-and-play reliability |
-| **PDF Generation** | ReportLab | Executive PDF interview readiness report generation |
+| **Frontend UI** | React 18/19, Vite, Tailwind CSS | Responsive, accessible, high-performance user interface |
+| **Icons & Visuals** | Lucide React, Recharts | Modern UI iconography and dynamic interactive analytics |
+| **Voice & Audio** | Web Speech API | Real-time speech-to-text dictation for mock interviews |
+| **Backend Framework** | Python 3.10–3.13, FastAPI, Uvicorn | High-throughput async REST API with Pydantic v2 validation |
+| **Document Parsing** | PyMuPDF (`fitz`), `python-docx` | Fast, deterministic text and entity extraction from PDFs & DOCX |
+| **NLP & Matching** | `scikit-learn` (TF-IDF), `numpy` | Deterministic cosine similarity and keyword extraction |
+| **AI Question Engine** | Google Gemini API (`google-genai`) / Grounded Fallback Engine | Contextual question generation, 6-axis scoring, deduplication |
+| **Database & Persistence** | MongoDB (Motor/PyMongo) + Persistent JSON Fallback | Dual-mode storage ensuring 100% plug-and-play reliability |
+| **Reporting & Export** | ReportLab | Generation of downloadable executive PDF readiness reports |
 
 ---
 
-## 🚀 Getting Started
+## 🔄 System Architecture & Workflow
+
+```mermaid
+flowchart TD
+    subgraph Client ["Frontend (React + Vite + Tailwind CSS)"]
+        UI[User Interface / Navigation]
+        Voice[Web Speech API Voice Dictation]
+        Charts[Recharts Analytics Dashboard]
+    end
+
+    subgraph API ["Backend API (FastAPI + Uvicorn)"]
+        Routes[FastAPI Routers]
+        Parser[PyMuPDF / docx Parser]
+        Matcher[TF-IDF Matching Engine]
+        AIEngine[Grounded Question & Evaluation Engine]
+        Report[ReportLab PDF Generator]
+    end
+
+    subgraph Storage ["Dual-Mode Data Layer"]
+        DBRouter{MongoDB Available?}
+        MongoDB[(MongoDB Motor Engine)]
+        JSONDB[(Local Persistent JSON Storage)]
+    end
+
+    UI -->|Upload Resume / Input JD| Routes
+    Routes --> Parser
+    Parser --> Matcher
+    Matcher --> AIEngine
+    Voice -->|Transcribed Audio| Routes
+    AIEngine --> Routes
+    Routes --> Report
+    Routes --> DBRouter
+    DBRouter -->|Yes| MongoDB
+    DBRouter -->|No| JSONDB
+    Routes --> Charts
+```
+
+---
+
+## 📂 Project Structure
+
+```
+project/
+├── backend/
+│   ├── app/
+│   │   ├── main.py                     # FastAPI application entry, CORS, and router registration
+│   │   ├── config.py                   # Environment settings and application configuration
+│   │   ├── database/
+│   │   │   └── db.py                   # Dual-mode storage engine (MongoDB + Persistent JSON Fallback)
+│   │   ├── schemas/
+│   │   │   └── models.py               # Pydantic v2 data models and request/response contracts
+│   │   ├── services/
+│   │   │   ├── parser.py               # PyMuPDF/docx extractor & 6-category scoring engine
+│   │   │   ├── matcher.py              # TF-IDF cosine matching & skill gap engine
+│   │   │   ├── ai_engine.py            # Grounded questions, 6-axis evaluation & deduplication
+│   │   │   ├── diversity_manager.py    # Topic distribution and difficulty balance manager
+│   │   │   ├── document_validator.py   # Document structure and file security validation
+│   │   │   ├── grounding_validator.py  # Anti-hallucination resume entity cross-checker
+│   │   │   ├── intent_classifier.py    # Question intent & technical topic classification
+│   │   │   └── report_service.py       # ReportLab PDF interview readiness report generator
+│   │   └── routes/
+│   │       ├── resume.py               # Resume upload, entity extraction & scoring endpoints
+│   │       ├── job.py                  # Job description parsing & sample JD endpoints
+│   │       ├── match.py                # Semantic resume-to-job matching endpoints
+│   │       ├── questions.py            # Grounded question generation & bookmark endpoints
+│   │       ├── interview.py            # Adaptive mock interview & 6-axis evaluation endpoints
+│   │       ├── analytics.py            # Readiness analytics, skill gap & bullet improvement endpoints
+│   │       ├── report.py               # PDF readiness report download endpoint
+│   │       └── sessions.py             # Multi-session management & state endpoints
+│   ├── data/                           # Local persistent JSON data storage directory
+│   ├── test_api.py                     # Automated unit and integration test suite
+│   └── requirements.txt                # Python backend dependencies
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── common/                 # ScoreRing, Badge, Toast, Modal, ErrorBoundary
+│   │   │   └── layout/                 # Sidebar, Header, Navigation
+│   │   ├── context/
+│   │   │   └── SessionContext.jsx      # Global session state, history & sample data manager
+│   │   ├── pages/
+│   │   │   ├── Home.jsx                # Landing page & quick workflow kickstart
+│   │   │   ├── ResumeAnalysis.jsx      # Resume upload, parsing & explainable scoring
+│   │   │   ├── JobMatch.jsx            # JD matching, competency gaps & project alignment
+│   │   │   ├── GenerateQuestions.jsx   # Grounded questions, explainability & deduplication
+│   │   │   ├── MockInterview.jsx       # Adaptive mock interview with voice input & 6-axis scoring
+│   │   │   ├── SkillGap.jsx            # In-depth skill gaps & 4-week study roadmap
+│   │   │   ├── ProjectDeepDive.jsx     # Architectural dossiers & 5 hard project questions
+│   │   │   ├── PreparationMode.jsx     # Curated top 10 interview preparation topics
+│   │   │   ├── ResumeImprovement.jsx   # STAR-format bullet point rewriter
+│   │   │   ├── AnalyticsDashboard.jsx  # Recharts competency radar & readiness metrics
+│   │   │   ├── SavedQuestions.jsx      # Bookmarked questions collection
+│   │   │   └── QuestionHistory.jsx     # Mock interview transcripts and score history
+│   │   ├── services/
+│   │   │   └── api.js                  # Axios HTTP client configuration & backend API endpoints
+│   │   ├── App.jsx                     # Route definitions and layout structure
+│   │   └── main.jsx                    # React application entry point
+│   ├── tailwind.config.js              # Tailwind CSS theme, colors, and typography settings
+│   ├── vite.config.js                  # Vite bundler configuration & backend API proxy
+│   └── package.json                    # Frontend dependencies and scripts
+│
+├── .env.example                        # Environment variables template
+├── requirements.txt                    # Root Python dependencies definition
+├── run.py                              # Cross-platform Python launcher script
+├── run.bat                             # Windows 1-click batch launcher
+├── run.sh                              # macOS / Linux 1-click bash launcher
+├── SETUP_GUIDE.md                      # Comprehensive multi-IDE execution guide
+└── README.md                           # Main project documentation
+```
+
+---
+
+## 🚀 Quick Start & Execution
 
 ### Prerequisites
-- **Node.js**: v18+ (v22 recommended)
-- **Python**: v3.10+ (v3.13 supported)
-- *(Optional)* **MongoDB**: Running locally on port 27017 (if not running, the application automatically uses local persistent JSON storage).
-- *(Optional)* **Gemini API Key**: For live LLM evaluation (if not set, the built-in deterministic grounding engine operates seamlessly).
+- **Python**: Version 3.10 or higher (`python --version` or `python3 --version`)
+- **Node.js**: Version 18 or higher (`node --version` and `npm --version`)
+- *(Optional)* **Gemini API Key**: For live LLM evaluation (the deterministic engine runs automatically if omitted).
+- *(Optional)* **MongoDB**: Local or remote instance (automatically uses local JSON storage if absent).
 
 ---
 
-### Step 1: Clone and Configure Environment
+### Option A: 1-Command Universal Launcher (Recommended)
 
+From the project root directory:
+
+**Windows**:
+```cmd
+run.bat
+```
+*or*
+```cmd
+python run.py
+```
+
+**macOS / Linux**:
 ```bash
-git clone <repository_url>
-cd project
+./run.sh
+```
+*or*
+```bash
+python3 run.py
+```
 
-# Copy environment file
+> **The launcher automatically:**
+> 1. Installs any missing Python packages from `requirements.txt`.
+> 2. Runs `npm install` in `frontend/` if `node_modules` is missing.
+> 3. Starts the FastAPI backend (`http://127.0.0.1:8000`) and React frontend (`http://localhost:5174`) concurrently.
+> 4. Provides clean shutdown on `Ctrl+C`.
+
+---
+
+### Option B: Manual Step-by-Step Setup
+
+#### 1. Configure Environment
+```bash
 cp .env.example .env
 ```
 
----
-
-### Step 2: Run the Backend
-
+#### 2. Start the Backend Server
 ```bash
-# In the project root:
-export PYTHONPATH=$(pwd)
+# 1. (Optional) Create and activate a virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Install backend dependencies (if needed)
-pip install fastapi uvicorn pymupdf python-docx pymongo motor reportlab scikit-learn numpy google-genai python-multipart
+# 2. Install backend dependencies
+pip install -r requirements.txt
 
-# Start the FastAPI server
-python -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+# 3. Launch the FastAPI server
+python3 -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
-The backend will be available at: **`http://127.0.0.1:8000`**  
-Interactive API Docs (Swagger UI): **`http://127.0.0.1:8000/docs`**
+- **Backend API**: `http://127.0.0.1:8000`
+- **Interactive Swagger Docs**: `http://127.0.0.1:8000/docs`
 
----
-
-### Step 3: Run the Frontend
-
+#### 3. Start the Frontend Server
 ```bash
-# Open a new terminal:
+# Open a new terminal window:
 cd frontend
 
-# Install npm dependencies
+# 1. Install dependencies
 npm install
 
-# Start Vite development server
+# 2. Start the Vite development server
 npm run dev
 ```
-The frontend will be available at: **`http://localhost:5173`**
+- **Frontend App**: `http://localhost:5174` (or `http://localhost:5173`)
 
 ---
 
-## 🧪 Running Tests
+## 🧪 Automated Testing Suite
 
-Execute the automated test suite verifying all 8 core API subsystems:
+The repository includes a comprehensive automated test suite verifying all core API routes, parsing algorithms, grounding mechanisms, deduplication logic, and ReportLab PDF rendering.
 
 ```bash
-PYTHONPATH=$(pwd) python backend/test_api.py
+# Run tests from the project root:
+PYTHONPATH=$(pwd) python3 backend/test_api.py
 ```
 
-Expected output:
+### Verified Test Assertions:
 ```
-✓ Health check verified: {'status': 'healthy', ...}
+✓ Health check verified: {'status': 'healthy', 'database': '...'}
 ✓ Sample Resumes and JDs fetched successfully.
 ✓ Resume scoring & explainable breakdown verified. Score: 78
 ✓ Semantic matching verified. Match %: 56
@@ -154,104 +328,67 @@ Ran 8 tests in 0.039s — OK
 
 ---
 
-## 📡 API Endpoints Overview
+## 📡 REST API Reference
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `POST` | `/api/resume/upload` | Upload PDF/DOCX resume file & extract entities |
-| `POST` | `/api/resume/analyze` | Calculate explainable multi-category resume score |
-| `GET` | `/api/resume/samples` | Fetch pre-configured verified demo candidate profiles |
-| `POST` | `/api/job/analyze` | Parse Job Description into requirements & technologies |
-| `GET` | `/api/job/samples` | Fetch sample job descriptions |
-| `POST` | `/api/match` | Compute semantic TF-IDF overlap and skill gaps |
+| `GET` | `/api/health` | Service health status and active database engine mode |
+| `POST` | `/api/resume/upload` | Upload PDF/DOCX file and extract structured entities |
+| `POST` | `/api/resume/analyze` | Calculate explainable 6-category resume score and rationale |
+| `GET` | `/api/resume/samples` | Retrieve pre-configured demo candidate resumes |
+| `POST` | `/api/job/analyze` | Parse Job Description into requirements and tech taxonomy |
+| `GET` | `/api/job/samples` | Retrieve pre-configured demo Job Descriptions |
+| `POST` | `/api/match` | Compute TF-IDF match score, matching/missing skills, and project fit |
 | `POST` | `/api/questions/generate` | Generate grounded, explainable interview questions |
-| `POST` | `/api/questions/regenerate`| Generate new questions with zero duplicate collisions |
-| `POST` | `/api/questions/bookmark` | Toggle question bookmark |
-| `GET` | `/api/questions/saved` | Fetch bookmarked questions |
-| `POST` | `/api/interview/answer` | Evaluate candidate answer across 6 axes & suggest next difficulty |
-| `GET` | `/api/interview/history` | Retrieve transcript of answered mock questions |
-| `POST` | `/api/interview/project-deep-dive` | Architectural dossier & 5 hard project questions |
-| `POST` | `/api/interview/topics` | Curate Top 10 preparation topics |
+| `POST` | `/api/questions/regenerate` | Regenerate questions with guaranteed zero duplicate collisions |
+| `POST` | `/api/questions/bookmark` | Bookmark / unbookmark a specific question |
+| `GET` | `/api/questions/saved` | Fetch all bookmarked questions for the active session |
+| `POST` | `/api/interview/answer` | Evaluate candidate response across 6 axes and adapt difficulty |
+| `GET` | `/api/interview/history` | Retrieve full mock interview question-and-answer transcripts |
+| `POST` | `/api/interview/project-deep-dive` | Generate architectural project dossier and 5 hard questions |
+| `POST` | `/api/interview/topics` | Curate Top 10 preparation topics based on resume & JD |
 | `GET` | `/api/analytics` | Compute readiness score, radar categories, and weak areas |
-| `POST` | `/api/analytics/skill-gap`| Generate gap analysis with learning roadmap |
-| `POST` | `/api/analytics/improvements` | Generate STAR-format resume bullet improvements |
-| `POST` | `/api/report/export` | Generate and download ReportLab PDF report |
-| `GET/POST` | `/api/sessions` | Manage independent interview preparation sessions |
+| `POST` | `/api/analytics/skill-gap` | Generate side-by-side gap analysis and 4-week study roadmap |
+| `POST` | `/api/analytics/improvements` | Generate STAR-format resume bullet point optimizations |
+| `POST` | `/api/report/export` | Generate and download ReportLab PDF Interview Readiness Report |
+| `GET` | `/api/sessions` | List all saved preparation sessions |
+| `POST` | `/api/sessions` | Create or update a preparation session |
 
 ---
 
-## 🏗️ Project Architecture
+## 👥 Team Architecture & Contribution Matrix
 
-```
-project/
-├── backend/
-│   ├── app/
-│   │   ├── main.py              # FastAPI app setup, CORS, route mounting
-│   │   ├── config.py            # Settings and .env configuration
-│   │   ├── database/
-│   │   │   └── db.py            # MongoDB + Persistent JSON Storage engine
-│   │   ├── schemas/
-│   │   │   └── models.py        # Pydantic v2 models and data contracts
-│   │   ├── services/
-│   │   │   ├── parser.py        # PyMuPDF/docx extractor & scoring logic
-│   │   │   ├── matcher.py       # TF-IDF cosine matching & skill gap engine
-│   │   │   ├── ai_engine.py     # Grounded questions, evaluator & deduplication
-│   │   │   └── report_service.py# ReportLab PDF report generation
-│   │   └── routes/
-│   │       ├── resume.py        # Resume upload & analysis routes
-│   │       ├── job.py           # Job description routes
-│   │       ├── match.py         # Semantic matching routes
-│   │       ├── questions.py     # Question generator & bookmark routes
-│   │       ├── interview.py     # Adaptive mock interview routes
-│   │       ├── analytics.py     # Analytics & skill gap routes
-│   │       ├── report.py        # PDF report export route
-│   │       └── sessions.py      # Multi-session management routes
-│   └── test_api.py              # Automated backend test suite
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── common/          # ScoreRing, Badge, Toast, Modal
-│   │   │   └── layout/          # Sidebar, Header
-│   │   ├── context/             # SessionContext (state & sample management)
-│   │   ├── pages/
-│   │   │   ├── Home.jsx
-│   │   │   ├── ResumeAnalysis.jsx
-│   │   │   ├── JobMatch.jsx
-│   │   │   ├── GenerateQuestions.jsx
-│   │   │   ├── MockInterview.jsx
-│   │   │   ├── SkillGap.jsx
-│   │   │   ├── ProjectDeepDive.jsx
-│   │   │   ├── PreparationMode.jsx
-│   │   │   ├── ResumeImprovement.jsx
-│   │   │   ├── AnalyticsDashboard.jsx
-│   │   │   ├── SavedQuestions.jsx
-│   │   │   └── QuestionHistory.jsx
-│   │   ├── services/            # Axios API client
-│   │   ├── App.jsx              # Routing & Layout
-│   │   └── main.jsx             # Entry point
-│   ├── tailwind.config.js       # Custom design tokens & styling
-│   └── vite.config.js           # Vite configuration & backend proxy
-│
-├── PROJECT_EXPLANATION.md       # Plain-language guide for viva/interviews
-├── README.md                    # Main documentation
-└── .env.example                 # Environment template
-```
+| Team Member | GitHub Handle | Core Specialization & Architecture Role | Primary Owned Modules & Source Files |
+| :--- | :--- | :--- | :--- |
+| **Bhanusree Varikuntla** | [`@bhanusreevarikuntla`](https://github.com/bhanusreevarikuntla) | **Frontend UI/UX Architecture Lead** | `frontend/src/App.jsx`, `frontend/src/components/layout/`, `components/common/`, `Home.jsx` |
+| **Chapala Keerthana** | [`@chapala-keerthana09`](https://github.com/chapala-keerthana09) | **Frontend State & Voice UI Engineer** | `frontend/src/context/SessionContext.jsx`, `frontend/src/services/api.js`, `MockInterview.jsx` (Voice Dictation) |
+| **Harish** | [`@harish5991`](https://github.com/harish5991) | **Resume Ingestion & Validation Lead** | `backend/app/services/parser.py`, `document_validator.py`, `backend/app/routes/resume.py` |
+| **Venaganti Akshitha** | [`@VenagantiAkshitha`](https://github.com/VenagantiAkshitha) | **Semantic Matching & Skill Gap Specialist** | `backend/app/services/matcher.py`, `JobMatch.jsx`, `SkillGap.jsx`, `ResumeImprovement.jsx` |
+| **Shivani Bashaboina** | [`@ShivaniBashaboina`](https://github.com/ShivaniBashaboina) | **Grounded Question Generator & Diversity Lead** | `backend/app/services/ai_engine.py`, `grounding_validator.py`, `diversity_manager.py`, `routes/questions.py` |
+| **Gajapuram Bhavya Sri** | [`@bhavyasri0331`](https://github.com/bhavyasri0331) | **Mock Evaluation & STAR Specialist** | `backend/app/services/intent_classifier.py`, `backend/app/routes/interview.py`, `MockInterview.jsx`, `ProjectDeepDive.jsx` |
+| **Vanjari Shiva** | [`@Shivakrishna6805`](https://github.com/Shivakrishna6805) | **REST API & Dual-Database Architect** | `backend/app/main.py`, `backend/app/database/db.py`, `backend/app/schemas/models.py`, `sessions.py` |
+| **Nithin** | [`@nithin4518`](https://github.com/nithin4518) | **Readiness Analytics, PDF & Automation Lead** | `backend/app/services/report_service.py`, `backend/app/routes/report.py`, `AnalyticsDashboard.jsx`, `test_api.py`, `run.py` |
+
+> 📖 **Comprehensive Breakdown**: For detailed file ownership, technical responsibilities, architecture proofs, and commit lineages for each member, see [**`CONTRIBUTIONS.md`**](CONTRIBUTIONS.md).
 
 ---
 
-## 🛡️ Differentiators Summary
+## 🛡️ Differentiators vs. Generic AI Wrappers
 
-| Feature | Generic ChatGPT Wrapper | Resume Interview AI |
+| Feature Matrix | Generic ChatGPT Wrapper | Resume Interview AI 🎯 |
 | :--- | :--- | :--- |
-| **Question Grounding** | Inappropriate or hallucinated questions | Strictly linked to actual resume projects and skills |
-| **Explainability** | Black-box output with no rationale | Shows *"Why this question?"* and evaluation breakdown |
-| **Mock Interview** | Static text chat | Adaptive difficulty scaling based on candidate answer depth |
-| **Answer Scoring** | Single arbitrary score | 6-Axis Evaluation (Relevance, Tech Accuracy, Completeness, Clarity, Confidence, Communication) |
-| **Deduplication** | Repeated questions on reload | Strict hash-tracked zero-duplicate regeneration engine |
-| **Readiness Report** | None | Downloadable ReportLab executive PDF |
+| **Question Grounding** | Frequent hallucinations; invents technologies | **Strict Grounding Validator** tied to verified resume entities |
+| **Score Explainability** | Black-box single numeric score | **6-Category Breakdown** with natural language justifications |
+| **Mock Interview Experience** | Static back-and-forth chat | **Adaptive Difficulty Engine** with real-time level scaling |
+| **Answer Evaluation** | Surface-level summary | **6-Axis Evaluation**: Relevance, Tech Accuracy, Completeness, Clarity, Confidence, Communication |
+| **Input Modalities** | Typed text only | **Text + Web Speech API Voice Dictation** |
+| **Question Deduplication** | High rate of repeated questions | **SHA-256 Hash Engine** guaranteeing zero duplicate regeneration |
+| **System Architecture Defense** | None | **Project Deep-Dive Dossier** with 10x scalability & security analysis |
+| **Offline / DB Resilience** | Hard failure if DB drops | **Dual-Mode Persistence** (MongoDB + Local JSON Fallback) |
+| **Readiness Deliverable** | None | **ReportLab Executive PDF Export** |
 
 ---
 
 ## 📄 License
-MIT License. Built for seamless interview demonstration, academic showcases, and hackathons.
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details. Built for enterprise interview preparation, academic defense showcases, and competitive hackathons.

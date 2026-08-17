@@ -7,6 +7,25 @@ from backend.app.config import settings
 
 logger = logging.getLogger("db")
 
+def _match_field(doc_val: Any, cond: Any) -> bool:
+    if isinstance(cond, dict):
+        for op, target in cond.items():
+            if op == "$ne" and doc_val == target:
+                return False
+            elif op == "$eq" and doc_val != target:
+                return False
+            elif op == "$in" and (target is None or doc_val not in target):
+                return False
+            elif op == "$nin" and (target is not None and doc_val in target):
+                return False
+        return True
+    return doc_val == cond
+
+def _match_doc(doc: Dict[str, Any], query: Dict[str, Any]) -> bool:
+    if not query:
+        return True
+    return all(_match_field(doc.get(k), v) for k, v in query.items())
+
 class LocalJsonCollection:
     """A lightweight, file-persisted JSON collection mimicking Mongo collection API."""
     def __init__(self, name: str, data_dir: str):
@@ -46,7 +65,7 @@ class LocalJsonCollection:
     async def find_one(self, query: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         async with self._lock:
             for doc in self.docs:
-                if all(doc.get(k) == v for k, v in query.items()):
+                if _match_doc(doc, query):
                     return dict(doc)
             return None
 
@@ -56,7 +75,7 @@ class LocalJsonCollection:
                 return [dict(d) for d in self.docs[:limit]]
             res = []
             for doc in self.docs:
-                if all(doc.get(k) == v for k, v in query.items()):
+                if _match_doc(doc, query):
                     res.append(dict(doc))
                     if len(res) >= limit:
                         break
@@ -65,7 +84,7 @@ class LocalJsonCollection:
     async def update_one(self, query: Dict[str, Any], update: Dict[str, Any], upsert: bool = False):
         async with self._lock:
             for i, doc in enumerate(self.docs):
-                if all(doc.get(k) == v for k, v in query.items()):
+                if _match_doc(doc, query):
                     if "$set" in update:
                         self.docs[i].update(update["$set"])
                     else:
@@ -89,7 +108,7 @@ class LocalJsonCollection:
     async def delete_one(self, query: Dict[str, Any]):
         async with self._lock:
             for i, doc in enumerate(self.docs):
-                if all(doc.get(k) == v for k, v in query.items()):
+                if _match_doc(doc, query):
                     del self.docs[i]
                     self._save()
                     return type("DeleteResult", (), {"deleted_count": 1})()
@@ -101,7 +120,7 @@ class LocalJsonCollection:
             if not query:
                 self.docs = []
             else:
-                self.docs = [d for d in self.docs if not all(d.get(k) == v for k, v in query.items())]
+                self.docs = [d for d in self.docs if not _match_doc(d, query)]
             deleted = original_len - len(self.docs)
             self._save()
             return type("DeleteResult", (), {"deleted_count": deleted})()
@@ -171,5 +190,68 @@ class DatabaseManager:
         if name not in self.collections:
             self.collections[name] = LocalJsonCollection(name, self.data_dir)
         return self.collections[name]
+
+    async def reset_ephemeral_sessions(self):
+        """
+        Wipes all non-default sessions and associated evaluations/histories,
+        and initializes/resets the default session to a clean state.
+        """
+        from datetime import datetime, timezone
+        col_sess = self.get_collection("sessions")
+        col_evals = self.get_collection("evaluations")
+        col_qh = self.get_collection("questions_history")
+        col_final = self.get_collection("final_evaluations")
+        col_saved = self.get_collection("saved_questions")
+
+        # 1. Delete all non-default sessions and their associated records
+        await col_sess.delete_many({"id": {"$ne": "default"}})
+        await col_evals.delete_many({"session_id": {"$ne": "default"}})
+        await col_qh.delete_many({"session_id": {"$ne": "default"}})
+        await col_final.delete_many({"session_id": {"$ne": "default"}})
+        await col_saved.delete_many({"session_id": {"$ne": "default"}})
+
+        # 2. Reset or initialize default session cleanly
+        now_str = datetime.now(timezone.utc).isoformat()
+        clean_default = {
+            "id": "default",
+            "name": "Default Interview Prep",
+            "created_at": now_str,
+            "updated_at": now_str,
+            "resume": None,
+            "resume_score": None,
+            "jd": None,
+            "match": None,
+            "questions": [],
+            "saved_questions": [],
+            "evaluations": [],
+            "history": []
+        }
+
+        existing_default = await col_sess.find_one({"id": "default"})
+        if existing_default:
+            await col_sess.update_one(
+                {"id": "default"},
+                {"$set": {
+                    "name": "Default Interview Prep",
+                    "resume": None,
+                    "resume_score": None,
+                    "jd": None,
+                    "match": None,
+                    "questions": [],
+                    "saved_questions": [],
+                    "evaluations": [],
+                    "history": [],
+                    "updated_at": now_str
+                }}
+            )
+        else:
+            await col_sess.insert_one(clean_default)
+
+        # Also clear any stale history from the default session
+        await col_evals.delete_many({"session_id": "default"})
+        await col_qh.delete_many({"session_id": "default"})
+        await col_final.delete_many({"session_id": "default"})
+        await col_saved.delete_many({"session_id": "default"})
+        logger.info("Ephemeral sessions and data cleared. Default session initialized.")
 
 db_manager = DatabaseManager()

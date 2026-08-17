@@ -1,334 +1,263 @@
 [
   {
-    "id": "8ad21ad4-99df-48d6-bfa5-fad8f48b39ab",
-    "question_id": "q-test-1",
-    "overall_score": 65,
-    "relevance_score": 47,
-    "technical_accuracy_score": 70,
-    "completeness_score": 53,
-    "clarity_score": 85,
-    "confidence_score": 85,
-    "communication_score": 90,
+    "id": "4c361e90-74bd-4ebc-872e-926e46d6fca0",
+    "question_id": "q-opencv-01",
+    "question_attempt_id": "attempt_1_9db3c0",
+    "session_id": "test-repeat-sess-296b85",
+    "overall_score": 0,
+    "relevance_score": 0,
+    "technical_accuracy_score": 0,
+    "completeness_score": 0,
+    "clarity_score": 0,
+    "confidence_score": 0,
+    "communication_score": 0,
+    "verdict_rating": "Irrelevant / Repetitive Input",
+    "question_intent": "TECHNICAL_DECISION",
+    "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
+    "relevance_verdict": "IRRELEVANT",
+    "concepts_covered": [],
+    "concepts_missed": [
+      "OpenCV core mechanism",
+      "Production trade-offs",
+      "Concrete implementation"
+    ],
     "strengths": [
-      "Good elaboration with structured context."
+      "No valid technical response was submitted."
     ],
     "weaknesses": [
-      "Stay closer to the specific question asked about MongoDB.",
-      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
+      "The answer provided does not explain OpenCV or answer the question asked.",
+      "The submission merely echoes or repeats the question text without providing an original answer."
     ],
-    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
-    "next_recommended_difficulty": "Medium",
-    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
-    "evaluated_at": "2026-08-14 13:47:40.597751",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
+    "improved_answer": "A key architectural decision in my project was choosing OpenCV to enforce structured data flow and separation of concerns. In my project, selecting OpenCV gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
+    "follow_up_question": "Can you walk me through a specific code or architecture example where you worked with OpenCV?",
+    "next_recommended_difficulty": "Easy",
+    "feedback_summary": "Invalid or repetitive input detected (0/100). The submission merely echoes or repeats the question text without providing an original answer.",
+    "star_feedback": {
+      "situation": "Missing \u2014 Provide real-world context or problem statement.",
+      "task": "Missing \u2014 Specify the technical challenge.",
+      "action": "Missing \u2014 Describe the specific tools, algorithms, and design choices.",
+      "result": "Missing \u2014 Highlight performance improvements or business outcome."
+    },
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "TECHNICAL_DECISION",
+      "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
+      "evidence_used": [
+        "Topic: OpenCV"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are hypothetical",
+      "claims_validation": []
+    },
+    "evaluated_at": "2026-08-17 04:58:52.023070+00:00",
+    "resume_id": null,
+    "resume_hash": null,
+    "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
+    "user_answer": "how did you use open CV in your computer version are image processing pipeline submitting",
+    "skill": "OpenCV",
     "difficulty": "Medium",
-    "_id": "13a281dd-f93b-477d-b584-f0e3f2bb9cb1"
+    "based_on": "Resume Skill: OpenCV",
+    "expected_points": [],
+    "_id": "9cafa904-e5e3-4644-8318-1c6205445201"
   },
   {
-    "id": "6a59fd75-0643-45cd-abc3-a4fcc1b78d84",
-    "question_id": "q-test-1",
-    "overall_score": 65,
-    "relevance_score": 47,
-    "technical_accuracy_score": 70,
-    "completeness_score": 53,
-    "clarity_score": 85,
-    "confidence_score": 85,
-    "communication_score": 90,
-    "strengths": [
-      "Good elaboration with structured context."
-    ],
-    "weaknesses": [
-      "Stay closer to the specific question asked about MongoDB.",
-      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
-    ],
-    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
-    "next_recommended_difficulty": "Medium",
-    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
-    "evaluated_at": "2026-08-14 13:48:00.134773",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
-    "difficulty": "Medium",
-    "_id": "e47c29ab-3309-4644-a99e-7072e35a4a18"
-  },
-  {
-    "id": "c3abdc97-7159-4c1a-a6ac-500436b6dec7",
-    "question_id": "q-test-1",
-    "overall_score": 65,
-    "relevance_score": 47,
-    "technical_accuracy_score": 70,
-    "completeness_score": 53,
-    "clarity_score": 85,
-    "confidence_score": 85,
-    "communication_score": 90,
-    "strengths": [
-      "Good elaboration with structured context."
-    ],
-    "weaknesses": [
-      "Stay closer to the specific question asked about MongoDB.",
-      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
-    ],
-    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
-    "next_recommended_difficulty": "Medium",
-    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
-    "evaluated_at": "2026-08-14 13:48:37.679113+00:00",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
-    "difficulty": "Medium",
-    "_id": "22a3110d-7fb2-4859-bb7b-e970a629087e"
-  },
-  {
-    "id": "af82ee0a-f5f4-4eb4-b964-f4b7811568d1",
-    "question_id": "q-test-1",
-    "overall_score": 65,
-    "relevance_score": 47,
-    "technical_accuracy_score": 70,
-    "completeness_score": 53,
-    "clarity_score": 85,
-    "confidence_score": 85,
-    "communication_score": 90,
-    "strengths": [
-      "Good elaboration with structured context."
-    ],
-    "weaknesses": [
-      "Stay closer to the specific question asked about MongoDB.",
-      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
-    ],
-    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
-    "next_recommended_difficulty": "Medium",
-    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
-    "evaluated_at": "2026-08-14 13:49:15.900314+00:00",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
-    "difficulty": "Medium",
-    "_id": "86ad72b9-6e60-40ef-8a16-edb752dbbc21"
-  },
-  {
-    "id": "8cab047a-d786-4b11-ad18-d7c26fc6a2cd",
-    "question_id": "q-test-1",
-    "overall_score": 65,
-    "relevance_score": 47,
-    "technical_accuracy_score": 70,
-    "completeness_score": 53,
-    "clarity_score": 85,
-    "confidence_score": 85,
-    "communication_score": 90,
-    "strengths": [
-      "Good elaboration with structured context."
-    ],
-    "weaknesses": [
-      "Stay closer to the specific question asked about MongoDB.",
-      "Incorporate more technical mechanisms regarding how MongoDB operates under the hood."
-    ],
-    "improved_answer": "When answering 'Why did you choose MongoDB for your Resume Interview AI project?': Clearly define your core choice, explain the architectural reason (e.g., latency, throughput, schema flexibility), describe any trade-offs considered, and highlight the production outcome.",
-    "next_recommended_difficulty": "Medium",
-    "feedback_summary": "Scored 65/100. Solid foundation; expand on technical depth and real-world trade-offs.",
-    "evaluated_at": "2026-08-14 14:08:09.449994+00:00",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
-    "difficulty": "Medium",
-    "_id": "89720576-20aa-4f0d-8e83-23ba82de2ce8"
-  },
-  {
-    "id": "776f8af2-7216-4c5c-ba81-be0666505e73",
-    "question_id": "q-test-1",
-    "overall_score": 84,
-    "relevance_score": 85,
-    "technical_accuracy_score": 90,
-    "completeness_score": 77,
+    "id": "ab3fd97c-5b8d-45fa-8a67-59ff7fd053ea",
+    "question_id": "q-opencv-01",
+    "question_attempt_id": "attempt_2_3f2409",
+    "session_id": "test-repeat-sess-296b85",
+    "overall_score": 85,
+    "relevance_score": 82,
+    "technical_accuracy_score": 96,
+    "completeness_score": 75,
     "clarity_score": 88,
     "confidence_score": 90,
-    "communication_score": 75,
-    "verdict_rating": "Strong Technical Answer",
+    "communication_score": 70,
+    "verdict_rating": "Exceptional Technical Mastery",
+    "question_intent": "TECHNICAL_DECISION",
+    "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
+    "relevance_verdict": "PARTIALLY_RELEVANT",
     "concepts_covered": [
-      "BSON Document Model",
-      "16MB Document Limit"
+      "Frame Ingestion Pipeline (`cv2.VideoCapture`)",
+      "Region of Interest (ROI) Masking & Optimization",
+      "Morphological Filtering & Noise Reduction",
+      "Contour Detection & Bounding Box Rendering"
     ],
     "concepts_missed": [
-      "Compound Indexing",
-      "Embedding vs Referencing",
-      "Aggregation Pipeline",
-      "Horizontal Scalability"
+      "Color Space Conversion (BGR / HSV / Grayscale)"
     ],
     "strengths": [
-      "Correctly identified key mechanisms: BSON Document Model, 16MB Document Limit.",
-      "Provided clear causal reasoning explaining the rationale behind design choices.",
-      "Supported assertions with concrete impact metrics / numbers."
+      "Correctly addressed core mechanisms: Frame Ingestion Pipeline (`cv2.VideoCapture`), Region of Interest (ROI) Masking & Optimization, Morphological Filtering & Noise Reduction.",
+      "Supported assertions with concrete metrics and quantifiable engineering outcomes."
     ],
     "weaknesses": [
-      "Missed discussing core architectural points: Compound Indexing, Embedding vs Referencing.",
-      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
+      "Missed discussing core architectural points: Color Space Conversion (BGR / HSV / Grayscale)."
     ],
-    "improved_answer": "A senior engineer response for 'Why did you choose MongoDB for your Resume Interview AI project?': We selected MongoDB to leverage BSON Document Model, Compound Indexing, Embedding vs Referencing. In our architecture, this decoupled data persistence from synchronous request bottlenecks. We established compound indexing and query projection, mitigating potential 16MB document boundary issues and reducing p99 latency to <50ms. The key trade-off was accepting eventual consistency in exchange for horizontal partition tolerance.",
-    "follow_up_question": "If this MongoDB implementation encountered a 20x spike in concurrent requests, where would the first bottleneck emerge and how would you resolve it?",
+    "improved_answer": "When designing my project, we decided to decouple compute-heavy operations from the primary request-response cycle. In my project, selecting OpenCV gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
+    "follow_up_question": "How would you address Color Space Conversion (BGR / HSV / Grayscale) if this OpenCV implementation experienced a 10x traffic spike?",
     "next_recommended_difficulty": "Hard",
-    "feedback_summary": "Scored 84/100 (Strong Technical Answer). Demonstrated solid grasp of technical mechanisms.",
+    "feedback_summary": "Strong answer (85/100). Clear understanding of OpenCV with solid technical context and mechanisms.",
     "star_feedback": {
-      "situation": "Clearly stated system background.",
-      "task": "Target technical goal was addressed.",
-      "action": "Mentioned concrete actions with MongoDB.",
-      "result": "Quantified impact included."
+      "situation": "Clearly framed project/architecture context.",
+      "task": "Directly addressed requirement for OpenCV.",
+      "action": "Explained concrete implementation choices (Frame Ingestion Pipeline (`cv2.VideoCapture`), Region of Interest (ROI) Masking & Optimization).",
+      "result": "Quantified impact and metrics included."
     },
-    "evaluated_at": "2026-08-14 14:27:54.672360+00:00",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "TECHNICAL_DECISION",
+      "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
+      "evidence_used": [
+        "Topic: OpenCV"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are hypothetical",
+      "claims_validation": []
+    },
+    "evaluated_at": "2026-08-17 04:58:52.029491+00:00",
+    "resume_id": null,
+    "resume_hash": null,
+    "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
+    "user_answer": "In our computer vision pipeline, we used cv2.VideoCapture for frame ingestion and applied Gaussian blur and morphological filtering to reduce camera noise. We isolated regions of interest (ROI) to reduce downstream pixel processing overhead by 50%, and executed contour detection via findContours and bounding rectangles to track objects at steady 30+ FPS.",
+    "skill": "OpenCV",
     "difficulty": "Medium",
-    "_id": "87a4a824-e83e-4853-80fe-47b962062c8c"
+    "based_on": "Resume Skill: OpenCV",
+    "expected_points": [],
+    "_id": "aba28a50-f083-40a4-84db-e4b0be2e4712"
   },
   {
-    "id": "3d860f9b-52b2-4904-935c-6a764174629c",
-    "question_id": "q-test-1",
-    "overall_score": 84,
-    "relevance_score": 85,
-    "technical_accuracy_score": 90,
-    "completeness_score": 77,
-    "clarity_score": 88,
+    "id": "746b8f98-5b85-42fd-a835-1060a6b7bb11",
+    "question_id": "q-opencv-01",
+    "question_attempt_id": "attempt_3_145bc5",
+    "session_id": "test-repeat-sess-296b85",
+    "overall_score": 27,
+    "relevance_score": 20,
+    "technical_accuracy_score": 11,
+    "completeness_score": 20,
+    "clarity_score": 55,
     "confidence_score": 90,
-    "communication_score": 75,
-    "verdict_rating": "Strong Technical Answer",
-    "concepts_covered": [
-      "BSON Document Model",
-      "16MB Document Limit"
-    ],
+    "communication_score": 70,
+    "verdict_rating": "Introductory / Brief Answer",
+    "question_intent": "TECHNICAL_DECISION",
+    "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
+    "relevance_verdict": "RELEVANT",
+    "concepts_covered": [],
     "concepts_missed": [
-      "Compound Indexing",
-      "Embedding vs Referencing",
-      "Aggregation Pipeline",
-      "Horizontal Scalability"
+      "Frame Ingestion Pipeline (`cv2.VideoCapture`)",
+      "Region of Interest (ROI) Masking & Optimization",
+      "Morphological Filtering & Noise Reduction",
+      "Contour Detection & Bounding Box Rendering"
     ],
     "strengths": [
-      "Correctly identified key mechanisms: BSON Document Model, 16MB Document Limit.",
-      "Provided clear causal reasoning explaining the rationale behind design choices.",
-      "Supported assertions with concrete impact metrics / numbers."
+      "Identified the core topic."
     ],
     "weaknesses": [
-      "Missed discussing core architectural points: Compound Indexing, Embedding vs Referencing.",
+      "Missed discussing core architectural points: Frame Ingestion Pipeline (`cv2.VideoCapture`), Region of Interest (ROI) Masking & Optimization.",
+      "Answer is brief; elaborate with specific libraries, methods, and practical production constraints.",
       "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
     ],
-    "improved_answer": "A senior engineer response for 'Why did you choose MongoDB for your Resume Interview AI project?': We selected MongoDB to leverage BSON Document Model, Compound Indexing, Embedding vs Referencing. In our architecture, this decoupled data persistence from synchronous request bottlenecks. We established compound indexing and query projection, mitigating potential 16MB document boundary issues and reducing p99 latency to <50ms. The key trade-off was accepting eventual consistency in exchange for horizontal partition tolerance.",
-    "follow_up_question": "If this MongoDB implementation encountered a 20x spike in concurrent requests, where would the first bottleneck emerge and how would you resolve it?",
-    "next_recommended_difficulty": "Hard",
-    "feedback_summary": "Scored 84/100 (Strong Technical Answer). Demonstrated solid grasp of technical mechanisms.",
+    "improved_answer": "From an engineering perspective on how did you use opencv in your computer vision or image processing pipeline, We made a deliberate technical decision in my project to prioritize maintainability and fast iteration speed by using OpenCV. In my project, selecting OpenCV gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
+    "follow_up_question": "How would you address Frame Ingestion Pipeline (`cv2.VideoCapture`) if this OpenCV implementation experienced a 10x traffic spike?",
+    "next_recommended_difficulty": "Easy",
+    "feedback_summary": "Brief answer (27/100). Elaborate with specific technical details, libraries, and design rationale.",
     "star_feedback": {
-      "situation": "Clearly stated system background.",
-      "task": "Target technical goal was addressed.",
-      "action": "Mentioned concrete actions with MongoDB.",
-      "result": "Quantified impact included."
+      "situation": "Context could frame real-world system scale and constraints more clearly.",
+      "task": "Target goal for OpenCV needs sharper focus.",
+      "action": "Describe exact technical mechanisms of OpenCV rather than high-level definitions.",
+      "result": "Missing quantitative metrics (e.g. % improvement, latency reduction, bundle savings)."
     },
-    "evaluated_at": "2026-08-14 16:58:54.211176+00:00",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "TECHNICAL_DECISION",
+      "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
+      "evidence_used": [
+        "Topic: OpenCV"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are hypothetical",
+      "claims_validation": []
+    },
+    "evaluated_at": "2026-08-17 04:58:52.035439+00:00",
+    "resume_id": null,
+    "resume_hash": null,
+    "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
+    "user_answer": "I used it to read images in python.",
+    "skill": "OpenCV",
     "difficulty": "Medium",
-    "_id": "63ba43ad-fc26-4f40-a067-526da92dc21f"
+    "based_on": "Resume Skill: OpenCV",
+    "expected_points": [],
+    "_id": "7544c9b9-d6c8-403a-8691-5ffd2c240c63"
   },
   {
-    "id": "b3faa324-450a-4aa3-88fb-df67e0c8b0ce",
-    "question_id": "q-test-1",
-    "overall_score": 84,
+    "id": "37ec768f-16d9-4ce1-9949-02ee04bc8549",
+    "question_id": "q-sql-02",
+    "question_attempt_id": "attempt_b_b54424",
+    "session_id": "test-repeat-sess-296b85",
+    "overall_score": 80,
     "relevance_score": 85,
-    "technical_accuracy_score": 90,
-    "completeness_score": 77,
+    "technical_accuracy_score": 94,
+    "completeness_score": 50,
     "clarity_score": 88,
     "confidence_score": 90,
-    "communication_score": 75,
+    "communication_score": 70,
     "verdict_rating": "Strong Technical Answer",
+    "question_intent": "PERFORMANCE",
+    "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
+    "relevance_verdict": "RELEVANT",
     "concepts_covered": [
-      "BSON Document Model",
-      "16MB Document Limit"
+      "ACID Guarantees & Transaction Isolation Levels",
+      "Index Seek vs Scan & B-Tree Optimization",
+      "Normalization (3NF) & Referential Integrity"
     ],
     "concepts_missed": [
-      "Compound Indexing",
-      "Embedding vs Referencing",
-      "Aggregation Pipeline",
-      "Horizontal Scalability"
+      "Relational JOIN Mechanics (Hash, Merge, Nested Loop)",
+      "Window Functions & Common Table Expressions (CTEs)"
     ],
     "strengths": [
-      "Correctly identified key mechanisms: BSON Document Model, 16MB Document Limit.",
-      "Provided clear causal reasoning explaining the rationale behind design choices.",
-      "Supported assertions with concrete impact metrics / numbers."
+      "Correctly addressed core mechanisms: ACID Guarantees & Transaction Isolation Levels, Index Seek vs Scan & B-Tree Optimization, Normalization (3NF) & Referential Integrity.",
+      "Supported assertions with concrete metrics and quantifiable engineering outcomes."
     ],
     "weaknesses": [
-      "Missed discussing core architectural points: Compound Indexing, Embedding vs Referencing.",
+      "Missed discussing core architectural points: Relational JOIN Mechanics (Hash, Merge, Nested Loop), Window Functions & Common Table Expressions (CTEs).",
       "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
     ],
-    "improved_answer": "A senior engineer response for 'Why did you choose MongoDB for your Resume Interview AI project?': We selected MongoDB to leverage BSON Document Model, Compound Indexing, Embedding vs Referencing. In our architecture, this decoupled data persistence from synchronous request bottlenecks. We established compound indexing and query projection, mitigating potential 16MB document boundary issues and reducing p99 latency to <50ms. The key trade-off was accepting eventual consistency in exchange for horizontal partition tolerance.",
-    "follow_up_question": "If this MongoDB implementation encountered a 20x spike in concurrent requests, where would the first bottleneck emerge and how would you resolve it?",
+    "improved_answer": "To optimize performance in my project, I profiled execution times using runtime timers and eliminated redundant compute overhead. By profiling resource consumption in my project, we identified that serialization overhead and unindexed lookups were causing latency spikes. We resolved this by streamlining data validation schemas, batching database queries, and keeping memory allocations localized. These optimizations significantly reduced response variability across high-concurrency test runs.",
+    "follow_up_question": "How would you address Relational JOIN Mechanics (Hash, Merge, Nested Loop) if this SQL implementation experienced a 10x traffic spike?",
     "next_recommended_difficulty": "Hard",
-    "feedback_summary": "Scored 84/100 (Strong Technical Answer). Demonstrated solid grasp of technical mechanisms.",
+    "feedback_summary": "Strong answer (80/100). Clear understanding of SQL with solid technical context and mechanisms.",
     "star_feedback": {
-      "situation": "Clearly stated system background.",
-      "task": "Target technical goal was addressed.",
-      "action": "Mentioned concrete actions with MongoDB.",
-      "result": "Quantified impact included."
+      "situation": "Clearly framed project/architecture context.",
+      "task": "Directly addressed requirement for SQL.",
+      "action": "Explained concrete implementation choices (ACID Guarantees & Transaction Isolation Levels, Index Seek vs Scan & B-Tree Optimization).",
+      "result": "Quantified impact and metrics included."
     },
-    "evaluated_at": "2026-08-14 17:04:54.764991+00:00",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
-    "difficulty": "Medium",
-    "_id": "a3442df8-b7ea-497c-807b-e4bff262208a"
-  },
-  {
-    "id": "a34d1684-1a59-41bf-acc2-86426c6606ca",
-    "question_id": "q-test-1",
-    "overall_score": 84,
-    "relevance_score": 85,
-    "technical_accuracy_score": 90,
-    "completeness_score": 77,
-    "clarity_score": 88,
-    "confidence_score": 90,
-    "communication_score": 75,
-    "verdict_rating": "Strong Technical Answer",
-    "concepts_covered": [
-      "BSON Document Model",
-      "16MB Document Limit"
-    ],
-    "concepts_missed": [
-      "Compound Indexing",
-      "Embedding vs Referencing",
-      "Aggregation Pipeline",
-      "Horizontal Scalability"
-    ],
-    "strengths": [
-      "Correctly identified key mechanisms: BSON Document Model, 16MB Document Limit.",
-      "Provided clear causal reasoning explaining the rationale behind design choices.",
-      "Supported assertions with concrete impact metrics / numbers."
-    ],
-    "weaknesses": [
-      "Missed discussing core architectural points: Compound Indexing, Embedding vs Referencing.",
-      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
-    ],
-    "improved_answer": "A senior engineer response for 'Why did you choose MongoDB for your Resume Interview AI project?': We selected MongoDB to leverage BSON Document Model, Compound Indexing, Embedding vs Referencing. In our architecture, this decoupled data persistence from synchronous request bottlenecks. We established compound indexing and query projection, mitigating potential 16MB document boundary issues and reducing p99 latency to <50ms. The key trade-off was accepting eventual consistency in exchange for horizontal partition tolerance.",
-    "follow_up_question": "If this MongoDB implementation encountered a 20x spike in concurrent requests, where would the first bottleneck emerge and how would you resolve it?",
-    "next_recommended_difficulty": "Hard",
-    "feedback_summary": "Scored 84/100 (Strong Technical Answer). Demonstrated solid grasp of technical mechanisms.",
-    "star_feedback": {
-      "situation": "Clearly stated system background.",
-      "task": "Target technical goal was addressed.",
-      "action": "Mentioned concrete actions with MongoDB.",
-      "result": "Quantified impact included."
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "PERFORMANCE",
+      "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
+      "evidence_used": [
+        "Topic: SQL"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are hypothetical",
+      "claims_validation": []
     },
-    "evaluated_at": "2026-08-15 02:25:01.817913+00:00",
-    "session_id": "test-session",
-    "question_text": "Why did you choose MongoDB for your Resume Interview AI project?",
-    "user_answer": "We chose MongoDB because of its flexible BSON document schema, which allowed us to store complex parsed resumes with nested projects, skills, and experience without rigid schema migrations. We also created indexes on user and session IDs for sub-50ms query response times.",
-    "skill": "MongoDB",
+    "evaluated_at": "2026-08-17 04:58:52.042316+00:00",
+    "resume_id": null,
+    "resume_hash": null,
+    "question_text": "How do B-tree indexes and query execution plans optimize SQL database performance?",
+    "user_answer": "In PostgreSQL, we optimize queries by analyzing EXPLAIN ANALYZE execution plans to verify index seeks over sequential scans. We establish covering B-tree indexes on foreign keys to accelerate relational joins, and configure read committed isolation to prevent deadlocks while maintaining ACID consistency with sub-20ms query latency.",
+    "skill": "SQL",
     "difficulty": "Medium",
-    "_id": "ab139349-51a3-4685-bce2-ac8bf367cd0d"
+    "based_on": "Resume Skill: SQL",
+    "expected_points": [],
+    "_id": "9510695b-ff27-4f02-abb8-ffb1f14d3af8"
   }
 ]

@@ -33,13 +33,16 @@ async def export_interview_report(payload: dict = Body(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate PDF report: {str(e)}")
 
+import os
+from pathlib import Path
+
 @router.get("/presentation-guide")
 async def get_presentation_guide_pdf():
-    import os
-    pdf_path = "/Users/hari/Downloads/project/CTS_Panel_Presentation_Team_Division.pdf"
-    if not os.path.exists(pdf_path):
-        from generate_presentation_pdf import create_presentation_pdf
-        create_presentation_pdf(pdf_path)
+    project_root = Path(__file__).resolve().parents[3]
+    pdf_path = project_root / "CTS_Panel_Presentation_Team_Division.pdf"
+    
+    if not pdf_path.exists():
+        raise HTTPException(status_code=404, detail="Presentation guide PDF not found.")
     
     with open(pdf_path, "rb") as f:
         pdf_bytes = f.read()

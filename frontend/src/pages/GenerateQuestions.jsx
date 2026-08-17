@@ -15,7 +15,8 @@ import {
   FileText,
   Target,
   Copy,
-  Check
+  Check,
+  AlertCircle
 } from 'lucide-react';
 import { Badge } from '../components/common/Badge';
 
@@ -143,6 +144,22 @@ export const GenerateQuestions = () => {
         )}
       </div>
 
+      {/* Active Resume Source Indicator */}
+      {resumeData && (
+        <div className="p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 text-xs shadow-2xs">
+          <div className="flex items-center gap-2 flex-wrap">
+            <FileText className="w-4 h-4 text-blue-600" />
+            <span className="font-bold text-slate-900">{resumeData.filename || resumeData.name + '_Resume.pdf'}</span>
+            <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded text-[11px] font-semibold">
+              ✓ Verified Resume ({Math.round((resumeData.resume_confidence || 0.95) * 100)}% Confidence)
+            </span>
+          </div>
+          <div className="text-slate-500 font-mono text-[11px]">
+            Target Resume ID: {resumeData.id ? `${resumeData.id.slice(0, 13)}...` : 'active'}
+          </div>
+        </div>
+      )}
+
       {/* Control Panel / Parameters */}
       <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-3">
         <div className="flex items-center gap-1.5 pb-2 border-b border-slate-100">
@@ -202,16 +219,18 @@ export const GenerateQuestions = () => {
         <div className="flex flex-wrap items-center justify-end gap-2 pt-1">
           <button
             onClick={() => fetchQuestions(true)}
-            disabled={loading}
+            disabled={loading || !resumeData}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-lg transition-colors disabled:opacity-50"
+            title={!resumeData ? 'Upload a resume first' : 'Regenerate questions'}
           >
             <RefreshCw className={`w-3 h-3 ${loading ? 'animate-spin' : ''}`} />
             <span>Regenerate Different Questions</span>
           </button>
           <button
             onClick={() => fetchQuestions(false)}
-            disabled={loading}
+            disabled={loading || !resumeData}
             className="flex items-center gap-1.5 px-4 py-1.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors disabled:opacity-50"
+            title={!resumeData ? 'Upload a resume first' : 'Generate questions'}
           >
             <span>{loading ? 'Generating Questions...' : 'Generate Questions'}</span>
           </button>
@@ -300,12 +319,41 @@ export const GenerateQuestions = () => {
                 </div>
 
                 {/* Suggested Answer Card */}
-                <div className="p-3.5 bg-slate-50/80 rounded-lg border border-slate-200/80 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[11px] font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-600" />
-                      Suggested Answer:
-                    </span>
+                <div className="p-3.5 bg-slate-50/80 rounded-lg border border-slate-200/80 space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="text-[11px] font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+                        Suggested Answer:
+                      </span>
+
+                      {/* Grounding Status Badges */}
+                      {q.answer_grounding && (
+                        <div className="flex items-center gap-1.5 flex-wrap">
+                          <span
+                            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold border ${
+                              q.answer_grounding.badge_variant === 'success'
+                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                : q.answer_grounding.badge_variant === 'warning'
+                                ? 'bg-amber-50 text-amber-800 border-amber-200'
+                                : 'bg-blue-50 text-blue-700 border-blue-200'
+                            }`}
+                          >
+                            {q.answer_grounding.badge_variant === 'warning' ? (
+                              <AlertCircle className="w-3 h-3 text-amber-600" />
+                            ) : (
+                              <Check className="w-3 h-3 text-emerald-600" />
+                            )}
+                            <span>{q.answer_grounding.status}</span>
+                          </span>
+
+                          <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-slate-100 text-slate-600 border border-slate-200">
+                            {q.answer_grounding.answer_type}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
                     <button
                       onClick={() => handleCopySingle(q, idx)}
                       className="flex items-center gap-1 text-[11px] font-medium text-slate-600 hover:text-slate-900 bg-white px-2 py-0.5 rounded border border-slate-200 transition-colors shadow-2xs"
@@ -314,9 +362,18 @@ export const GenerateQuestions = () => {
                       <span>{copiedIdx === idx ? 'Copied' : 'Copy'}</span>
                     </button>
                   </div>
+
                   <p className="text-xs text-slate-800 leading-relaxed font-normal bg-white p-3 rounded-md border border-slate-200/60 shadow-2xs">
                     {q.sample_answer || q.why_this_question || "State the core mechanism, describe concrete implementation tools, explain performance trade-offs, and quantify results."}
                   </p>
+
+                  {/* Caution / Scoping Note if present */}
+                  {q.answer_grounding?.caution_note && (
+                    <div className="flex items-start gap-1.5 px-2.5 py-1.5 bg-amber-50/80 border border-amber-200/80 rounded-md text-[11px] text-amber-900">
+                      <AlertCircle className="w-3.5 h-3.5 text-amber-600 flex-shrink-0 mt-0.5" />
+                      <span>{q.answer_grounding.caution_note}</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Grounding & Evidence Details */}
@@ -344,6 +401,18 @@ export const GenerateQuestions = () => {
                       </p>
                     </div>
                   </div>
+
+                  {/* Evidence Used Badges from Validator */}
+                  {q.answer_grounding?.evidence_used && q.answer_grounding.evidence_used.length > 0 && (
+                    <div className="pt-1.5 border-t border-slate-200/50 flex items-center gap-1.5 flex-wrap">
+                      <span className="text-[11px] font-semibold text-slate-600">Verified facts used:</span>
+                      {q.answer_grounding.evidence_used.map((ev, eidx) => (
+                        <span key={eidx} className="px-1.5 py-0.5 rounded bg-emerald-50/70 text-emerald-800 text-[10px] border border-emerald-200/70 font-medium">
+                          ✓ {ev}
+                        </span>
+                      ))}
+                    </div>
+                  )}
 
                   {/* Related Skills & Checkpoints */}
                   <div className="pt-1.5 border-t border-slate-200/60 flex flex-wrap items-center justify-between gap-2">
@@ -388,10 +457,20 @@ export const GenerateQuestions = () => {
         ) : (
           <div className="p-8 bg-white rounded-xl border border-slate-200 text-center space-y-2">
             <HelpCircle className="w-8 h-8 text-slate-300 mx-auto" />
-            <h4 className="text-sm font-bold text-slate-700">No questions generated yet</h4>
+            <h4 className="text-sm font-bold text-slate-700">{resumeData ? 'No questions generated yet' : 'No active resume uploaded'}</h4>
             <p className="text-xs text-slate-500 max-w-sm mx-auto">
-              Click "Generate Questions" above to produce grounded interview questions and suggested answers tailored to your resume.
+              {resumeData
+                ? 'Click "Generate Questions" above to produce grounded interview questions and suggested answers tailored to your resume.'
+                : 'Upload your resume to begin generating personalized interview questions tailored to your technical skills and projects.'}
             </p>
+            {!resumeData && (
+              <button
+                onClick={() => navigate('/resume')}
+                className="mt-2 inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 text-white text-xs font-semibold rounded-lg shadow-sm hover:bg-blue-700 transition-colors"
+              >
+                <span>Upload Resume to Begin</span>
+              </button>
+            )}
           </div>
         )}
       </div>

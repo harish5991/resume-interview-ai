@@ -5,6 +5,7 @@ from backend.app.schemas.models import (
     ExtractedResume, JobDescriptionAnalysis
 )
 from backend.app.services.matcher import JDMatcher
+from backend.app.services.parser import ResumeParser
 from backend.app.services.ai_engine import AIEngine
 from backend.app.database.db import db_manager
 
@@ -14,30 +15,49 @@ router = APIRouter(prefix="/analytics", tags=["Analytics"])
 async def get_analytics(session_id: str = "default"):
     col_evals = db_manager.get_collection("evaluations")
     evals = await col_evals.find({"session_id": session_id})
-    if not evals and session_id != "default":
-        evals = await col_evals.find({"session_id": "default"})
 
-    # Pull latest session data if present
+    # Pull session data strictly for this session
     col_sess = db_manager.get_collection("sessions")
     sess = await col_sess.find_one({"id": session_id})
     
-    resume_score = 82
-    jd_match_pct = 75
+    resume_score: Optional[int] = None
+    jd_match_pct: Optional[int] = None
+    resume_breakdown: Optional[Dict[str, Any]] = None
+
     if sess:
         if sess.get("resume_score"):
-            resume_score = sess["resume_score"].get("overall_score", 82)
+            resume_breakdown = sess["resume_score"]
+            resume_score = sess["resume_score"].get("overall_score")
+        elif sess.get("resume"):
+            try:
+                res_obj = ExtractedResume(**sess["resume"])
+                jd_obj = JobDescriptionAnalysis(**sess["jd"]) if sess.get("jd") else None
+                score_obj = ResumeParser.calculate_score(res_obj, jd_obj)
+                resume_breakdown = score_obj.model_dump()
+                resume_score = score_obj.overall_score
+            except Exception:
+                pass
+
         if sess.get("match"):
-            jd_match_pct = sess["match"].get("match_percentage", 75)
+            jd_match_pct = sess["match"].get("match_percentage")
+        elif sess.get("resume") and sess.get("jd"):
+            try:
+                res_obj = ExtractedResume(**sess["resume"])
+                jd_obj = JobDescriptionAnalysis(**sess["jd"])
+                match_obj = JDMatcher.match_resume_and_jd(res_obj, jd_obj)
+                jd_match_pct = match_obj.match_percentage
+            except Exception:
+                pass
 
     if evals:
-        scores = [e.get("overall_score", 75) for e in evals]
-        avg_score = int(sum(scores) / len(scores))
-        tech_scores = [e.get("technical_accuracy_score", 75) for e in evals]
-        avg_tech = int(sum(tech_scores) / len(tech_scores))
-        comm_scores = [e.get("communication_score", 80) for e in evals]
-        avg_comm = int(sum(comm_scores) / len(comm_scores))
-        clarity_scores = [e.get("clarity_score", 78) for e in evals]
-        avg_behavioral = int(sum(clarity_scores) / len(clarity_scores))
+        scores = [e.get("overall_score", 0) for e in evals]
+        avg_score = int(sum(scores) / len(scores)) if scores else 0
+        tech_scores = [e.get("technical_accuracy_score", 0) for e in evals]
+        avg_tech = int(sum(tech_scores) / len(tech_scores)) if tech_scores else 0
+        comm_scores = [e.get("communication_score", 0) for e in evals]
+        avg_comm = int(sum(comm_scores) / len(comm_scores)) if comm_scores else 0
+        clarity_scores = [e.get("clarity_score", 0) for e in evals]
+        avg_behavioral = int(sum(clarity_scores) / len(clarity_scores)) if clarity_scores else 0
         attempted = len(evals)
         correct = sum(1 for s in scores if s >= 70)
         
@@ -46,71 +66,120 @@ async def get_analytics(session_id: str = "default"):
         for i, e in enumerate(evals, 1):
             trends.append({
                 "attempt": f"Q{i}",
-                "score": e.get("overall_score", 70),
-                "technical": e.get("technical_accuracy_score", 70),
-                "relevance": e.get("relevance_score", 70)
+                "score": e.get("overall_score", 0),
+                "technical": e.get("technical_accuracy_score", 0),
+                "relevance": e.get("relevance_score", 0)
             })
 
-        # Weak vs Strong areas
+        # Weak vs Strong areas calculated strictly from actual questions attempted
         skill_perf: Dict[str, List[int]] = {}
         for e in evals:
             sk = e.get("skill", "General")
             if sk not in skill_perf:
                 skill_perf[sk] = []
-            skill_perf[sk].append(e.get("overall_score", 70))
+            skill_perf[sk].append(e.get("overall_score", 0))
 
         weak_areas = []
         strong_areas = []
         for sk, scs in skill_perf.items():
-            avg_sk = int(sum(scs) / len(scs))
+            avg_sk = int(sum(scs) / len(scs)) if scs else 0
             if avg_sk < 70:
                 weak_areas.append({"topic": sk, "score": avg_sk, "priority": "High" if avg_sk < 60 else "Medium"})
             else:
                 strong_areas.append({"topic": sk, "score": avg_sk, "status": "Mastered" if avg_sk >= 85 else "Proficient"})
 
+        # Weighted Interview Readiness Score dynamically normalized over available metrics
+        if resume_score is not None and jd_match_pct is not None:
+            readiness = int(
+                (resume_score * 0.25) +
+                (jd_match_pct * 0.25) +
+                (avg_tech * 0.25) +
+                (avg_comm * 0.15) +
+                (avg_behavioral * 0.10)
+            )
+        elif resume_score is not None:
+            readiness = int(
+                (resume_score * 0.40) +
+                (avg_tech * 0.30) +
+                (avg_comm * 0.20) +
+                (avg_behavioral * 0.10)
+            )
+        else:
+            readiness = int(
+                (avg_tech * 0.50) +
+                (avg_comm * 0.30) +
+                (avg_behavioral * 0.20)
+            )
+
+        category_perf = [
+            {"category": "Technical Depth", "score": avg_tech, "fullMark": 100},
+            {"category": "Relevance", "score": int(((resume_score or 0) + (jd_match_pct or 0)) / 2) if (resume_score or jd_match_pct) else avg_score, "fullMark": 100},
+            {"category": "Communication", "score": avg_comm, "fullMark": 100},
+            {"category": "Problem Solving", "score": avg_behavioral, "fullMark": 100},
+            {"category": "Completeness", "score": min(100, avg_score + 5) if avg_score > 0 else 0, "fullMark": 100}
+        ]
+
+        # Difficulty Performance Breakdown
+        diff_scores: Dict[str, List[int]] = {"Easy": [], "Medium": [], "Hard": [], "Expert": []}
+        for e in evals:
+            diff_level = (e.get("difficulty") or "Medium").strip().capitalize()
+            if diff_level not in diff_scores:
+                diff_scores[diff_level] = []
+            diff_scores[diff_level].append(e.get("overall_score", 0))
+
+        diff_perf = []
+        for d in ["Easy", "Medium", "Hard", "Expert"]:
+            scs = diff_scores.get(d, [])
+            if scs:
+                pass_count = sum(1 for s in scs if s >= 70)
+                pass_rate = int((pass_count / len(scs)) * 100)
+                avg_diff_score = int(sum(scs) / len(scs))
+            else:
+                pass_rate = 0
+                avg_diff_score = 0
+            diff_perf.append({
+                "difficulty": d,
+                "passRate": pass_rate,
+                "avgScore": avg_diff_score
+            })
     else:
-        # Default baseline for empty session
-        avg_score = 80
-        avg_tech = 78
-        avg_comm = 82
-        avg_behavioral = 80
+        # No mock interviews completed yet
+        avg_score = 0
+        avg_tech = 0
+        avg_comm = 0
+        avg_behavioral = 0
         attempted = 0
         correct = 0
-        trends = [
-            {"attempt": "Baseline", "score": 75, "technical": 72, "relevance": 78}
-        ]
-        weak_areas = [
-            {"topic": "System Design Trade-offs", "score": 62, "priority": "Medium"},
-            {"topic": "Deep Caching & Redis", "score": 58, "priority": "High"}
-        ]
-        strong_areas = [
-            {"topic": "Python Core & APIs", "score": 88, "status": "Mastered"},
-            {"topic": "Frontend Component Design", "score": 84, "status": "Proficient"}
-        ]
+        trends = []
+        weak_areas = []
+        strong_areas = []
+        diff_perf = []
 
-    # Weighted Interview Readiness Score
-    readiness = int(
-        (resume_score * 0.25) +
-        (jd_match_pct * 0.25) +
-        (avg_tech * 0.25) +
-        (avg_comm * 0.15) +
-        (avg_behavioral * 0.10)
-    )
+        if resume_score is not None and jd_match_pct is not None:
+            readiness = int((resume_score * 0.5) + (jd_match_pct * 0.5))
+        elif resume_score is not None:
+            readiness = int(resume_score)
+        elif jd_match_pct is not None:
+            readiness = int(jd_match_pct)
+        else:
+            readiness = 0
 
-    category_perf = [
-        {"category": "Technical Depth", "score": avg_tech, "fullMark": 100},
-        {"category": "Relevance", "score": int((resume_score + jd_match_pct) / 2), "fullMark": 100},
-        {"category": "Communication", "score": avg_comm, "fullMark": 100},
-        {"category": "Problem Solving", "score": avg_behavioral, "fullMark": 100},
-        {"category": "Completeness", "score": min(100, avg_score + 5), "fullMark": 100}
-    ]
+        if resume_score is not None or jd_match_pct is not None:
+            rb = resume_breakdown or {}
+            skills_val = rb.get("skills_score", resume_score or 75)
+            proj_val = rb.get("projects_score", resume_score or 70)
+            comp_val = rb.get("completeness_score", 80)
+            rel_val = jd_match_pct if jd_match_pct is not None else rb.get("relevance_score", 75)
 
-    diff_perf = [
-        {"difficulty": "Easy", "passRate": 92, "avgScore": 88},
-        {"difficulty": "Medium", "passRate": 80, "avgScore": 79},
-        {"difficulty": "Hard", "passRate": 68, "avgScore": 69},
-        {"difficulty": "Expert", "passRate": 55, "avgScore": 58}
-    ]
+            category_perf = [
+                {"category": "Technical Depth", "score": skills_val, "fullMark": 100},
+                {"category": "Relevance", "score": rel_val, "fullMark": 100},
+                {"category": "Communication", "score": comp_val, "fullMark": 100},
+                {"category": "Problem Solving", "score": proj_val, "fullMark": 100},
+                {"category": "Completeness", "score": comp_val, "fullMark": 100}
+            ]
+        else:
+            category_perf = []
 
     return AnalyticsSummary(
         interview_readiness_score=readiness,
@@ -128,6 +197,7 @@ async def get_analytics(session_id: str = "default"):
         category_performance=category_perf,
         difficulty_performance=diff_perf
     )
+
 
 @router.post("/skill-gap", response_model=SkillGapAnalysis)
 async def get_skill_gap(payload: dict = Body(...)):

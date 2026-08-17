@@ -18,6 +18,20 @@ async def list_sessions():
         return [default_sess]
     return [SessionData(**d) for d in docs]
 
+from backend.app.services.diversity_manager import MockInterviewSessionTracker
+
+@router.post("/reset", response_model=List[SessionData])
+async def reset_sessions():
+    """
+    Clears all custom/non-default sessions and associated histories,
+    resetting the system to only the default session.
+    """
+    await db_manager.reset_ephemeral_sessions()
+    MockInterviewSessionTracker.clear_session("default")
+    col = db_manager.get_collection("sessions")
+    docs = await col.find({})
+    return [SessionData(**d) for d in docs]
+
 @router.post("", response_model=SessionData)
 async def create_session(payload: dict = Body(...)):
     name = payload.get("name", "New Interview Session")
@@ -65,6 +79,18 @@ async def update_session(session_id: str, payload: dict = Body(...)):
 
 @router.delete("/{session_id}")
 async def delete_session(session_id: str):
-    col = db_manager.get_collection("sessions")
-    res = await col.delete_one({"id": session_id})
-    return {"deleted": True, "message": f"Session {session_id} deleted."}
+    col_sess = db_manager.get_collection("sessions")
+    col_evals = db_manager.get_collection("evaluations")
+    col_qh = db_manager.get_collection("questions_history")
+    col_final = db_manager.get_collection("final_evaluations")
+    col_saved = db_manager.get_collection("saved_questions")
+
+    # Cascade delete all related session data
+    await col_sess.delete_one({"id": session_id})
+    await col_evals.delete_many({"session_id": session_id})
+    await col_qh.delete_many({"session_id": session_id})
+    await col_final.delete_many({"session_id": session_id})
+    await col_saved.delete_many({"session_id": session_id})
+    MockInterviewSessionTracker.clear_session(session_id)
+
+    return {"deleted": True, "message": f"Session {session_id} and all associated data deleted."}

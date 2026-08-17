@@ -1,0 +1,34 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Virtual Environment
+venv/
+env/
+.venv/
+ENV/
+
+# Environment Variables & Secrets (Keep .env.example only)
+.env
+!.env.example
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / Frontend Build
+frontend/node_modules/
+node_modules/
+frontend/dist/
+dist/
+
+# OS / Editor Specifics
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.vscode/
+.idea/

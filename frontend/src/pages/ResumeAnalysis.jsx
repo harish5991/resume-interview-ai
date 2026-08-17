@@ -7,6 +7,7 @@ import {
   FileText,
   CheckCircle2,
   AlertCircle,
+  AlertTriangle,
   Code,
   Briefcase,
   GraduationCap,
@@ -20,7 +21,9 @@ import {
   Zap,
   Terminal,
   Mic,
-  GitBranch
+  GitBranch,
+  Trash2,
+  RotateCcw
 } from 'lucide-react';
 import { ScoreRing } from '../components/common/ScoreRing';
 import { Badge } from '../components/common/Badge';
@@ -28,7 +31,7 @@ import { FALLBACK_RESUMES } from '../utils/fallbackData';
 
 export const ResumeAnalysis = () => {
   const navigate = useNavigate();
-  const { resumeData, setResumeData, resumeScore, showToast } = useSession();
+  const { resumeData, setResumeData, clearActiveResume, resumeScore, showToast } = useSession();
   const [uploading, setUploading] = useState(false);
   const [samples, setSamples] = useState(FALLBACK_RESUMES);
   const [activeTab, setActiveTab] = useState('overview'); // overview | extracted | improvements | deepdive
@@ -89,19 +92,52 @@ export const ResumeAnalysis = () => {
     }
   }, [activeTab, selectedProjectIndex, resumeData]);
 
+  const [uploadError, setUploadError] = useState(null);
+
   const handleFileUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    // 1. Frontend validation: PDF check
+    const fileName = file.name || '';
+    if (!fileName.toLowerCase().endsWith('.pdf')) {
+      const msg = 'Invalid file. Please upload a valid resume PDF.';
+      setUploadError(msg);
+      showToast(msg, 'error');
+      e.target.value = '';
+      return;
+    }
+
+    // 2. Frontend validation: Empty check
+    if (file.size === 0) {
+      const msg = 'Invalid file. The uploaded file is empty. Please upload a valid resume PDF.';
+      setUploadError(msg);
+      showToast(msg, 'error');
+      e.target.value = '';
+      return;
+    }
+
     try {
       setUploading(true);
-      showToast(`Uploading and extracting text from ${file.name}...`, 'info');
+      setUploadError(null);
+      showToast(`Uploading and validating ${file.name}...`, 'info');
       const res = await resumeApi.upload(file);
       await setResumeData(res.data);
-      showToast('Resume parsed and analyzed successfully.');
+      showToast('Resume parsed and verified successfully.', 'success');
     } catch (err) {
-      console.error(err);
-      const msg = err.response?.data?.detail || err.message || 'Failed to parse resume file. Ensure backend is running.';
+      console.error('Resume upload error:', err);
+      const detail = err.response?.data?.detail;
+      let msg = 'Invalid file. Please upload a valid resume PDF.';
+      if (typeof detail === 'string') {
+        msg = detail;
+      } else if (Array.isArray(detail)) {
+        msg = detail.map((d) => d.msg || d.message).filter(Boolean).join(', ') || msg;
+      } else if (detail?.message) {
+        msg = detail.message;
+      } else if (err.message) {
+        msg = err.message;
+      }
+      setUploadError(msg);
       showToast(msg, 'error');
     } finally {
       setUploading(false);
@@ -110,6 +146,7 @@ export const ResumeAnalysis = () => {
   };
 
   const handleSelectSample = async (sample) => {
+    setUploadError(null);
     await setResumeData(sample);
     showToast(`Loaded profile: ${sample.name}`);
   };
@@ -142,13 +179,92 @@ export const ResumeAnalysis = () => {
         </div>
       </div>
 
+      {/* Validation Error Banner if upload rejected */}
+      {uploadError && (
+        <div className="p-5 bg-rose-50 border-2 border-rose-300 rounded-xl flex items-start gap-4 text-xs text-rose-950 shadow-md animate-fadeIn">
+          <div className="w-10 h-10 rounded-full bg-rose-100 border border-rose-300 flex items-center justify-center text-rose-700 flex-shrink-0">
+            <AlertTriangle className="w-5 h-5" />
+          </div>
+          <div className="space-y-2 flex-1">
+            <div>
+              <h3 className="text-sm font-bold text-rose-900">Upload Validation Error</h3>
+              <p className="text-xs text-rose-800 leading-relaxed mt-1 font-medium">
+                {uploadError}
+              </p>
+            </div>
+            <div className="p-3 bg-white/90 rounded-lg border border-rose-200 text-[11px] text-rose-900 space-y-1">
+              <div className="font-semibold">Expected Resume / CV Document:</div>
+              <p className="text-slate-600">
+                Please upload a genuine resume PDF containing your <b>Education</b>, <b>Technical Skills</b>, <b>Work Experience</b>, or <b>Projects</b>. (Non-resume documents such as academic research papers, certificates, textbooks, project reports, and invoices are rejected).
+              </p>
+            </div>
+            <div className="pt-1 flex flex-wrap items-center gap-3">
+              <label className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white rounded-lg text-xs font-semibold cursor-pointer transition-colors shadow-sm">
+                <UploadCloud className="w-4 h-4" />
+                <span>Upload Another Resume</span>
+                <input
+                  type="file"
+                  accept=".pdf,application/pdf"
+                  onChange={handleFileUpload}
+                  disabled={uploading}
+                  className="hidden"
+                />
+              </label>
+              <label className="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-medium cursor-pointer transition-colors shadow-2xs">
+                <RotateCcw className="w-3.5 h-3.5 text-slate-500" />
+                <span>Try Again</span>
+                <input
+                  type="file"
+                  accept=".pdf,application/pdf"
+                  onChange={handleFileUpload}
+                  disabled={uploading}
+                  className="hidden"
+                />
+              </label>
+              <button
+                onClick={() => setUploadError(null)}
+                className="text-xs text-slate-500 hover:text-slate-800 font-medium px-2 py-1"
+              >
+                Dismiss
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Active Resume Status Bar */}
+      {resumeData && (
+        <div className="p-3 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 text-xs shadow-2xs">
+          <div className="flex items-center gap-2 flex-wrap">
+            <FileText className="w-4 h-4 text-blue-600" />
+            <span className="font-bold text-slate-900">{resumeData.filename || resumeData.name + '_Resume.pdf'}</span>
+            <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded text-[11px] font-semibold">
+              ✓ Verified Resume ({Math.round((resumeData.resume_confidence || 0.95) * 100)}% Confidence)
+            </span>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-slate-500 font-mono text-[11px]">
+              ID: {resumeData.id ? `${resumeData.id.slice(0, 13)}...` : 'active'} {resumeData.resume_hash ? `| SHA: ${resumeData.resume_hash.slice(0, 8)}...` : ''}
+            </span>
+            <button
+              onClick={clearActiveResume}
+              className="flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold text-rose-600 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 rounded-md transition-colors"
+              title="Remove resume and clear analysis"
+            >
+              <Trash2 className="w-3 h-3" />
+              <span>Remove Resume</span>
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Upload Zone & Sample Profiles */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Upload Box */}
         <div className="lg:col-span-2 bg-white border-2 border-dashed border-slate-300 hover:border-slate-400 rounded-xl p-6 text-center transition-all bg-slate-50/40 hover:bg-white group relative">
           <input
             type="file"
-            accept=".pdf,.docx,.txt"
+            accept=".pdf,application/pdf"
             onChange={handleFileUpload}
             disabled={uploading}
             className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
@@ -159,9 +275,9 @@ export const ResumeAnalysis = () => {
             </div>
             <div>
               <p className="text-xs font-semibold text-slate-800">
-                {uploading ? 'Processing resume text...' : 'Drop resume here or click to browse'}
+                {uploading ? 'Validating and parsing resume...' : 'Drop resume PDF here or click to browse'}
               </p>
-              <p className="text-[11px] text-slate-500 mt-0.5">Supports PDF and DOCX</p>
+              <p className="text-[11px] text-slate-500 mt-0.5">Accepts text-based PDF resumes only (.pdf)</p>
             </div>
             {resumeData?.filename && (
               <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-700 text-xs font-medium border border-emerald-200/60">
@@ -316,116 +432,128 @@ export const ResumeAnalysis = () => {
       {/* TAB 2: Extracted Content */}
       {activeTab === 'extracted' && (
         <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm space-y-4">
-          <div className="flex border-b border-slate-200 gap-4 text-xs font-semibold">
-            {['skills', 'projects', 'experience', 'raw_text'].map((subTab) => (
-              <button
-                key={subTab}
-                onClick={() => setExtractedSubTab(subTab)}
-                className={`pb-2 capitalize transition-colors ${
-                  extractedSubTab === subTab
-                    ? 'border-b-2 border-blue-600 text-blue-600'
-                    : 'text-slate-500 hover:text-slate-800'
-                }`}
-              >
-                {subTab.replace('_', ' ')}
-              </button>
-            ))}
-          </div>
-
-          {/* Sub-tab 1: Skills */}
-          {extractedSubTab === 'skills' && (
-            <div className="space-y-4 pt-2">
-              <div>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wide block mb-2">
-                  All Extracted Skills ({resumeData?.skills?.length || 0})
-                </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {resumeData?.skills?.map((s, idx) => (
-                    <Badge key={idx} variant="primary" size="sm">
-                      {s}
-                    </Badge>
-                  ))}
-                  {!resumeData?.skills?.length && (
-                    <span className="text-xs text-slate-500">No skills found in current resume.</span>
-                  )}
-                </div>
+          {!resumeData ? (
+            <div className="p-8 text-center space-y-2">
+              <FileText className="w-8 h-8 text-slate-300 mx-auto" />
+              <h4 className="text-sm font-bold text-slate-700">No extracted resume data</h4>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                Upload your resume or choose a sample profile above to extract skills, projects, and work experience.
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="flex border-b border-slate-200 gap-4 text-xs font-semibold">
+                {['skills', 'projects', 'experience', 'raw_text'].map((subTab) => (
+                  <button
+                    key={subTab}
+                    onClick={() => setExtractedSubTab(subTab)}
+                    className={`pb-2 capitalize transition-colors ${
+                      extractedSubTab === subTab
+                        ? 'border-b-2 border-blue-600 text-blue-600'
+                        : 'text-slate-500 hover:text-slate-800'
+                    }`}
+                  >
+                    {subTab.replace('_', ' ')}
+                  </button>
+                ))}
               </div>
 
-              {resumeData?.skill_categories && Object.keys(resumeData.skill_categories).length > 0 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-slate-100">
-                  {Object.entries(resumeData.skill_categories).map(([cat, list]) => (
-                    <div key={cat} className="p-3 bg-slate-50 rounded-lg border border-slate-100">
-                      <h4 className="text-xs font-bold text-slate-700 mb-1">{cat}</h4>
-                      <p className="text-xs text-slate-600">{list.join(', ')}</p>
+              {/* Sub-tab 1: Skills */}
+              {extractedSubTab === 'skills' && (
+                <div className="space-y-4 pt-2">
+                  <div>
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wide block mb-2">
+                      All Extracted Skills ({resumeData?.skills?.length || 0})
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {resumeData?.skills?.map((s, idx) => (
+                        <Badge key={idx} variant="primary" size="sm">
+                          {s}
+                        </Badge>
+                      ))}
+                      {!resumeData?.skills?.length && (
+                        <span className="text-xs text-slate-500">No skills found in current resume.</span>
+                      )}
+                    </div>
+                  </div>
+
+                  {resumeData?.skill_categories && Object.keys(resumeData.skill_categories).length > 0 && (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-3 border-t border-slate-100">
+                      {Object.entries(resumeData.skill_categories).map(([cat, list]) => (
+                        <div key={cat} className="p-3 bg-slate-50 rounded-lg border border-slate-100">
+                          <h4 className="text-xs font-bold text-slate-700 mb-1">{cat}</h4>
+                          <p className="text-xs text-slate-600">{list.join(', ')}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Sub-tab 2: Projects */}
+              {extractedSubTab === 'projects' && (
+                <div className="space-y-3 pt-2">
+                  {resumeData?.projects?.map((p, idx) => (
+                    <div key={idx} className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-bold text-slate-800 text-sm">{p.title}</h4>
+                      </div>
+                      <div className="flex flex-wrap gap-1">
+                        {p.technologies?.map((t, tidx) => (
+                          <Badge key={tidx} variant="neutral" size="xs">
+                            {t}
+                          </Badge>
+                        ))}
+                      </div>
+                      <ul className="space-y-1 text-xs text-slate-600 pt-1">
+                        {p.highlights?.map((h, hidx) => (
+                          <li key={hidx} className="flex items-start gap-1.5">
+                            <span className="text-blue-500 font-bold">•</span>
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   ))}
+                  {!resumeData?.projects?.length && (
+                    <div className="p-4 text-center text-xs text-slate-500">No projects extracted.</div>
+                  )}
                 </div>
               )}
-            </div>
-          )}
 
-          {/* Sub-tab 2: Projects */}
-          {extractedSubTab === 'projects' && (
-            <div className="space-y-3 pt-2">
-              {resumeData?.projects?.map((p, idx) => (
-                <div key={idx} className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-bold text-slate-800 text-sm">{p.title}</h4>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {p.technologies?.map((t, tidx) => (
-                      <Badge key={tidx} variant="neutral" size="xs">
-                        {t}
-                      </Badge>
-                    ))}
-                  </div>
-                  <ul className="space-y-1 text-xs text-slate-600 pt-1">
-                    {p.highlights?.map((h, hidx) => (
-                      <li key={hidx} className="flex items-start gap-1.5">
-                        <span className="text-blue-500 font-bold">•</span>
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
+              {/* Sub-tab 3: Experience */}
+              {extractedSubTab === 'experience' && (
+                <div className="space-y-3 pt-2">
+                  {resumeData?.experience?.map((exp, idx) => (
+                    <div key={idx} className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <h4 className="font-bold text-slate-800 text-sm">{exp.role}</h4>
+                        <span className="text-xs text-slate-500">{exp.duration}</span>
+                      </div>
+                      <div className="text-xs font-semibold text-blue-700">{exp.company}</div>
+                      <ul className="space-y-1 text-xs text-slate-600 pt-1">
+                        {exp.responsibilities?.map((r, ridx) => (
+                          <li key={ridx} className="flex items-start gap-1.5">
+                            <span className="text-blue-500 font-bold">•</span>
+                            <span>{r}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                  {!resumeData?.experience?.length && (
+                    <div className="p-4 text-center text-xs text-slate-500">No experience records extracted.</div>
+                  )}
                 </div>
-              ))}
-              {!resumeData?.projects?.length && (
-                <div className="p-4 text-center text-xs text-slate-500">No projects extracted.</div>
               )}
-            </div>
-          )}
 
-          {/* Sub-tab 3: Experience */}
-          {extractedSubTab === 'experience' && (
-            <div className="space-y-3 pt-2">
-              {resumeData?.experience?.map((exp, idx) => (
-                <div key={idx} className="p-4 bg-slate-50 rounded-lg border border-slate-200 space-y-1.5">
-                  <div className="flex items-center justify-between">
-                    <h4 className="font-bold text-slate-800 text-sm">{exp.role}</h4>
-                    <span className="text-xs text-slate-500">{exp.duration}</span>
-                  </div>
-                  <div className="text-xs font-semibold text-blue-700">{exp.company}</div>
-                  <ul className="space-y-1 text-xs text-slate-600 pt-1">
-                    {exp.responsibilities?.map((r, ridx) => (
-                      <li key={ridx} className="flex items-start gap-1.5">
-                        <span className="text-blue-500 font-bold">•</span>
-                        <span>{r}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              {!resumeData?.experience?.length && (
-                <div className="p-4 text-center text-xs text-slate-500">No experience records extracted.</div>
+              {/* Sub-tab 4: Raw Text */}
+              {extractedSubTab === 'raw_text' && (
+                <pre className="p-4 bg-slate-900 text-slate-100 rounded-lg text-xs overflow-x-auto whitespace-pre-wrap font-mono max-h-96">
+                  {resumeData?.raw_text || 'No raw text available.'}
+                </pre>
               )}
-            </div>
-          )}
-
-          {/* Sub-tab 4: Raw Text */}
-          {extractedSubTab === 'raw_text' && (
-            <pre className="p-4 bg-slate-900 text-slate-100 rounded-lg text-xs overflow-x-auto whitespace-pre-wrap font-mono max-h-96">
-              {resumeData?.raw_text || 'No raw text available.'}
-            </pre>
+            </>
           )}
         </div>
       )}
@@ -440,7 +568,15 @@ export const ResumeAnalysis = () => {
             <span className="text-xs text-slate-400">Impact metric rewrites</span>
           </div>
 
-          {loadingImprovements ? (
+          {!resumeData ? (
+            <div className="p-8 bg-white rounded-xl border border-slate-200 text-center space-y-2">
+              <FileText className="w-8 h-8 text-slate-300 mx-auto" />
+              <h4 className="text-sm font-bold text-slate-700">No resume analyzed</h4>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                Upload your resume or choose a sample profile above to generate actionable bullet point suggestions.
+              </p>
+            </div>
+          ) : loadingImprovements ? (
             <div className="p-8 text-center text-xs text-slate-500">Loading suggestions...</div>
           ) : improvements.length > 0 ? (
             improvements.map((item, idx) => (
@@ -508,7 +644,15 @@ export const ResumeAnalysis = () => {
       {/* TAB 4: Project Deep-Dive */}
       {activeTab === 'deepdive' && (
         <div className="space-y-4">
-          {projects.length > 0 ? (
+          {!resumeData || projects.length === 0 ? (
+            <div className="p-8 bg-white rounded-xl border border-slate-200 text-center space-y-2">
+              <Layers className="w-8 h-8 text-slate-300 mx-auto" />
+              <h4 className="text-sm font-bold text-slate-700">No projects available for deep-dive</h4>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                Upload a resume with project highlights to analyze architecture, database design, API design, and system trade-offs.
+              </p>
+            </div>
+          ) : (
             <>
               {/* Project selector */}
               <div className="flex flex-wrap gap-2">
@@ -648,10 +792,6 @@ export const ResumeAnalysis = () => {
                 </div>
               ) : null}
             </>
-          ) : (
-            <div className="p-8 bg-white rounded-xl border border-slate-200 text-center text-xs text-slate-500">
-              No projects found in uploaded resume.
-            </div>
           )}
         </div>
       )}

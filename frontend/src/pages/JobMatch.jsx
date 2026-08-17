@@ -236,10 +236,20 @@ export const JobMatch = () => {
       ) : (
         <div className="p-8 bg-white rounded-xl border border-slate-200 text-center space-y-2">
           <Target className="w-8 h-8 text-slate-300 mx-auto" />
-          <h4 className="text-sm font-bold text-slate-700">No job match calculated</h4>
+          <h4 className="text-sm font-bold text-slate-700">{!resumeData ? 'No active resume uploaded' : 'No job match calculated'}</h4>
           <p className="text-xs text-slate-500 max-w-sm mx-auto">
-            Paste a job description or choose a sample role above to see semantic overlap and missing skills.
+            {!resumeData
+              ? 'Upload your resume first, then analyze a job description to calculate role alignment and skill gaps.'
+              : 'Paste a job description or choose a sample role above to see semantic overlap and missing skills.'}
           </p>
+          {!resumeData && (
+            <button
+              onClick={() => navigate('/resume')}
+              className="mt-2 inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600 text-white text-xs font-semibold rounded-lg shadow-sm hover:bg-blue-700 transition-colors"
+            >
+              <span>Upload Resume to Begin</span>
+            </button>
+          )}
         </div>
       )}
     </div>

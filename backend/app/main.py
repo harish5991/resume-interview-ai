@@ -28,6 +28,7 @@ async def lifespan(app: FastAPI):
     logger.info("Initializing Resume Interview AI backend...")
     await db_manager.connect()
     logger.info("Database connection established.")
+    await db_manager.reset_ephemeral_sessions()
     yield
     logger.info("Shutting down Resume Interview AI backend...")
 

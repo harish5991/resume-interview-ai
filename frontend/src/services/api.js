@@ -59,6 +59,7 @@ export const questionsApi = {
 
 export const interviewApi = {
   evaluateAnswer: (payload) => api.post('/interview/answer', payload),
+  getFinalEvaluation: (payload) => api.post('/interview/final-evaluation', payload),
   getHistory: (sessionId = 'default') =>
     api.get(`/interview/history?session_id=${sessionId}`),
   clearHistory: (sessionId = 'default') =>
@@ -95,6 +96,8 @@ export const sessionsApi = {
   get: (id) => api.get(`/sessions/${id}`),
   update: (id, data) => api.put(`/sessions/${id}`, data),
   delete: (id) => api.delete(`/sessions/${id}`),
+  reset: () => api.post('/sessions/reset'),
+  resetUrl: '/api/sessions/reset',
 };
 
 export default api;

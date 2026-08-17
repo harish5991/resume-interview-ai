@@ -544,69 +544,110 @@ OUTPUT VALID JSON ONLY with this schema:
 
     @staticmethod
     def calculate_score(resume: ExtractedResume, jd: Optional[Any] = None) -> ResumeScoreBreakdown:
-        # Explainable score calculation
+        # 1. Technical Skills Score (Count + Category Diversity)
         skills_count = len(resume.skills)
-        skills_score = min(100, max(20, skills_count * 8))
+        cat_count = len(resume.skill_categories)
+        skills_score = min(100, max(25, (skills_count * 6) + (cat_count * 8)))
 
+        # 2. Projects Score (Count + Tech Stack Depth + Highlights)
         proj_count = len(resume.projects)
-        projects_score = min(100, max(20, proj_count * 25 + sum(len(p.technologies) for p in resume.projects) * 3))
+        total_proj_tech = sum(len(p.technologies) for p in resume.projects)
+        total_proj_highlights = sum(len(p.highlights) for p in resume.projects)
+        projects_score = min(100, max(25, (proj_count * 22) + (total_proj_tech * 4) + (total_proj_highlights * 3)))
 
+        # 3. Experience / Internships Score (Count + Responsibilities Depth)
         exp_count = len(resume.experience)
-        experience_score = min(100, max(20, exp_count * 30 + sum(len(e.responsibilities) for e in resume.experience) * 4))
+        total_resp = sum(len(e.responsibilities) for e in resume.experience)
+        if exp_count > 0:
+            experience_score = min(100, max(40, (exp_count * 30) + (total_resp * 5)))
+        else:
+            # If no formal experience, assess if strong project portfolio compensates
+            experience_score = min(75, 30 + (proj_count * 15))
 
+        # 4. Education Score
         edu_count = len(resume.education)
-        education_score = 90 if edu_count > 0 else 50
+        if edu_count > 0:
+            has_cs_or_eng = any(
+                any(kw in e.degree.lower() for kw in ["computer", "science", "engineering", "technology", "software", "information", "data"])
+                for e in resume.education
+            )
+            education_score = 95 if has_cs_or_eng else 85
+        else:
+            education_score = 45
 
-        # Completeness based on contact info, sections presence
-        completeness = 40
-        if resume.email: completeness += 15
-        if resume.phone: completeness += 15
+        # 5. Certifications & Achievements Score
+        cert_count = len(resume.certifications) if hasattr(resume, "certifications") and resume.certifications else 0
+        achieve_count = len(resume.achievements) if hasattr(resume, "achievements") and resume.achievements else 0
+        certifications_score = min(100, max(50, 60 + (cert_count * 20)))
+        achievements_score = min(100, max(50, 60 + (achieve_count * 20)))
+
+        # 6. Completeness & Contact Information Score
+        completeness = 30
+        if resume.email: completeness += 12
+        if resume.phone: completeness += 12
+        if resume.location: completeness += 6
+        if resume.summary: completeness += 10
         if resume.skills: completeness += 10
         if resume.projects: completeness += 10
         if resume.education: completeness += 10
         completeness_score = min(100, completeness)
 
-        relevance_score = 80
+        # 7. Job Relevance Score (if JD provided, else baseline)
         if jd and hasattr(jd, "required_skills") and jd.required_skills:
-            jd_skills_lower = [s.lower() for s in jd.required_skills]
+            jd_skills_lower = [s.lower() for s in (jd.required_skills or [])]
             match_count = sum(1 for s in resume.skills if s.lower() in jd_skills_lower)
-            relevance_score = min(100, int((match_count / max(1, len(jd.required_skills))) * 100))
+            relevance_score = min(100, max(20, int((match_count / max(1, len(jd.required_skills))) * 100)))
+        else:
+            # General baseline technical relevance based on skills and projects depth
+            relevance_score = min(100, max(50, int((skills_score * 0.5) + (projects_score * 0.5))))
 
+        # Weighted Overall Score
         overall = int(
             (skills_score * 0.25) +
             (projects_score * 0.25) +
-            (experience_score * 0.20) +
+            (experience_score * 0.15) +
             (education_score * 0.10) +
             (completeness_score * 0.10) +
-            (relevance_score * 0.10)
+            (certifications_score * 0.05) +
+            (achievements_score * 0.05) +
+            (relevance_score * 0.05)
         )
+        overall = max(10, min(100, overall))
 
         strengths = []
         improvement_areas = []
 
         if skills_score >= 75:
-            strengths.append(f"Broad technical skill set with {skills_count} verified tools & languages.")
+            strengths.append(f"Broad technical skill set with {skills_count} verified tools across {cat_count} categories.")
         else:
-            improvement_areas.append("Add more specific technical frameworks, libraries, and databases.")
+            improvement_areas.append("Add more specific technical frameworks, libraries, and databases to your skills section.")
 
         if proj_count >= 2:
-            strengths.append(f"Demonstrated practical hands-on capability across {proj_count} detailed projects.")
+            strengths.append(f"Demonstrated practical hands-on capability across {proj_count} detailed technical projects.")
         else:
-            improvement_areas.append("Include at least 2-3 end-to-end projects showcasing architecture and deployment.")
+            improvement_areas.append("Include at least 2-3 end-to-end projects showcasing architecture, tech stack, and deployment.")
 
         if exp_count > 0:
-            strengths.append("Contains structured professional work experience with documented responsibilities.")
+            strengths.append("Contains structured professional work experience with documented impact and responsibilities.")
         else:
-            improvement_areas.append("Highlight open-source contributions, internships, or freelance work.")
+            improvement_areas.append("Highlight internships, freelance work, or open-source repository contributions.")
 
-        if completeness_score >= 85:
-            strengths.append("Complete resume structure with clear contact information and education.")
+        if cert_count > 0:
+            strengths.append(f"Includes {cert_count} industry-recognized certification(s) validating expertise.")
         
+        if achieve_count > 0:
+            strengths.append(f"Features verified achievements and hackathon/competitive awards.")
+
+        if completeness_score >= 80:
+            strengths.append("Complete resume structure with clear contact information and education credentials.")
+        else:
+            improvement_areas.append("Ensure your resume contains all contact details (email, phone, location) and professional summary.")
+
         rationale = (
-            f"Your resume achieved an overall score of {overall}/100. "
-            f"You have strong scores in {'Skills' if skills_score >= 70 else 'Education'} ({max(skills_score, education_score)}/100) "
+            f"Your resume achieved an overall score of {overall}/100 based on parsed content. "
+            f"Key strengths include {'Skills' if skills_score >= 70 else 'Education'} ({max(skills_score, education_score)}/100) "
             f"and {'Projects' if projects_score >= 70 else 'Experience'} ({max(projects_score, experience_score)}/100). "
-            f"{'Matching target job profile.' if relevance_score >= 75 else 'Can be enhanced by tailoring project descriptions with target job keywords.'}"
+            f"{'Strong alignment with software engineering standards.' if overall >= 75 else 'Can be enhanced by adding more quantified project metrics and key technologies.'}"
         )
 
         return ResumeScoreBreakdown(
@@ -615,9 +656,12 @@ OUTPUT VALID JSON ONLY with this schema:
             projects_score=projects_score,
             experience_score=experience_score,
             education_score=education_score,
+            certifications_score=certifications_score,
+            achievements_score=achievements_score,
             completeness_score=completeness_score,
             relevance_score=relevance_score,
             strengths=strengths,
             improvement_areas=improvement_areas,
             rationale=rationale
         )
+

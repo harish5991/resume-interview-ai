@@ -34,6 +34,17 @@ class CertificationItem(BaseModel):
     issuer: Optional[str] = None
     year: Optional[str] = None
 
+class DocumentValidationResult(BaseModel):
+    is_resume: bool
+    confidence: float
+    validation_status: str  # "VALID", "REJECTED", "UNCERTAIN"
+    document_type: str      # "RESUME", "ACADEMIC_PAPER", "PROJECT_REPORT", "CERTIFICATE", "INVOICE", "QUESTION_PAPER", "SCANNED_OR_EMPTY", "PROTECTED_OR_CORRUPT"
+    file_hash: str
+    word_count: int
+    positive_signals: List[str] = []
+    negative_signals: List[str] = []
+    error: Optional[str] = None
+
 class ExtractedResume(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str = "Candidate"
@@ -50,6 +61,11 @@ class ExtractedResume(BaseModel):
     achievements: List[str] = []
     raw_text: str = ""
     filename: Optional[str] = None
+    resume_hash: Optional[str] = None
+    validation_status: str = "VALID"
+    resume_confidence: float = 1.0
+    detected_document_type: str = "RESUME"
+    validation_signals: List[str] = []
     uploaded_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class ResumeScoreBreakdown(BaseModel):
@@ -58,11 +74,14 @@ class ResumeScoreBreakdown(BaseModel):
     projects_score: int
     experience_score: int
     education_score: int
+    certifications_score: int = 80
+    achievements_score: int = 80
     completeness_score: int
     relevance_score: int
     strengths: List[str] = []
     improvement_areas: List[str] = []
     rationale: str
+
 
 class JobDescriptionAnalysis(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -89,16 +108,36 @@ class ResumeJobMatch(BaseModel):
     relevance_explanation: str
     recommendations: List[str] = []
 
+class ClaimValidationResult(BaseModel):
+    claim: str
+    status: str  # "SUPPORTED", "INFERRED", "HYPOTHETICAL", "UNSUPPORTED"
+    evidence: Optional[str] = None
+
+class AnswerGrounding(BaseModel):
+    status: str = "Resume Supported"  # "Resume Supported", "Resume Grounded", "Needs Caution", "Hypothetical / Technical"
+    badge_variant: str = "success"    # "success", "info", "warning"
+    answer_type: str = "Technical"    # "Direct Experience", "Hypothetical / Technical", "Conceptual / Knowledge", "Behavioral / Project"
+    question_intent: Optional[str] = None  # "PROJECT_OVERVIEW", "WHY_TECHNOLOGY", "CHALLENGE", "SCALABILITY", "IMPROVEMENT", etc.
+    answer_structure: Optional[str] = None # e.g. "Problem → Solution → Tech → Result"
+    evidence_used: List[str] = []
+    unsupported_claims: List[str] = []
+    caution_note: Optional[str] = None
+    claims_validation: List[ClaimValidationResult] = []
+
 class GroundedQuestion(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    resume_id: Optional[str] = None
+    resume_hash: Optional[str] = None
     question: str
-    based_on: str  # e.g., "Project: Resume Interview AI", "Experience: Backend Dev at Acme", "Skill: MongoDB"
-    skill: str     # e.g., "MongoDB", "FastAPI", "React"
-    difficulty: str  # "Easy", "Medium", "Hard", "Expert"
-    question_type: str  # "Resume Based", "Technical", "Project Based", "Behavioral", "HR", "Situational", "Job Description Based", "Mixed"
-    why_this_question: str  # Explainable rationale
+    based_on: str = "Resume Context"  # e.g., "Project: Resume Interview AI", "Experience: Backend Dev at Acme", "Skill: MongoDB"
+    skill: str = "Technical"     # e.g., "MongoDB", "FastAPI", "React"
+    difficulty: str = "Medium"  # "Easy", "Medium", "Hard", "Expert"
+    question_type: str = "Technical"  # "Resume Based", "Technical", "Project Based", "Behavioral", "HR", "Situational", "Job Description Based", "Mixed"
+    question_intent: Optional[str] = None
+    why_this_question: str = "Interview evaluation"  # Explainable rationale
     expected_answer_points: List[str] = []
     sample_answer: Optional[str] = None
+    answer_grounding: Optional[AnswerGrounding] = None
     is_bookmarked: bool = False
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
@@ -128,33 +167,64 @@ class GenerateQuestionsRequest(BaseModel):
 class AnswerEvaluationRequest(BaseModel):
     session_id: Optional[str] = "default"
     question_id: str
+    question_attempt_id: Optional[str] = None
     question_text: str
-    based_on: str
-    skill: str
-    difficulty: str
+    based_on: str = "Resume Context"
+    skill: str = "Technical"
+    difficulty: str = "Medium"
     user_answer: str
     expected_points: Optional[List[str]] = []
+    sample_answer: Optional[str] = None
+    resume_data: Optional[ExtractedResume] = None
+    jd_data: Optional[JobDescriptionAnalysis] = None
+    question_intent: Optional[str] = None
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_aliases(cls, values: Any) -> Any:
+        if isinstance(values, dict):
+            if "questionAttemptId" in values and "question_attempt_id" not in values:
+                values["question_attempt_id"] = values.get("questionAttemptId")
+            if "attempt_id" in values and "question_attempt_id" not in values:
+                values["question_attempt_id"] = values.get("attempt_id")
+            if "sessionId" in values and "session_id" not in values:
+                values["session_id"] = values.get("sessionId")
+            if "question" in values and "question_text" not in values:
+                values["question_text"] = values.get("question")
+            if "answer" in values and "user_answer" not in values:
+                values["user_answer"] = values.get("answer")
+            if "resume" in values and "resume_data" not in values:
+                values["resume_data"] = values.get("resume")
+            if "jd" in values and "jd_data" not in values:
+                values["jd_data"] = values.get("jd")
+        return values
 
 class AnswerEvaluation(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     question_id: str
-    overall_score: int
-    relevance_score: int
-    technical_accuracy_score: int
-    completeness_score: int
-    clarity_score: int
-    confidence_score: int
-    communication_score: int
+    question_attempt_id: Optional[str] = None
+    session_id: Optional[str] = "default"
+    overall_score: int = 0
+    relevance_score: int = 0
+    technical_accuracy_score: int = 0
+    completeness_score: int = 0
+    clarity_score: int = 0
+    confidence_score: int = 0
+    communication_score: int = 0
     verdict_rating: str = "Adequate"
+    question_intent: Optional[str] = None
+    answer_structure: Optional[str] = None
+    relevance_verdict: Optional[str] = "RELEVANT"
     concepts_covered: List[str] = []
     concepts_missed: List[str] = []
     strengths: List[str] = []
     weaknesses: List[str] = []
-    improved_answer: str
+    improved_answer: str = ""
     follow_up_question: Optional[str] = None
     next_recommended_difficulty: str = "Medium"
     feedback_summary: str = ""
     star_feedback: Optional[Dict[str, str]] = None
+    answer_grounding: Optional[AnswerGrounding] = None
     evaluated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class LearningRoadmapItem(BaseModel):
@@ -207,20 +277,21 @@ class TopicPreparationItem(BaseModel):
     recommended_level: str
 
 class AnalyticsSummary(BaseModel):
-    interview_readiness_score: int
-    resume_score: int
-    jd_match_percentage: int
-    average_interview_score: int
-    technical_score: int
-    communication_score: int
-    behavioral_score: int
-    questions_attempted: int
-    correct_answers: int
+    interview_readiness_score: Optional[int] = 0
+    resume_score: Optional[int] = None
+    jd_match_percentage: Optional[int] = None
+    average_interview_score: int = 0
+    technical_score: int = 0
+    communication_score: int = 0
+    behavioral_score: int = 0
+    questions_attempted: int = 0
+    correct_answers: int = 0
     weak_areas: List[Dict[str, Any]] = []
     strong_areas: List[Dict[str, Any]] = []
     score_trends: List[Dict[str, Any]] = []
     category_performance: List[Dict[str, Any]] = []
     difficulty_performance: List[Dict[str, Any]] = []
+
 
 class SessionData(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
@@ -235,3 +306,38 @@ class SessionData(BaseModel):
     saved_questions: List[GroundedQuestion] = []
     evaluations: List[AnswerEvaluation] = []
     history: List[Dict[str, Any]] = []
+
+class QuestionEvaluationSummaryItem(BaseModel):
+    question_id: str
+    question_text: str
+    skill: str
+    difficulty: str
+    score: int
+    verdict: str
+    user_answer_snippet: str
+    key_feedback: str
+    strengths: List[str] = []
+    missed_concepts: List[str] = []
+
+class FinalInterviewEvaluationRequest(BaseModel):
+    session_id: Optional[str] = "default"
+    questions: List[GroundedQuestion] = []
+    evaluations: List[AnswerEvaluation] = []
+    resume_data: Optional[ExtractedResume] = None
+    jd_data: Optional[JobDescriptionAnalysis] = None
+
+class FinalInterviewEvaluation(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    overall_score: int
+    hiring_verdict: str  # "Strong Hire", "Hire", "Lean Hire", "Needs Technical Depth", "Not Recommended"
+    verdict_badge: str   # "success", "warning", "danger", "info"
+    executive_summary: str
+    competency_scores: Dict[str, int] = {}  # Technical, Relevance, Completeness, Clarity, Confidence, Communication
+    key_strengths: List[str] = []
+    critical_weaknesses: List[str] = []
+    missed_concepts: List[str] = []
+    per_question_breakdown: List[QuestionEvaluationSummaryItem] = []
+    actionable_recommendations: List[str] = []
+    total_questions: int = 0
+    evaluated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+

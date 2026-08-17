@@ -95,12 +95,35 @@ class ReportService:
         elements.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor("#E2E8F0"), spaceAfter=14))
 
         # Metrics Summary Table
-        resume_score = session_data.get("resume_score", {}).get("overall_score", 85) if isinstance(session_data.get("resume_score"), dict) else 85
-        jd_match = session_data.get("match", {}).get("match_percentage", 78) if isinstance(session_data.get("match"), dict) else 78
+        resume_score_val = None
+        if isinstance(session_data.get("resume_score"), dict):
+            resume_score_val = session_data["resume_score"].get("overall_score")
+        elif session_data.get("resume"):
+            try:
+                score_obj = ResumeParser.calculate_score(ExtractedResume(**session_data["resume"]))
+                resume_score_val = score_obj.overall_score
+            except Exception:
+                pass
+
+        jd_match_val = None
+        if isinstance(session_data.get("match"), dict):
+            jd_match_val = session_data["match"].get("match_percentage")
         
         evaluations = session_data.get("evaluations", [])
-        avg_interview = int(sum(e.get("overall_score", 80) if isinstance(e, dict) else getattr(e, "overall_score", 80) for e in evaluations) / max(1, len(evaluations))) if evaluations else 82
-        readiness = int((resume_score * 0.3) + (jd_match * 0.3) + (avg_interview * 0.4))
+        avg_interview_val = int(sum(e.get("overall_score", 0) if isinstance(e, dict) else getattr(e, "overall_score", 0) for e in evaluations) / len(evaluations)) if evaluations else None
+
+        if resume_score_val is not None and jd_match_val is not None and avg_interview_val is not None:
+            readiness = int((resume_score_val * 0.3) + (jd_match_val * 0.3) + (avg_interview_val * 0.4))
+        elif resume_score_val is not None and jd_match_val is not None:
+            readiness = int((resume_score_val * 0.5) + (jd_match_val * 0.5))
+        elif resume_score_val is not None:
+            readiness = int(resume_score_val)
+        else:
+            readiness = avg_interview_val or 0
+
+        resume_disp = f"{resume_score_val}/100" if resume_score_val is not None else "—"
+        jd_disp = f"{jd_match_val}%" if jd_match_val is not None else "—"
+        avg_disp = f"{avg_interview_val}/100" if avg_interview_val is not None else "—"
 
         metrics_data = [
             [
@@ -111,11 +134,12 @@ class ReportService:
             ],
             [
                 Paragraph(f"<font size=16 color='#2563EB'><b>{readiness}%</b></font>", body_style),
-                Paragraph(f"<font size=16 color='#059669'><b>{resume_score}/100</b></font>", body_style),
-                Paragraph(f"<font size=16 color='#D97706'><b>{jd_match}%</b></font>", body_style),
-                Paragraph(f"<font size=16 color='#7C3AED'><b>{avg_interview}/100</b></font>", body_style)
+                Paragraph(f"<font size=16 color='#059669'><b>{resume_disp}</b></font>", body_style),
+                Paragraph(f"<font size=16 color='#D97706'><b>{jd_disp}</b></font>", body_style),
+                Paragraph(f"<font size=16 color='#7C3AED'><b>{avg_disp}</b></font>", body_style)
             ]
         ]
+
         
         t_metrics = Table(metrics_data, colWidths=[130, 130, 130, 130])
         t_metrics.setStyle(TableStyle([
@@ -166,7 +190,14 @@ class ReportService:
         
         if evaluations:
             for idx, ev in enumerate(evaluations[:5], 1):
-                ev_dict = ev if isinstance(ev, dict) else ev.dict()
+                if isinstance(ev, dict):
+                    ev_dict = ev
+                elif hasattr(ev, "model_dump"):
+                    ev_dict = ev.model_dump()
+                elif hasattr(ev, "dict"):
+                    ev_dict = ev.dict()
+                else:
+                    ev_dict = {}
                 q_text = ev_dict.get("question_text", f"Question {idx}")
                 score = ev_dict.get("overall_score", 80)
                 strengths = ev_dict.get("strengths", [])
