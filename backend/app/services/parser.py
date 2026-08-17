@@ -515,11 +515,24 @@ OUTPUT VALID JSON ONLY with this schema:
         # Certifications
         certs_text = sections.get("certifications", "")
         certifications = []
+        known_cert_keywords = [
+            "AWS Certified Solutions Architect", "AWS Certified Developer", "AWS Certified Cloud Practitioner",
+            "Google Cloud Certified", "Professional Cloud Architect", "Azure Solutions Architect",
+            "Certified Kubernetes Administrator", "CKA", "CKAD", "PMP", "Project Management Professional",
+            "CISSP", "CompTIA Security+", "Certified ScrumMaster", "CSM", "HashiCorp Certified Terraform",
+            "Oracle Certified Professional", "Docker Certified Associate", "Meta Front-End Developer", "IBM Data Science"
+        ]
         if certs_text:
             for l in certs_text.split('\n'):
                 t = l.strip().lstrip('•-* ')
                 if len(t) > 4:
                     certifications.append(CertificationItem(name=t))
+
+        # Heuristic scan across full document for verified industry credentials
+        for cert_kw in known_cert_keywords:
+            if re.search(r'\b' + re.escape(cert_kw) + r'\b', cleaned, re.IGNORECASE):
+                if not any(cert_kw.lower() in c.name.lower() for c in certifications):
+                    certifications.append(CertificationItem(name=cert_kw))
 
         # Achievements
         achieve_text = sections.get("achievements", "")
