@@ -244,3 +244,5 @@ class ReportService:
         doc.build(elements)
         buffer.seek(0)
         return buffer.getvalue()
+
+# ReportLab PDF Layout & Footer Engine - Nithin
