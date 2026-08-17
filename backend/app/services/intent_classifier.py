@@ -117,3 +117,4 @@ class QuestionIntentClassifier:
             return QuestionIntent.CONCEPTUAL, INTENT_STRUCTURE_MAP[QuestionIntent.CONCEPTUAL]
 
         return QuestionIntent.TECHNICAL_DECISION, INTENT_STRUCTURE_MAP[QuestionIntent.TECHNICAL_DECISION]
+# STAR Diagnostic Scoring Heuristics - Gajapuram Bhavya Sri 
