@@ -143,3 +143,4 @@ export const Sidebar = () => {
     </aside>
   );
 };
+// UI Navigation Accessibility - Bhanusree Varikuntla
