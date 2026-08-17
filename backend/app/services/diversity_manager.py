@@ -356,3 +356,5 @@ class DiversityManager:
         )
 
         return answer, intent, structure, relevance_verdict
+
+# Question Diversity Archetypes Engine - Shivani Bashaboina
