@@ -1276,3 +1276,5 @@ ${(finalEvaluation.actionable_recommendations || []).map((r, i) => `${i + 1}. ${
     </div>
   );
 };
+
+// Voice Dictation Live Pulse - Chapala Keerthana
