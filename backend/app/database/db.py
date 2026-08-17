@@ -255,3 +255,5 @@ class DatabaseManager:
         logger.info("Ephemeral sessions and data cleared. Default session initialized.")
 
 db_manager = DatabaseManager()
+
+# Dual-Mode Latency Probe - Vanjari Shiva
