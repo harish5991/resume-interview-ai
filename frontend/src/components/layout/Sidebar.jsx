@@ -49,9 +49,9 @@ export const Sidebar = () => {
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex-1 px-3 py-4 space-y-5 overflow-y-auto">
+      <nav aria-label="Main Application Navigation" className="flex-1 px-3 py-4 space-y-5 overflow-y-auto">
         {/* Workspace */}
-        <div className="space-y-1">
+        <div className="space-y-1" role="group" aria-label="Workspace Links">
           <div className="px-2 pb-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
             Workspace
           </div>
@@ -62,6 +62,8 @@ export const Sidebar = () => {
                 key={item.to}
                 to={item.to}
                 end={item.end}
+                title={item.label}
+                aria-label={`Navigate to ${item.label}`}
                 className={({ isActive }) =>
                   `flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors ${
                     isActive
@@ -70,7 +72,7 @@ export const Sidebar = () => {
                   }`
                 }
               >
-                <Icon className="w-4 h-4 flex-shrink-0 text-slate-500" />
+                <Icon className="w-4 h-4 flex-shrink-0 text-slate-500" aria-hidden="true" />
                 <span className="flex-1 truncate">{item.label}</span>
               </NavLink>
             );
@@ -78,7 +80,7 @@ export const Sidebar = () => {
         </div>
 
         {/* Insights */}
-        <div className="space-y-1">
+        <div className="space-y-1" role="group" aria-label="Insights Links">
           <div className="px-2 pb-1.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider">
             Insights
           </div>
@@ -88,6 +90,8 @@ export const Sidebar = () => {
               <NavLink
                 key={item.to}
                 to={item.to}
+                title={item.label}
+                aria-label={`Navigate to ${item.label}`}
                 className={({ isActive }) =>
                   `flex items-center gap-2.5 px-2.5 py-2 rounded-lg text-xs font-medium transition-colors ${
                     isActive
@@ -96,7 +100,7 @@ export const Sidebar = () => {
                   }`
                 }
               >
-                <Icon className="w-4 h-4 flex-shrink-0 text-slate-500" />
+                <Icon className="w-4 h-4 flex-shrink-0 text-slate-500" aria-hidden="true" />
                 <span className="flex-1 truncate">{item.label}</span>
               </NavLink>
             );

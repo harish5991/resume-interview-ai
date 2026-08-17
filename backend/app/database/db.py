@@ -254,6 +254,20 @@ class DatabaseManager:
         await col_saved.delete_many({"session_id": "default"})
         logger.info("Ephemeral sessions and data cleared. Default session initialized.")
 
+    async def get_health_status(self) -> Dict[str, Any]:
+        """Performs an async query latency benchmark and reports active storage mode."""
+        import time
+        t0 = time.perf_counter()
+        col = self.get_collection("sessions")
+        await col.find_one({"id": "default"})
+        latency_ms = round((time.perf_counter() - t0) * 1000, 2)
+        return {
+            "status": "healthy",
+            "storage_engine": "mongodb" if self.is_mongo else "persistent_json_fallback",
+            "latency_ms": latency_ms,
+            "resilient_dual_mode": True
+        }
+
 db_manager = DatabaseManager()
 
 # Dual-Mode Latency Probe - Vanjari Shiva

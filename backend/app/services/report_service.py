@@ -239,9 +239,15 @@ class ReportService:
         ]
         for r in recs:
             elements.append(Paragraph(r, body_style))
-            elements.append(Spacer(1, 3))
+        def _draw_page_decorations(canvas, d):
+            canvas.saveState()
+            canvas.setFont("Helvetica", 8)
+            canvas.setFillColor(colors.HexColor("#64748B"))
+            canvas.drawString(36, 20, "Resume Interview AI — Official CTS Candidate Readiness Dossier")
+            canvas.drawRightString(576, 20, f"Page {d.page}")
+            canvas.restoreState()
 
-        doc.build(elements)
+        doc.build(elements, onFirstPage=_draw_page_decorations, onLaterPages=_draw_page_decorations)
         buffer.seek(0)
         return buffer.getvalue()
 

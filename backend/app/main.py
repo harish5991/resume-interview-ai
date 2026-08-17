@@ -68,6 +68,7 @@ async def root():
         "database_mode": "MongoDB" if db_manager.is_mongo else "Local Persistent JSON DB"
     }
 
+@app.get("/health")
 @app.get("/api/health")
 async def health_check():
     return {

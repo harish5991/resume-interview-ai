@@ -41,6 +41,25 @@ export default defineConfig({
             }
           });
         }
+      },
+      '/health': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true,
+        secure: false,
+        configure: (proxy, options) => {
+          proxy.on('error', (err, req, res) => {
+            console.warn('[Vite Proxy Warning] Backend on port 8000 is not reachable:', err.message);
+            if (res && !res.headersSent && typeof res.writeHead === 'function') {
+              res.writeHead(502, {
+                'Content-Type': 'application/json',
+              });
+              res.end(JSON.stringify({
+                detail: 'Backend server is not running on http://127.0.0.1:8000.',
+                error_type: 'BACKEND_OFFLINE'
+              }));
+            }
+          });
+        }
       }
     }
   }

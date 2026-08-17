@@ -88,7 +88,12 @@ class DiversityManager:
         QuestionIntent.PERFORMANCE: [
             "To optimize performance in {title}, I profiled execution times using runtime timers and eliminated redundant compute overhead.",
             "We addressed performance bottlenecks in {title} by reducing serialization costs and optimizing hot query paths.",
-            "Performance tuning in {title} centered on reducing I/O waits and batching database operations."
+            "In {title}, we introduced multi-tier in-memory caching and connection pooling to sustain sub-50ms response latency under load."
+        ],
+        QuestionIntent.API_DESIGN: [
+            "When designing the API contracts for {title}, we established idempotent REST endpoints, consistent HTTP status semantics, and Pydantic validation.",
+            "Our API architecture in {title} emphasizes explicit error schemas, rate-limiting safeguards, and non-blocking asynchronous request handlers.",
+            "For {title}, we structured modular route controllers with strict DTO boundaries to decouple transport logic from core domain services."
         ],
         QuestionIntent.DEBUGGING: [
             "When diagnosing issues in {title}, I rely on structured logging and step-by-step reproduction in an isolated test environment.",
@@ -304,6 +309,14 @@ class DiversityManager:
                 f"I began by capturing reproduction logs and inspecting payload payloads at each boundary layer to isolate state mutations. "
                 f"I identified that unhandled edge-case values were bypassing validation before persisting. "
                 f"I fixed the issue by enforcing strict schema validators, added automated unit tests, and verified that no data corruption occurred."
+            )
+            answer = f"{opening} {body}"
+
+        elif intent == QuestionIntent.API_DESIGN:
+            opening = selected_opening_template.format(title=proj_title, tech=main_tech)
+            body = (
+                f"We established explicit schema validation, deterministic status codes, and decoupled controller logic from domain services. "
+                f"This ensured strong contract guarantees, smooth client integration, and robust defensive error boundaries across all endpoints."
             )
             answer = f"{opening} {body}"
 

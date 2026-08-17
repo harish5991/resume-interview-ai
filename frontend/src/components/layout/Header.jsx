@@ -24,7 +24,7 @@ const BackendStatusBadge = () => {
   useEffect(() => {
     const checkBackend = () => {
       axios
-        .get('/api/health', { timeout: 3000 })
+        .get('/health', { timeout: 3000 })
         .then(() => setOnline(true))
         .catch(() => setOnline(false));
     };

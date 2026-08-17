@@ -996,13 +996,21 @@ ${(finalEvaluation.actionable_recommendations || []).map((r, i) => `${i + 1}. ${
                     Your Answer
                   </label>
                   <div className="flex items-center gap-3 text-xs text-slate-500">
+                    {isRecording && (
+                      <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-50 text-rose-700 border border-rose-200 animate-pulse">
+                        <span className="w-1.5 h-1.5 rounded-full bg-rose-600 animate-ping"></span>
+                        Listening Live
+                      </span>
+                    )}
                     <span>{wordCount} words</span>
                     <button
                       type="button"
                       onClick={toggleRecording}
+                      aria-label={isRecording ? "Stop Voice Dictation" : "Start Voice Dictation"}
+                      title={isRecording ? "Stop recording speech" : "Start browser voice dictation"}
                       className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold border transition-colors ${
                         isRecording
-                          ? 'bg-rose-50 text-rose-700 border-rose-200 animate-pulse'
+                          ? 'bg-rose-50 text-rose-700 border-rose-200 animate-pulse ring-1 ring-rose-300'
                           : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
                       }`}
                     >

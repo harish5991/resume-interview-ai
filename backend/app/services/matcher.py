@@ -183,9 +183,25 @@ class JDMatcher:
             is_req = missing.lower() in [s.lower() for s in jd.required_skills]
             importance = "High" if is_req else "Medium"
             
-            # Map topics
+            # Map topics and verified documentation links
+            OFFICIAL_DOCS_MAP = {
+                "docker": "https://docs.docker.com/get-started/",
+                "kubernetes": "https://kubernetes.io/docs/tutorials/",
+                "graphql": "https://graphql.org/learn/",
+                "redis": "https://redis.io/docs/getting-started/",
+                "mongodb": "https://www.mongodb.com/docs/manual/tutorial/",
+                "fastapi": "https://fastapi.tiangolo.com/tutorial/",
+                "react": "https://react.dev/learn",
+                "typescript": "https://www.typescriptlang.org/docs/",
+                "aws": "https://docs.aws.amazon.com/",
+                "postgresql": "https://www.postgresql.org/docs/current/tutorial.html",
+                "terraform": "https://developer.hashicorp.com/terraform/tutorials",
+                "nextjs": "https://nextjs.org/docs",
+                "node.js": "https://nodejs.org/en/docs/"
+            }
+            doc_link = OFFICIAL_DOCS_MAP.get(missing.lower(), f"Official {missing} Documentation")
             topics = [f"{missing} Core Fundamentals", f"Integrating {missing} in Real-world Projects", f"Common {missing} Interview Questions & Best Practices"]
-            resources = [f"Official {missing} Documentation", f"Interactive {missing} Crash Course (FreeCodeCamp/YouTube)", f"Building a Mini CRUD/Service using {missing}"]
+            resources = [f"Official Documentation ({doc_link})", f"Interactive {missing} Crash Course (FreeCodeCamp/YouTube)", f"Building a Mini CRUD/Service using {missing}"]
             
             roadmap.append(LearningRoadmapItem(
                 skill=missing,

@@ -13,6 +13,7 @@ class QuestionIntent:
     SCALABILITY = "SCALABILITY"
     PERFORMANCE = "PERFORMANCE"
     DATABASE = "DATABASE"
+    API_DESIGN = "API_DESIGN"
     ARCHITECTURE = "ARCHITECTURE"
     SECURITY = "SECURITY"
     DEBUGGING = "DEBUGGING"
@@ -38,6 +39,7 @@ INTENT_STRUCTURE_MAP: Dict[str, str] = {
     QuestionIntent.SCALABILITY: "Current Architecture → Bottleneck Analysis → Layered Scaling → Trade-offs",
     QuestionIntent.PERFORMANCE: "Baseline Metric → Profiling & Bottleneck → Optimization → Measured Gain",
     QuestionIntent.DATABASE: "Data Requirements → Schema Design → Indexing/Query Strategy → Consistency",
+    QuestionIntent.API_DESIGN: "Requirements & Resource Modeling → Endpoint Contract & Schema → Validation & Idempotency → Resilience",
     QuestionIntent.ARCHITECTURE: "System Overview → Component Contracts → Data Flow → Resilience",
     QuestionIntent.SECURITY: "Threat Model → Security Controls & Sanitization → Verification",
     QuestionIntent.DEBUGGING: "Observed Anomaly → Diagnostic Tooling → Root Cause Fix → Verification",
@@ -75,6 +77,7 @@ class QuestionIntentClassifier:
         (QuestionIntent.DEBUGGING, re.compile(r'\b(?:debug|debugging|troubleshoot|diagnos(?:e|is)|root\s+cause|fix\s+a\s+bug|stack\s*trace|how\s+you\s+debugged|debugged\s+a\s+difficult)\b', re.IGNORECASE)),
         (QuestionIntent.PERFORMANCE, re.compile(r'\b(?:performance|latency|throughput|optimization|optimize|profiling|memory\s+leak|reflow|bottleneck|speed\s+up|reduce\s+latency)\b', re.IGNORECASE)),
         (QuestionIntent.DATABASE, re.compile(r'\b(?:database|sql|nosql|mongodb|mysql|postgres|indexing|query\s+optimization|schema\s+design|queries\s+in|database\s+schema|normalization|acid|join)\b', re.IGNORECASE)),
+        (QuestionIntent.API_DESIGN, re.compile(r'\b(?:api\s+design|rest\s+api|restful|graphql|endpoints?|http\s+methods?|request\s+validation|api\s+contract|crud\s+api)\b', re.IGNORECASE)),
         (QuestionIntent.SECURITY, re.compile(r'\b(?:security|authentication|authorization|jwt|oauth|xss|csrf|sql\s+injection|encryption|sanitize|vulnerability)\b', re.IGNORECASE)),
         (QuestionIntent.ARCHITECTURE, re.compile(r'\b(?:architecture|system\s+design|high[- ]level\s+design|components|data\s+flow|microservices|monolith|api\s+contracts?)\b', re.IGNORECASE)),
         (QuestionIntent.TRADEOFF, re.compile(r'\b(?:trade[- ]off|compromise|pros?\s+and\s+cons?|balancing|versus|velocity\s+vs)\b', re.IGNORECASE)),
@@ -117,4 +120,22 @@ class QuestionIntentClassifier:
             return QuestionIntent.CONCEPTUAL, INTENT_STRUCTURE_MAP[QuestionIntent.CONCEPTUAL]
 
         return QuestionIntent.TECHNICAL_DECISION, INTENT_STRUCTURE_MAP[QuestionIntent.TECHNICAL_DECISION]
-# STAR Diagnostic Scoring Heuristics - Gajapuram Bhavya Sri 
+
+    # STAR Diagnostic Scoring Heuristics - Gajapuram Bhavya Sri
+    @classmethod
+    def extract_quantified_metrics(cls, answer_text: str) -> List[str]:
+        """
+        Extracts quantified achievements and technical metrics (latency ms, %, throughput multipliers) from candidate answers.
+        """
+        metric_patterns = [
+            r'\b\d+(?:\.\d+)?%\b',                            # 40%, 99.9%
+            r'\b\d+(?:\.\d+)?\s*(?:ms|seconds|minutes)\b',    # 50ms, 2 seconds
+            r'\b\d+(?:\.\d+)?x\b',                            # 10x throughput
+            r'\b(?:reduced|increased|improved|saved|scaled)\s+by\s+\d+(?:\.\d+)?%?\b', # action-result pairs
+            r'\b\d+[\d,]*\s*(?:users|requests|rps|qps|queries|events)\b' # scale volume
+        ]
+        found_metrics = []
+        for pat in metric_patterns:
+            matches = re.findall(pat, answer_text, re.IGNORECASE)
+            found_metrics.extend(matches)
+        return list(set(found_metrics))
