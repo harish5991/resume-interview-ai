@@ -6,6 +6,10 @@ from backend.app.schemas.models import (
 from backend.app.services.ai_engine import AIEngine
 from backend.app.database.db import db_manager
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 router = APIRouter(prefix="/questions", tags=["Questions"])
 
 @router.post("/generate", response_model=List[GroundedQuestion])
@@ -16,6 +20,7 @@ async def generate_questions(req: GenerateQuestionsRequest):
             detail="A valid, verified resume is required to generate interview questions. Please upload a valid resume."
         )
     
+    session_id = req.session_id or "default"
     questions = await AIEngine.generate_questions(
         resume=req.resume_data,
         jd=req.jd_data,
@@ -25,12 +30,14 @@ async def generate_questions(req: GenerateQuestionsRequest):
         exclude_hashes=req.exclude_question_hashes
     )
 
+    logger.info(f"[QUESTIONS_CREATED] Generated {len(questions)} questions for session={session_id}, resume_id={req.resume_data.id if req.resume_data else 'None'}. (Attempted count unaffected = 0).")
+
     # Save to history collection for session with resume_id tracking
     if questions:
         col = db_manager.get_collection("questions_history")
         for q in questions:
             doc = q.model_dump()
-            doc["session_id"] = req.session_id
+            doc["session_id"] = session_id
             doc["resume_id"] = req.resume_data.id
             doc["resume_hash"] = getattr(req.resume_data, "resume_hash", None)
             await col.insert_one(doc)

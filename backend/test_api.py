@@ -1259,19 +1259,108 @@ B.S. in Computer Science | University of Washington (2021)
         self.assertEqual(data_b["question_attempt_id"], attempt_b_id)
         self.assertGreaterEqual(data_b["overall_score"], 80)
 
-        # 5. Verify history collection in DB maintains all 4 distinct attempts
+        # 5. Verify history collection in DB returns the 2 unique questions attempted
         history_res = self.client.get(f"/api/interview/history?session_id={session_id}")
         self.assertEqual(history_res.status_code, 200)
         history = history_res.json()
-        self.assertEqual(len(history), 4)
+        self.assertEqual(len(history), 2)
 
-        attempt_ids_in_history = [h.get("question_attempt_id") for h in history]
-        self.assertIn(attempt_1_id, attempt_ids_in_history)
-        self.assertIn(attempt_2_id, attempt_ids_in_history)
-        self.assertIn(attempt_3_id, attempt_ids_in_history)
-        self.assertIn(attempt_b_id, attempt_ids_in_history)
+        # 6. Verify analytics counts exactly 2 unique questions attempted
+        analytics_res = self.client.get(f"/api/analytics?session_id={session_id}")
+        self.assertEqual(analytics_res.status_code, 200)
+        analytics_data = analytics_res.json()
+        self.assertEqual(analytics_data["questions_attempted"], 2)
 
-        print("✓ Independent evaluation for repeated question attempts and session history verified.")
+        print("✓ Independent evaluation for repeated question attempts and accurate unique question counting verified.")
+
+    def test_22_strict_attempted_question_counting_lifecycle(self):
+        """
+        Verify the complete lifecycle:
+        1. Generate 4 questions -> Attempted = 0
+        2. Answer 1 question -> Attempted = 1
+        3. Re-submit same question (retry/edit) -> Attempted = 1
+        4. Answer 2nd question -> Attempted = 2
+        5. Refresh/reopen session -> Attempted = 2
+        """
+        import uuid
+        session_id = f"test-strict-attempt-{uuid.uuid4().hex[:8]}"
+        sample_resume = self.client.get("/api/resume/samples").json()[0]
+
+        # Step 1: Upload / set resume in session and generate 4 questions
+        gen_res = self.client.post("/api/questions/generate", json={
+            "session_id": session_id,
+            "resume_data": sample_resume,
+            "difficulty": "Medium",
+            "count": 4
+        })
+        self.assertEqual(gen_res.status_code, 200)
+        questions = gen_res.json()
+        self.assertEqual(len(questions), 4)
+
+        # Verify analytics: questions generated MUST NOT count as attempted!
+        a_res_1 = self.client.get(f"/api/analytics?session_id={session_id}")
+        self.assertEqual(a_res_1.status_code, 200)
+        self.assertEqual(a_res_1.json()["questions_attempted"], 0)
+
+        # Step 2: User answers ONLY Question 1
+        q1 = questions[0]
+        ans_res_1 = self.client.post("/api/interview/answer", json={
+            "session_id": session_id,
+            "question_id": q1["id"],
+            "question_text": q1["question"],
+            "skill": q1["skill"],
+            "difficulty": q1["difficulty"],
+            "user_answer": "In Python and FastAPI, we optimize async routes using non-blocking I/O and Pydantic validation schemas to handle 5k requests per second with sub-25ms latency.",
+            "resume_data": sample_resume
+        })
+        self.assertEqual(ans_res_1.status_code, 200)
+
+        # Verify analytics: exactly 1 question attempted!
+        a_res_2 = self.client.get(f"/api/analytics?session_id={session_id}")
+        self.assertEqual(a_res_2.status_code, 200)
+        self.assertEqual(a_res_2.json()["questions_attempted"], 1)
+
+        # Step 3: Re-submit the same Question 1 (e.g. user retries / edits answer)
+        ans_res_1_retry = self.client.post("/api/interview/answer", json={
+            "session_id": session_id,
+            "question_id": q1["id"],
+            "question_text": q1["question"],
+            "skill": q1["skill"],
+            "difficulty": q1["difficulty"],
+            "user_answer": "Updated answer: in FastAPI we use async def endpoints and dependency injection with connection pooling to sustain 10k rps with 20ms p99 latency.",
+            "resume_data": sample_resume
+        })
+        self.assertEqual(ans_res_1_retry.status_code, 200)
+
+        # Verify analytics: attempted count MUST REMAIN 1 (not 2)!
+        a_res_3 = self.client.get(f"/api/analytics?session_id={session_id}")
+        self.assertEqual(a_res_3.status_code, 200)
+        self.assertEqual(a_res_3.json()["questions_attempted"], 1)
+
+        # Step 4: User answers Question 2
+        q2 = questions[1]
+        ans_res_2 = self.client.post("/api/interview/answer", json={
+            "session_id": session_id,
+            "question_id": q2["id"],
+            "question_text": q2["question"],
+            "skill": q2["skill"],
+            "difficulty": q2["difficulty"],
+            "user_answer": "In MongoDB, we establish compound indexes matching query filters and sort keys to avoid in-memory sorting, reducing query execution time from 400ms to 8ms.",
+            "resume_data": sample_resume
+        })
+        self.assertEqual(ans_res_2.status_code, 200)
+
+        # Verify analytics: exactly 2 questions attempted!
+        a_res_4 = self.client.get(f"/api/analytics?session_id={session_id}")
+        self.assertEqual(a_res_4.status_code, 200)
+        self.assertEqual(a_res_4.json()["questions_attempted"], 2)
+
+        # Step 5: Refresh/reopen session verification
+        history_res = self.client.get(f"/api/interview/history?session_id={session_id}")
+        self.assertEqual(history_res.status_code, 200)
+        self.assertEqual(len(history_res.json()), 2)
+
+        print("✓ Strict attempted-question counting lifecycle (0 -> 1 -> retry: 1 -> 2) fully verified.")
 
 if __name__ == "__main__":
     unittest.main()

@@ -8,17 +8,34 @@ import { ErrorBoundary } from './components/common/ErrorBoundary';
 
 import { Home } from './pages/Home';
 
-const ResumeAnalysis = lazy(() => import('./pages/ResumeAnalysis').then(m => ({ default: m.ResumeAnalysis })));
-const JobMatch = lazy(() => import('./pages/JobMatch').then(m => ({ default: m.JobMatch })));
-const GenerateQuestions = lazy(() => import('./pages/GenerateQuestions').then(m => ({ default: m.GenerateQuestions })));
-const MockInterview = lazy(() => import('./pages/MockInterview').then(m => ({ default: m.MockInterview })));
-const SkillGap = lazy(() => import('./pages/SkillGap').then(m => ({ default: m.SkillGap })));
-const ProjectDeepDive = lazy(() => import('./pages/ProjectDeepDive').then(m => ({ default: m.ProjectDeepDive })));
-const PreparationMode = lazy(() => import('./pages/PreparationMode').then(m => ({ default: m.PreparationMode })));
-const ResumeImprovement = lazy(() => import('./pages/ResumeImprovement').then(m => ({ default: m.ResumeImprovement })));
-const AnalyticsDashboard = lazy(() => import('./pages/AnalyticsDashboard').then(m => ({ default: m.AnalyticsDashboard })));
-const SavedQuestions = lazy(() => import('./pages/SavedQuestions').then(m => ({ default: m.SavedQuestions })));
-const QuestionHistory = lazy(() => import('./pages/QuestionHistory').then(m => ({ default: m.QuestionHistory })));
+const lazyRetry = (importer) =>
+  lazy(async () => {
+    try {
+      return await importer();
+    } catch (error) {
+      console.warn('Dynamic chunk import failed, fetching latest bundle:', error);
+      const isReloaded = sessionStorage.getItem('last_chunk_reload');
+      if (!isReloaded) {
+        sessionStorage.setItem('last_chunk_reload', 'true');
+        window.location.reload();
+        return new Promise(() => {});
+      }
+      sessionStorage.removeItem('last_chunk_reload');
+      throw error;
+    }
+  });
+
+const ResumeAnalysis = lazyRetry(() => import('./pages/ResumeAnalysis').then(m => ({ default: m.ResumeAnalysis })));
+const JobMatch = lazyRetry(() => import('./pages/JobMatch').then(m => ({ default: m.JobMatch })));
+const GenerateQuestions = lazyRetry(() => import('./pages/GenerateQuestions').then(m => ({ default: m.GenerateQuestions })));
+const MockInterview = lazyRetry(() => import('./pages/MockInterview').then(m => ({ default: m.MockInterview })));
+const SkillGap = lazyRetry(() => import('./pages/SkillGap').then(m => ({ default: m.SkillGap })));
+const ProjectDeepDive = lazyRetry(() => import('./pages/ProjectDeepDive').then(m => ({ default: m.ProjectDeepDive })));
+const PreparationMode = lazyRetry(() => import('./pages/PreparationMode').then(m => ({ default: m.PreparationMode })));
+const ResumeImprovement = lazyRetry(() => import('./pages/ResumeImprovement').then(m => ({ default: m.ResumeImprovement })));
+const AnalyticsDashboard = lazyRetry(() => import('./pages/AnalyticsDashboard').then(m => ({ default: m.AnalyticsDashboard })));
+const SavedQuestions = lazyRetry(() => import('./pages/SavedQuestions').then(m => ({ default: m.SavedQuestions })));
+const QuestionHistory = lazyRetry(() => import('./pages/QuestionHistory').then(m => ({ default: m.QuestionHistory })));
 
 const RouteLoading = () => (
   <div className="flex items-center justify-center min-h-[50vh]">

@@ -1,3 +1,4 @@
+import logging
 from typing import List, Dict, Any, Optional
 from fastapi import APIRouter, HTTPException, Body
 from backend.app.schemas.models import (
@@ -9,23 +10,35 @@ from backend.app.services.parser import ResumeParser
 from backend.app.services.ai_engine import AIEngine
 from backend.app.database.db import db_manager
 
+logger = logging.getLogger(__name__)
+
 router = APIRouter(prefix="/analytics", tags=["Analytics"])
 
 @router.get("", response_model=AnalyticsSummary)
 async def get_analytics(session_id: str = "default"):
-    col_evals = db_manager.get_collection("evaluations")
-    docs = await col_evals.find({"session_id": session_id})
-    
-    # Deduplicate keeping latest evaluation per unique question
-    eval_map = {}
-    for d in docs:
-        k = d.get("question_id") or d.get("question_text")
-        eval_map[k] = d
-    evals = list(eval_map.values())
-
     # Pull session data strictly for this session
     col_sess = db_manager.get_collection("sessions")
     sess = await col_sess.find_one({"id": session_id})
+
+    col_evals = db_manager.get_collection("evaluations")
+    docs = await col_evals.find({"session_id": session_id})
+    
+    # If the session has an active resume, filter evaluations to this active resume
+    active_resume_id = sess.get("resume", {}).get("id") if sess and sess.get("resume") else None
+    if active_resume_id:
+        scoped_docs = [d for d in docs if d.get("resume_id") == active_resume_id or not d.get("resume_id")]
+    else:
+        scoped_docs = docs
+
+    # Deduplicate keeping latest evaluation per unique question
+    eval_map = {}
+    for d in scoped_docs:
+        k = (d.get("question_id") or d.get("question_text", "")).strip()
+        if k:
+            eval_map[k] = d
+    evals = list(eval_map.values())
+
+    logger.info(f"[ANALYTICS_QUERY] Session={session_id}, Active Resume ID={active_resume_id}, Raw Docs={len(docs)}, Scoped Docs={len(scoped_docs)}, Unique Questions Attempted={len(evals)}")
     
     resume_score: Optional[int] = None
     jd_match_pct: Optional[int] = None

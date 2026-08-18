@@ -12,12 +12,20 @@ from backend.app.database.db import db_manager
 
 router = APIRouter(prefix="/interview", tags=["Mock Interview"])
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 @router.post("/answer", response_model=AnswerEvaluation)
 async def evaluate_interview_answer(req: AnswerEvaluationRequest):
     if not req.user_answer or not req.user_answer.strip():
         raise HTTPException(status_code=400, detail="Answer text cannot be empty.")
 
+    session_id = req.session_id or "default"
     attempt_id = req.question_attempt_id or f"attempt_{uuid.uuid4().hex[:12]}"
+    word_count = len(req.user_answer.strip().split())
+
+    logger.info(f"[ANSWER_SUBMISSION] Session={session_id}, Question ID={req.question_id}, Skill={req.skill}, Words={word_count}")
 
     evaluation = await AIEngine.evaluate_answer(
         question_id=req.question_id,
@@ -28,27 +36,43 @@ async def evaluate_interview_answer(req: AnswerEvaluationRequest):
         user_answer=req.user_answer,
         expected_points=req.expected_points,
         sample_answer=req.sample_answer,
-        session_id=req.session_id or "default",
+        session_id=session_id,
         resume_data=req.resume_data,
         jd_data=req.jd_data,
         question_intent=req.question_intent,
         question_attempt_id=attempt_id
     )
 
-    # Save to evaluations collection
+    # Save to evaluations collection with strict session & question uniqueness
     col = db_manager.get_collection("evaluations")
     doc = evaluation.model_dump()
-    doc["session_id"] = req.session_id or "default"
+    doc["session_id"] = session_id
     doc["question_attempt_id"] = attempt_id
     doc["resume_id"] = req.resume_data.id if req.resume_data else None
     doc["resume_hash"] = getattr(req.resume_data, "resume_hash", None) if req.resume_data else None
+    doc["question_id"] = req.question_id
     doc["question_text"] = req.question_text
     doc["user_answer"] = req.user_answer
     doc["skill"] = req.skill
     doc["difficulty"] = req.difficulty
     doc["based_on"] = req.based_on
     doc["expected_points"] = req.expected_points
-    await col.insert_one(doc)
+
+    # Check if an evaluation already exists for this exact question in this session
+    existing = await col.find_one({
+        "session_id": session_id,
+        "$or": [
+            {"question_id": req.question_id},
+            {"question_text": req.question_text}
+        ]
+    })
+
+    if existing and "id" in existing:
+        logger.info(f"[DUPLICATE_ATTEMPT_DETECTED] Updating existing evaluation {existing['id']} for Question ID={req.question_id} (Attempted count unchanged).")
+        await col.update_one({"id": existing["id"]}, {"$set": doc})
+    else:
+        logger.info(f"[NEW_ATTEMPT_RECORDED] Saved new question evaluation for Question ID={req.question_id}. (Attempted count incremented).")
+        await col.insert_one(doc)
 
     return evaluation
 
