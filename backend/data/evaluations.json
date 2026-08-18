@@ -1,9 +1,9 @@
 [
   {
-    "id": "c432e36d-31e6-41a9-897c-0137b82b627f",
+    "id": "b373572a-df3c-48cb-bcea-5a14ba6c87ad",
     "question_id": "q-opencv-01",
-    "question_attempt_id": "attempt_1_fa2a7b",
-    "session_id": "test-repeat-sess-fa194e",
+    "question_attempt_id": "attempt_1_f4242c",
+    "session_id": "test-repeat-sess-b622a9",
     "overall_score": 0,
     "relevance_score": 0,
     "technical_accuracy_score": 0,
@@ -51,7 +51,7 @@
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:32:30.113069+00:00",
+    "evaluated_at": "2026-08-18 05:38:47.691872+00:00",
     "resume_id": null,
     "resume_hash": null,
     "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
@@ -60,13 +60,13 @@
     "difficulty": "Medium",
     "based_on": "Resume Skill: OpenCV",
     "expected_points": [],
-    "_id": "db41cca5-0f60-41fd-9686-a231a3156a47"
+    "_id": "302c26f8-9991-4aba-b77a-f2ef98ba4580"
   },
   {
-    "id": "e5f1c07a-9a95-486a-ae73-03b22e9c1aee",
+    "id": "c31d2b10-48f1-4da0-8bfe-9bcb0ea85e73",
     "question_id": "q-opencv-01",
-    "question_attempt_id": "attempt_2_9c3564",
-    "session_id": "test-repeat-sess-fa194e",
+    "question_attempt_id": "attempt_2_247134",
+    "session_id": "test-repeat-sess-b622a9",
     "overall_score": 85,
     "relevance_score": 82,
     "technical_accuracy_score": 96,
@@ -117,7 +117,7 @@
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:32:30.714457+00:00",
+    "evaluated_at": "2026-08-18 05:38:48.288348+00:00",
     "resume_id": null,
     "resume_hash": null,
     "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
@@ -126,13 +126,13 @@
     "difficulty": "Medium",
     "based_on": "Resume Skill: OpenCV",
     "expected_points": [],
-    "_id": "41d213bb-3753-4ea3-9f08-5709b7335b0c"
+    "_id": "787b377c-3764-4cd0-85fb-ffb18dbe556f"
   },
   {
-    "id": "a5ae14d7-bbb8-43c8-a117-8a71a8d3fc16",
+    "id": "6fb51bf2-d7f9-4d1c-ad70-03da251b78bd",
     "question_id": "q-opencv-01",
-    "question_attempt_id": "attempt_3_b4cf4d",
-    "session_id": "test-repeat-sess-fa194e",
+    "question_attempt_id": "attempt_3_a78a8a",
+    "session_id": "test-repeat-sess-b622a9",
     "overall_score": 27,
     "relevance_score": 20,
     "technical_accuracy_score": 11,
@@ -182,7 +182,7 @@
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:32:31.341135+00:00",
+    "evaluated_at": "2026-08-18 05:38:48.794435+00:00",
     "resume_id": null,
     "resume_hash": null,
     "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
@@ -191,13 +191,13 @@
     "difficulty": "Medium",
     "based_on": "Resume Skill: OpenCV",
     "expected_points": [],
-    "_id": "d657b13b-9494-4e5f-b862-665819409a4d"
+    "_id": "d9d901d3-82fd-4256-9e9c-3162d69ef471"
   },
   {
-    "id": "97af8d91-a287-4a00-a2f6-71643ba36a3f",
+    "id": "6159c88b-6d6f-4f30-8c24-081d094d096f",
     "question_id": "q-sql-02",
-    "question_attempt_id": "attempt_b_b23a1e",
-    "session_id": "test-repeat-sess-fa194e",
+    "question_attempt_id": "attempt_b_bdc49f",
+    "session_id": "test-repeat-sess-b622a9",
     "overall_score": 80,
     "relevance_score": 85,
     "technical_accuracy_score": 94,
@@ -249,7 +249,7 @@
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:32:31.956473+00:00",
+    "evaluated_at": "2026-08-18 05:38:49.464138+00:00",
     "resume_id": null,
     "resume_hash": null,
     "question_text": "How do B-tree indexes and query execution plans optimize SQL database performance?",
@@ -258,13 +258,13 @@
     "difficulty": "Medium",
     "based_on": "Resume Skill: SQL",
     "expected_points": [],
-    "_id": "07120b52-ead6-4518-b0fc-e3557e9ff385"
+    "_id": "8ea98431-001a-472a-9bb6-e1da1d557e5a"
   },
   {
-    "id": "c922663b-225f-41bf-9b81-66e60d21cc76",
-    "question_id": "52572163-4805-4970-a6ec-a0d849038bf4",
-    "question_attempt_id": "attempt_5bda07e79523",
-    "session_id": "test-strict-attempt-b979c5d0",
+    "id": "a36357d8-07c7-46ce-966f-61e01839880a",
+    "question_id": "1e17b556-11d4-4df2-b139-6e3ffd21aa09",
+    "question_attempt_id": "attempt_4953831b4d45",
+    "session_id": "test-strict-attempt-2a65ea92",
     "overall_score": 19,
     "relevance_score": 12,
     "technical_accuracy_score": 10,
@@ -273,63 +273,63 @@
     "confidence_score": 50,
     "communication_score": 50,
     "verdict_rating": "Off-Topic / Domain Mismatch",
-    "question_intent": "PERFORMANCE",
-    "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
-    "relevance_verdict": "RELEVANT",
+    "question_intent": "TECHNICAL_DECISION",
+    "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
+    "relevance_verdict": "IRRELEVANT",
     "concepts_covered": [],
     "concepts_missed": [
-      "Layered Filesystem & Build Caching",
-      "Multi-Stage Builds & Minimal Runtime Images",
-      "Container Network Isolation (Bridge / Host)",
-      "Kernel Namespaces & cgroups Resource Limits"
+      "Box Model & Layout Engines (Grid / Flexbox)",
+      "Critical Rendering Path (Reflow & Repaint)",
+      "Hardware-Accelerated Transforms & Animations",
+      "Specificity & Cascade Architecture (BEM / CSS Modules)"
     ],
     "strengths": [
-      "Submitted technical text, but it focuses on Fastapi rather than Docker."
+      "Submitted technical text, but it focuses on Fastapi rather than Tailwind CSS."
     ],
     "weaknesses": [
-      "The response does not address Docker or the core question asked.",
-      "Structure your answer around Docker mechanisms, architectural choices, and project trade-offs."
+      "The response does not address Tailwind CSS or the core question asked.",
+      "Structure your answer around Tailwind CSS mechanisms, architectural choices, and project trade-offs."
     ],
-    "improved_answer": "To optimize performance in Resume Interview AI, I profiled execution times using runtime timers and eliminated redundant compute overhead. By profiling resource consumption in Resume Interview AI, we identified that serialization overhead and unindexed lookups were causing latency spikes. We resolved this by streamlining data validation schemas, batching database queries, and keeping memory allocations localized. These optimizations significantly reduced response variability across high-concurrency test runs.",
-    "follow_up_question": "How would you address Layered Filesystem & Build Caching if this Docker implementation experienced a 10x traffic spike?",
+    "improved_answer": "A key architectural decision in Resume Interview AI was choosing Tailwind CSS to enforce structured data flow and separation of concerns. In Resume Interview AI, selecting Tailwind CSS gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
+    "follow_up_question": "How would you address Box Model & Layout Engines (Grid / Flexbox) if this Tailwind CSS implementation experienced a 10x traffic spike?",
     "next_recommended_difficulty": "Easy",
-    "feedback_summary": "Off-topic response (19/100). The answer discusses Fastapi instead of addressing Docker.",
+    "feedback_summary": "Off-topic response (19/100). The answer discusses Fastapi instead of addressing Tailwind CSS.",
     "star_feedback": {
       "situation": "Context could frame real-world system scale and constraints more clearly.",
-      "task": "Target goal for Docker needs sharper focus.",
-      "action": "Describe exact technical mechanisms of Docker rather than high-level definitions.",
+      "task": "Target goal for Tailwind CSS needs sharper focus.",
+      "action": "Describe exact technical mechanisms of Tailwind CSS rather than high-level definitions.",
       "result": "Missing quantitative metrics (e.g. % improvement, latency reduction, bundle savings)."
     },
     "answer_grounding": {
       "status": "Resume Grounded",
       "badge_variant": "info",
       "answer_type": "Hypothetical / Technical",
-      "question_intent": "PERFORMANCE",
-      "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
+      "question_intent": "TECHNICAL_DECISION",
+      "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
       "evidence_used": [
-        "Skill: Docker",
+        "Skill: Tailwind CSS",
         "Project: Resume Interview AI"
       ],
       "unsupported_claims": [],
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:32:33.141924+00:00",
+    "evaluated_at": "2026-08-18 05:38:50.472978+00:00",
     "resume_id": "sample-fullstack",
     "resume_hash": null,
-    "question_text": "How do multi-stage Docker builds and `.dockerignore` optimize production image size and security?",
+    "question_text": "How do CSS Grid and Flexbox differ, and when should you choose one over the other?",
     "user_answer": "In Python and FastAPI, we optimize async routes using non-blocking I/O and Pydantic validation schemas to handle 5k requests per second with sub-25ms latency.",
-    "skill": "Docker",
+    "skill": "Tailwind CSS",
     "difficulty": "Medium",
     "based_on": "Resume Context",
     "expected_points": [],
-    "_id": "7f05d9ff-f4e2-42ab-b88d-d11822429c80"
+    "_id": "002c61f0-a6e6-4140-beef-38f3b07682bf"
   },
   {
-    "id": "34e177ba-7cc3-4b12-b138-c29001e99277",
-    "question_id": "52572163-4805-4970-a6ec-a0d849038bf4",
-    "question_attempt_id": "attempt_01abb8100fd7",
-    "session_id": "test-strict-attempt-b979c5d0",
+    "id": "582b8a5a-e36a-4635-817e-5081dfd59b12",
+    "question_id": "1e17b556-11d4-4df2-b139-6e3ffd21aa09",
+    "question_attempt_id": "attempt_fb35e8ae28b0",
+    "session_id": "test-strict-attempt-2a65ea92",
     "overall_score": 19,
     "relevance_score": 12,
     "technical_accuracy_score": 10,
@@ -338,74 +338,9 @@
     "confidence_score": 50,
     "communication_score": 50,
     "verdict_rating": "Off-Topic / Domain Mismatch",
-    "question_intent": "PERFORMANCE",
-    "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
-    "relevance_verdict": "RELEVANT",
-    "concepts_covered": [],
-    "concepts_missed": [
-      "Layered Filesystem & Build Caching",
-      "Multi-Stage Builds & Minimal Runtime Images",
-      "Container Network Isolation (Bridge / Host)",
-      "Kernel Namespaces & cgroups Resource Limits"
-    ],
-    "strengths": [
-      "Submitted technical text, but it focuses on an unrelated topic rather than Docker."
-    ],
-    "weaknesses": [
-      "The response does not address Docker or the core question asked.",
-      "Structure your answer around Docker mechanisms, architectural choices, and project trade-offs."
-    ],
-    "improved_answer": "From an engineering perspective on how do multi-stage docker builds and `.dockerignore` optimize production image size and security, We addressed performance bottlenecks in Resume Interview AI by reducing serialization costs and optimizing hot query paths. By profiling resource consumption in Resume Interview AI, we identified that serialization overhead and unindexed lookups were causing latency spikes. We resolved this by streamlining data validation schemas, batching database queries, and keeping memory allocations localized. These optimizations significantly reduced response variability across high-concurrency test runs.",
-    "follow_up_question": "How would you address Layered Filesystem & Build Caching if this Docker implementation experienced a 10x traffic spike?",
-    "next_recommended_difficulty": "Easy",
-    "feedback_summary": "Off-topic response (19/100). The answer discusses an unrelated topic instead of addressing Docker.",
-    "star_feedback": {
-      "situation": "Context could frame real-world system scale and constraints more clearly.",
-      "task": "Target goal for Docker needs sharper focus.",
-      "action": "Describe exact technical mechanisms of Docker rather than high-level definitions.",
-      "result": "Missing quantitative metrics (e.g. % improvement, latency reduction, bundle savings)."
-    },
-    "answer_grounding": {
-      "status": "Resume Grounded",
-      "badge_variant": "info",
-      "answer_type": "Hypothetical / Technical",
-      "question_intent": "PERFORMANCE",
-      "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
-      "evidence_used": [
-        "Skill: Docker",
-        "Project: Resume Interview AI"
-      ],
-      "unsupported_claims": [],
-      "caution_note": "Technical recommendations are hypothetical",
-      "claims_validation": []
-    },
-    "evaluated_at": "2026-08-18 05:32:33.747216+00:00",
-    "resume_id": "sample-fullstack",
-    "resume_hash": null,
-    "question_text": "How do multi-stage Docker builds and `.dockerignore` optimize production image size and security?",
-    "user_answer": "Updated answer: in FastAPI we use async def endpoints and dependency injection with connection pooling to sustain 10k rps with 20ms p99 latency.",
-    "skill": "Docker",
-    "difficulty": "Medium",
-    "based_on": "Resume Context",
-    "expected_points": [],
-    "_id": "d41282fb-cdb8-41be-9fec-1eefd122db51"
-  },
-  {
-    "id": "0263d95d-9b8e-4501-9d12-5da148b60c2d",
-    "question_id": "fc78db7a-ca53-46c6-82e1-d03a8e138993",
-    "question_attempt_id": "attempt_1b07a4b4f557",
-    "session_id": "test-strict-attempt-b979c5d0",
-    "overall_score": 19,
-    "relevance_score": 12,
-    "technical_accuracy_score": 10,
-    "completeness_score": 15,
-    "clarity_score": 45,
-    "confidence_score": 50,
-    "communication_score": 50,
-    "verdict_rating": "Off-Topic / Domain Mismatch",
-    "question_intent": "PERFORMANCE",
-    "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
-    "relevance_verdict": "RELEVANT",
+    "question_intent": "TECHNICAL_DECISION",
+    "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
+    "relevance_verdict": "IRRELEVANT",
     "concepts_covered": [],
     "concepts_missed": [
       "Box Model & Layout Engines (Grid / Flexbox)",
@@ -420,7 +355,7 @@
       "The response does not address Tailwind CSS or the core question asked.",
       "Structure your answer around Tailwind CSS mechanisms, architectural choices, and project trade-offs."
     ],
-    "improved_answer": "My resume highlights experience with CSS3, although it does not detail a standalone CSS performance refactor project. If asked about this in an interview, I would explain that I approach CSS architecture by maintaining low selector specificity to minimize browser style recalculations, using 'box-sizing: border-box' across components for predictable sizing, and structuring modular classes for reusability. To prevent expensive layout reflows and repaints, I focus on animating composited properties like transform and opacity, and test rendering performance using browser DevTools.",
+    "improved_answer": "When designing Resume Interview AI, we decided to decouple compute-heavy operations from the primary request-response cycle. In Resume Interview AI, selecting Tailwind CSS gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
     "follow_up_question": "How would you address Box Model & Layout Engines (Grid / Flexbox) if this Tailwind CSS implementation experienced a 10x traffic spike?",
     "next_recommended_difficulty": "Easy",
     "feedback_summary": "Off-topic response (19/100). The answer discusses an unrelated topic instead of addressing Tailwind CSS.",
@@ -433,26 +368,90 @@
     "answer_grounding": {
       "status": "Resume Grounded",
       "badge_variant": "info",
-      "answer_type": "Conceptual / Knowledge",
+      "answer_type": "Hypothetical / Technical",
       "question_intent": "TECHNICAL_DECISION",
-      "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
+      "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
       "evidence_used": [
         "Skill: Tailwind CSS",
         "Project: Resume Interview AI"
       ],
       "unsupported_claims": [],
-      "caution_note": "Scoped to avoid fabricating unverified CSS optimization projects while detailing solid styling practices.",
+      "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:32:34.135836+00:00",
+    "evaluated_at": "2026-08-18 05:38:51.089639+00:00",
     "resume_id": "sample-fullstack",
     "resume_hash": null,
-    "question_text": "Can you explain a key performance or architectural decision you made when working with CSS3?",
-    "user_answer": "In MongoDB, we establish compound indexes matching query filters and sort keys to avoid in-memory sorting, reducing query execution time from 400ms to 8ms.",
+    "question_text": "How do CSS Grid and Flexbox differ, and when should you choose one over the other?",
+    "user_answer": "Updated answer: in FastAPI we use async def endpoints and dependency injection with connection pooling to sustain 10k rps with 20ms p99 latency.",
     "skill": "Tailwind CSS",
     "difficulty": "Medium",
     "based_on": "Resume Context",
     "expected_points": [],
-    "_id": "2c18680b-f504-4a55-bd5f-d4ec36319357"
+    "_id": "d792bfac-6941-4433-9b99-f76f846e2e0b"
+  },
+  {
+    "id": "44c5065f-5a60-405d-a90b-5755e2cafb31",
+    "question_id": "59464dde-048d-4d08-be9c-3462d93e8ef2",
+    "question_attempt_id": "attempt_956c945d575b",
+    "session_id": "test-strict-attempt-2a65ea92",
+    "overall_score": 19,
+    "relevance_score": 12,
+    "technical_accuracy_score": 10,
+    "completeness_score": 15,
+    "clarity_score": 45,
+    "confidence_score": 50,
+    "communication_score": 50,
+    "verdict_rating": "Off-Topic / Domain Mismatch",
+    "question_intent": "BEHAVIORAL",
+    "answer_structure": "Situation \u2192 Task \u2192 Action \u2192 Result \u2192 Learning",
+    "relevance_verdict": "RELEVANT",
+    "concepts_covered": [],
+    "concepts_missed": [
+      "STAR Method Structure (Situation & Task Context)",
+      "Individual Technical Ownership & Action",
+      "Measurable Business & Engineering Result",
+      "Cross-Functional Collaboration & Resolution"
+    ],
+    "strengths": [
+      "Submitted technical text, but it focuses on an unrelated topic rather than Soft Skills & Communication."
+    ],
+    "weaknesses": [
+      "The response does not address Soft Skills & Communication or the core question asked.",
+      "Structure your answer around Soft Skills & Communication mechanisms, architectural choices, and project trade-offs."
+    ],
+    "improved_answer": "In that situation, our team was managing competing priorities under tight delivery constraints. In Resume Interview AI, selecting Soft Skills & Communication gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
+    "follow_up_question": "How would you address STAR Method Structure (Situation & Task Context) if this Soft Skills & Communication implementation experienced a 10x traffic spike?",
+    "next_recommended_difficulty": "Easy",
+    "feedback_summary": "Off-topic response (19/100). The answer discusses an unrelated topic instead of addressing Soft Skills & Communication.",
+    "star_feedback": {
+      "situation": "Context could frame real-world system scale and constraints more clearly.",
+      "task": "Target goal for Soft Skills & Communication needs sharper focus.",
+      "action": "Describe exact technical mechanisms of Soft Skills & Communication rather than high-level definitions.",
+      "result": "Missing quantitative metrics (e.g. % improvement, latency reduction, bundle savings)."
+    },
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "BEHAVIORAL",
+      "answer_structure": "Situation \u2192 Task \u2192 Action \u2192 Result \u2192 Learning",
+      "evidence_used": [
+        "Project: Resume Interview AI"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are hypothetical",
+      "claims_validation": []
+    },
+    "evaluated_at": "2026-08-18 05:38:51.705961+00:00",
+    "resume_id": "sample-fullstack",
+    "resume_hash": null,
+    "question_text": "Describe a situation where you had to quickly learn a new framework or technology to deliver a project feature.",
+    "user_answer": "In MongoDB, we establish compound indexes matching query filters and sort keys to avoid in-memory sorting, reducing query execution time from 400ms to 8ms.",
+    "skill": "Soft Skills & Communication",
+    "difficulty": "Medium",
+    "based_on": "Resume Context",
+    "expected_points": [],
+    "_id": "bb038eda-cde6-4a47-bc23-4c6c49efba14"
   }
 ]

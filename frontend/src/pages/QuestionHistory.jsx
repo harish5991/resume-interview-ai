@@ -124,7 +124,7 @@ export const QuestionHistory = () => {
   const uniqueHistory = React.useMemo(() => {
     const map = new Map();
     for (const item of history) {
-      const key = (item.question_id || item.question_text || '').trim() || (item.question ? item.question.id : '') || JSON.stringify(item);
+      const key = (item.question_text || item.question_id || (item.question ? item.question.id : '') || '').trim() || JSON.stringify(item);
       map.set(key, item);
     }
     return Array.from(map.values());

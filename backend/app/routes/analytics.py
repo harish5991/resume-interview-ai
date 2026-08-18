@@ -33,7 +33,7 @@ async def get_analytics(session_id: str = "default"):
     # Deduplicate keeping latest evaluation per unique question
     eval_map = {}
     for d in scoped_docs:
-        k = (d.get("question_id") or d.get("question_text", "")).strip()
+        k = (d.get("question_text") or d.get("question_id") or str(d.get("id", ""))).strip()
         if k:
             eval_map[k] = d
     evals = list(eval_map.values())

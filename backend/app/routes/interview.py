@@ -114,11 +114,12 @@ async def get_interview_history(session_id: str = "default"):
     col = db_manager.get_collection("evaluations")
     docs = await col.find({"session_id": session_id})
     
-    # Deduplicate keeping the latest evaluation per unique question
+    # Deduplicate keeping the latest evaluation per unique question text or ID
     eval_map = {}
     for d in docs:
-        k = d.get("question_id") or d.get("question_text")
-        eval_map[k] = d
+        k = (d.get("question_text") or d.get("question_id") or str(d.get("id", ""))).strip()
+        if k:
+            eval_map[k] = d
     return list(eval_map.values())
 
 @router.delete("/history")

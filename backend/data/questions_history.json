@@ -1,111 +1,41 @@
 [
   {
-    "id": "52572163-4805-4970-a6ec-a0d849038bf4",
+    "id": "1e17b556-11d4-4df2-b139-6e3ffd21aa09",
     "resume_id": "sample-fullstack",
     "resume_hash": null,
-    "question": "How do multi-stage Docker builds and `.dockerignore` optimize production image size and security?",
-    "based_on": "Resume Skill: Docker",
-    "skill": "Docker",
-    "difficulty": "Medium",
-    "question_type": "Technical",
-    "question_intent": null,
-    "why_this_question": "Evaluates Docker build performance and image hardening.",
-    "expected_answer_points": [
-      "Separating build toolchain from minimal runtime image (e.g. Alpine/Distroless)",
-      "Shrinking final image size by 70-90%",
-      "Excluding sensitive files and node_modules/.git via .dockerignore"
-    ],
-    "sample_answer": "Multi-stage builds allow compiling code and installing heavyweight build dependencies in an intermediate builder stage, then copying only the compiled artifacts into a lightweight runtime image (such as Alpine or Distroless). This reduces image size, minimizes the attack surface, and speeds up deployment rollouts.",
-    "answer_grounding": {
-      "status": "Resume Grounded",
-      "badge_variant": "info",
-      "answer_type": "Hypothetical / Technical",
-      "question_intent": "PERFORMANCE",
-      "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
-      "evidence_used": [
-        "Skill: Docker"
-      ],
-      "unsupported_claims": [],
-      "caution_note": "Technical recommendations are hypothetical",
-      "claims_validation": []
-    },
-    "is_bookmarked": false,
-    "created_at": "2026-08-18 05:32:32.527100+00:00",
-    "session_id": "test-strict-attempt-b979c5d0",
-    "_id": "478b5e03-e239-47ee-ab9e-24608766ff83"
-  },
-  {
-    "id": "fc78db7a-ca53-46c6-82e1-d03a8e138993",
-    "resume_id": "sample-fullstack",
-    "resume_hash": null,
-    "question": "Can you explain a key performance or architectural decision you made when working with CSS3?",
+    "question": "How do CSS Grid and Flexbox differ, and when should you choose one over the other?",
     "based_on": "Resume Skill: Tailwind CSS",
     "skill": "Tailwind CSS",
     "difficulty": "Medium",
     "question_type": "Technical",
     "question_intent": null,
-    "why_this_question": "Tests rendering performance, reflow/repaint mitigation, and maintainability.",
+    "why_this_question": "Evaluates 1D vs 2D layout architecture.",
     "expected_answer_points": [
-      "Structure modular classes to prevent specificity conflicts",
-      "Use box-sizing: border-box for layout predictability",
-      "Minimize layout reflows and repaints with browser DevTools"
+      "Flexbox is 1D (row or column); Grid is 2D (rows and columns simultaneously)",
+      "Flexbox for component-level alignment; Grid for page-level structural layouts",
+      "Subgrid and gap alignment"
     ],
-    "sample_answer": "My resume highlights experience with CSS3, although it does not detail a standalone CSS performance refactor project. If asked about this in an interview, I would explain that I approach CSS architecture by maintaining low selector specificity to minimize browser style recalculations, using 'box-sizing: border-box' across components for predictable sizing, and structuring modular classes for reusability. To prevent expensive layout reflows and repaints, I focus on animating composited properties like transform and opacity, and test rendering performance using browser DevTools.",
-    "answer_grounding": {
-      "status": "Resume Grounded",
-      "badge_variant": "info",
-      "answer_type": "Conceptual / Knowledge",
-      "question_intent": "TECHNICAL_DECISION",
-      "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
-      "evidence_used": [
-        "Skill: Tailwind CSS"
-      ],
-      "unsupported_claims": [],
-      "caution_note": "Scoped to avoid fabricating unverified CSS optimization projects while detailing solid styling practices.",
-      "claims_validation": []
-    },
-    "is_bookmarked": false,
-    "created_at": "2026-08-18 05:32:32.527142+00:00",
-    "session_id": "test-strict-attempt-b979c5d0",
-    "_id": "f4f5822d-a09a-4b6a-8c42-e907dbe55024"
-  },
-  {
-    "id": "7189895d-d73c-449f-b52c-0e5682cfd479",
-    "resume_id": "sample-fullstack",
-    "resume_hash": null,
-    "question": "What are ACID transactions, and how do database isolation levels balance concurrency against anomalies like dirty reads and phantom reads?",
-    "based_on": "Resume Skill: PostgreSQL",
-    "skill": "PostgreSQL",
-    "difficulty": "Medium",
-    "question_type": "Technical",
-    "question_intent": null,
-    "why_this_question": "Evaluates database transaction guarantees and concurrency control.",
-    "expected_answer_points": [
-      "Atomicity, Consistency, Isolation, Durability",
-      "Isolation levels: Read Uncommitted, Read Committed, Repeatable Read, Serializable",
-      "Anomalies: Dirty reads, non-repeatable reads, phantom reads"
-    ],
-    "sample_answer": "ACID guarantees that database transactions execute reliably. Isolation levels allow engineers to tune the trade-off between concurrency throughput and anomaly protection. `Read Committed` prevents dirty reads by locking modified rows, `Repeatable Read` uses MVCC snapshots to prevent non-repeatable reads, and `Serializable` enforces strict sequential order via two-phase locking or SSI, preventing phantom reads at the cost of concurrency.",
+    "sample_answer": "Flexbox is a 1-dimensional layout model ideal for aligning items along a single axis (such as navigation bars or form controls). CSS Grid is a 2-dimensional system designed for orchestrating complex macro-layouts across rows and columns simultaneously. I use Grid for page scaffolding and dashboard layouts, and Flexbox for micro-components within grid cells.",
     "answer_grounding": {
       "status": "Resume Grounded",
       "badge_variant": "info",
       "answer_type": "Hypothetical / Technical",
-      "question_intent": "DATABASE",
-      "answer_structure": "Data Requirements \u2192 Schema Design \u2192 Indexing/Query Strategy \u2192 Consistency",
+      "question_intent": "TECHNICAL_DECISION",
+      "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
       "evidence_used": [
-        "Skill: PostgreSQL"
+        "Skill: Tailwind CSS"
       ],
       "unsupported_claims": [],
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
     "is_bookmarked": false,
-    "created_at": "2026-08-18 05:32:32.527159+00:00",
-    "session_id": "test-strict-attempt-b979c5d0",
-    "_id": "fa990d50-ed04-4c7d-ad47-bd5e5e5f22f7"
+    "created_at": "2026-08-18 05:38:49.818298+00:00",
+    "session_id": "test-strict-attempt-2a65ea92",
+    "_id": "556dbe39-1678-4e92-bdf2-588df644f8af"
   },
   {
-    "id": "c28b11d4-57b2-48a7-bcb0-1590906b9ac9",
+    "id": "59464dde-048d-4d08-be9c-3462d93e8ef2",
     "resume_id": "sample-fullstack",
     "resume_hash": null,
     "question": "Describe a situation where you had to quickly learn a new framework or technology to deliver a project feature.",
@@ -135,8 +65,80 @@
       "claims_validation": []
     },
     "is_bookmarked": false,
-    "created_at": "2026-08-18 05:32:32.527174+00:00",
-    "session_id": "test-strict-attempt-b979c5d0",
-    "_id": "4a2e1483-ab28-4eb8-afbb-ef5388437186"
+    "created_at": "2026-08-18 05:38:49.818337+00:00",
+    "session_id": "test-strict-attempt-2a65ea92",
+    "_id": "81425aae-7051-47ae-b257-935bbba342cd"
+  },
+  {
+    "id": "0ae2e5f0-4dce-447b-9ab5-a0da50258e72",
+    "resume_id": "sample-fullstack",
+    "resume_hash": null,
+    "question": "If 'Resume Interview AI' were to experience a 10x increase in volume, how would you scale your Python implementation?",
+    "based_on": "Project: Resume Interview AI",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "question_type": "Project Based",
+    "question_intent": null,
+    "why_this_question": "Assesses system design, bottleneck diagnosis, query optimization, and structured scaling.",
+    "expected_answer_points": [
+      "Identify bottlenecks through monitoring and profiling",
+      "Optimize database indexing and execution plans",
+      "Introduce connection pooling and caching where appropriate",
+      "Consider read replicas or horizontal scaling if read-heavy"
+    ],
+    "sample_answer": "For a 10x increase in volume, my approach would focus on isolating bottlenecks through proactive profiling and metrics. I would first inspect slow database queries and execution plans to optimize indexing and eliminate full table scans. Next, I would introduce connection pooling, review read-heavy access patterns to evaluate in-memory caching where applicable, and configure read replicas if database reads become saturated. Since my background includes working with Python, I would apply these scaling optimizations incrementally based on measured production constraints.",
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "SCALABILITY",
+      "answer_structure": "Current Architecture \u2192 Bottleneck Analysis \u2192 Layered Scaling \u2192 Trade-offs",
+      "evidence_used": [
+        "Skill: Python",
+        "Project: Resume Interview AI"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are framed conditionally to reflect honest scaling principles.",
+      "claims_validation": []
+    },
+    "is_bookmarked": false,
+    "created_at": "2026-08-18 05:38:49.818353+00:00",
+    "session_id": "test-strict-attempt-2a65ea92",
+    "_id": "d76c50d3-f65d-43e3-ae85-80a59029d1ee"
+  },
+  {
+    "id": "8cd92c79-2ff3-4357-9d3a-cb9e1b9d48a1",
+    "resume_id": "sample-fullstack",
+    "resume_hash": null,
+    "question": "How does FastAPI utilize Pydantic models for request validation and serialization?",
+    "based_on": "Resume Skill: FastAPI",
+    "skill": "FastAPI",
+    "difficulty": "Medium",
+    "question_type": "Technical",
+    "question_intent": null,
+    "why_this_question": "Tests data validation, type hints, and API security.",
+    "expected_answer_points": [
+      "Automatic 422 Unprocessable Entity responses for invalid types",
+      "Serialization to JSON",
+      "Nested models and field validators"
+    ],
+    "sample_answer": "FastAPI parses incoming JSON bodies against defined Pydantic schemas. If fields are missing or have incorrect data types, it automatically returns structured 422 Unprocessable Entity responses before executing the route handler.",
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "API_DESIGN",
+      "answer_structure": "Requirements & Resource Modeling \u2192 Endpoint Contract & Schema \u2192 Validation & Idempotency \u2192 Resilience",
+      "evidence_used": [
+        "Skill: FastAPI"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are hypothetical",
+      "claims_validation": []
+    },
+    "is_bookmarked": false,
+    "created_at": "2026-08-18 05:38:49.818365+00:00",
+    "session_id": "test-strict-attempt-2a65ea92",
+    "_id": "582dfc4c-8df3-45c3-838d-4608db637f12"
   }
 ]

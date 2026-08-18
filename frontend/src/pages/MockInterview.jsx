@@ -171,10 +171,14 @@ export const MockInterview = () => {
       });
 
       if (res.data && res.data.length > 0) {
-        const enriched = res.data.map((q, idx) => ({
-          ...q,
-          instance_id: `q_${Date.now()}_${idx}_${Math.random().toString(36).substring(2, 7)}`,
-        }));
+        const enriched = res.data.map((q, idx) => {
+          const uniqueId = q.id || `q_${Date.now()}_${idx}_${Math.random().toString(36).substring(2, 7)}`;
+          return {
+            ...q,
+            id: uniqueId,
+            instance_id: uniqueId,
+          };
+        });
         setQuestions(enriched);
         setCurrentIndex(0);
         setUserAnswer('');
@@ -315,9 +319,10 @@ export const MockInterview = () => {
     showToast('Evaluating answer across technical criteria...', 'info');
 
     try {
+      const questionUniqueId = currentQuestion?.id || currentQuestion?.instance_id || `q_${currentIndex}_${currentQuestion?.skill || 'tech'}`;
       const res = await interviewApi.evaluateAnswer({
         session_id: currentSessionId || 'default',
-        question_id: currentQuestion?.id || `q-${currentIndex}`,
+        question_id: questionUniqueId,
         question_attempt_id: submissionAttemptId,
         question_text: currentQuestion?.question || 'Technical question',
         based_on: currentQuestion?.based_on || 'Resume Context',

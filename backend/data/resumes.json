@@ -18573,5 +18573,615 @@
     ],
     "uploaded_at": "2026-08-18 05:32:30.094923+00:00",
     "_id": "4716919b-633c-4306-bdc7-fce9a27812be"
+  },
+  {
+    "id": "8ffe0f74-8ac0-478a-b84d-d3ddae66384d",
+    "name": "Alex Chen",
+    "email": "alex.chen@example.com",
+    "phone": "(555) 234-5678",
+    "location": "Alex Chen\nSan Francisco, CA",
+    "summary": "Alex Chen\nSan Francisco, CA | alex.chen@example.com | (555) 234-5678 | github.com/alexchen\nFull-Stack Software Engineer with 3+ years experience building web applications with Python, FastAPI, React, a",
+    "skills": [
+      "PostgreSQL",
+      "FastAPI",
+      "REST APIs",
+      "Django",
+      "Html5",
+      "TypeScript",
+      "JavaScript",
+      "Docker",
+      "MongoDB",
+      "GitHub",
+      "Git",
+      "React",
+      "Redis",
+      "CI/CD",
+      "SQL",
+      "Node.js",
+      "Python",
+      "Css3",
+      "MySQL"
+    ],
+    "skill_categories": {
+      "Languages": [
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "SQL"
+      ],
+      "Frontend": [
+        "React"
+      ],
+      "Backend & APIs": [
+        "Node.js",
+        "FastAPI",
+        "Django",
+        "REST APIs"
+      ],
+      "Databases": [
+        "MongoDB",
+        "PostgreSQL",
+        "MySQL",
+        "Redis"
+      ],
+      "Cloud & DevOps": [
+        "Docker",
+        "Git",
+        "GitHub",
+        "CI/CD"
+      ]
+    },
+    "experience": [
+      {
+        "role": "Software Engineer",
+        "company": "CloudScale Systems (2022",
+        "duration": "2022 - Present",
+        "location": null,
+        "responsibilities": [
+          "Engineered asynchronous REST APIs using FastAPI and MongoDB serving 50k+ daily active users.",
+          "Built real-time analytics dashboard in React with modular state management."
+        ],
+        "technologies": [
+          "FastAPI",
+          "REST APIs",
+          "MongoDB",
+          "React"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "title": "TECHNICAL SKILLS",
+        "description": "Languages: Python, JavaScript, TypeScript, SQL, HTML5, CSS3 Frameworks: FastAPI, React, Node.js, Django",
+        "technologies": [
+          "Redis",
+          "CI/CD",
+          "SQL",
+          "PostgreSQL",
+          "FastAPI",
+          "Django",
+          "Docker",
+          "MongoDB",
+          "Node.js",
+          "Python",
+          "MySQL",
+          "Html5",
+          "TypeScript",
+          "Git",
+          "React",
+          "Css3",
+          "JavaScript"
+        ],
+        "highlights": [
+          "Languages: Python, JavaScript, TypeScript, SQL, HTML5, CSS3",
+          "Frameworks: FastAPI, React, Node.js, Django",
+          "Databases: PostgreSQL, MySQL, Redis, MongoDB",
+          "DevOps: Docker, Git, CI/CD"
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "Software Engineer",
+        "description": "Engineered asynchronous REST APIs using FastAPI and MongoDB serving 50k+ daily active users. Built real-time analytics dashboard in React with modular state management.",
+        "technologies": [
+          "FastAPI",
+          "REST APIs",
+          "MongoDB",
+          "React"
+        ],
+        "highlights": [
+          "Engineered asynchronous REST APIs using FastAPI and MongoDB serving 50k+ daily active users.",
+          "Built real-time analytics dashboard in React with modular state management."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "Inventory Management Platform",
+        "description": "Architected REST API backend with MySQL relational storage and automated stock alerts.",
+        "technologies": [
+          "Python",
+          "FastAPI",
+          "REST APIs",
+          "MySQL"
+        ],
+        "highlights": [
+          "Architected REST API backend with MySQL relational storage and automated stock alerts."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "B.S. in Computer Science",
+        "description": "Project focused on B.S. in Computer Science.",
+        "technologies": [],
+        "highlights": [],
+        "role": null,
+        "link": null
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S. in Computer Science",
+        "institution": "University of California",
+        "year": "2022",
+        "grade": null
+      }
+    ],
+    "certifications": [],
+    "achievements": [],
+    "raw_text": "Alex Chen\nSan Francisco, CA | alex.chen@example.com | (555) 234-5678 | github.com/alexchen\nPROFESSIONAL SUMMARY\nFull-Stack Software Engineer with 3+ years experience building web applications with Python, FastAPI, React, a\nTECHNICAL SKILLS\nLanguages: Python, JavaScript, TypeScript, SQL, HTML5, CSS3\nFrameworks: FastAPI, React, Node.js, Django\nDatabases: PostgreSQL, MySQL, Redis, MongoDB\nDevOps: Docker, Git, CI/CD\nWORK EXPERIENCE\nSoftware Engineer | CloudScale Systems (2022 - Present)\n- Engineered asynchronous REST APIs using FastAPI and MongoDB serving 50k+ daily active users.\n- Built real-time analytics dashboard in React with modular state management.\nPROJECTS\nInventory Management Platform | Python, FastAPI, MySQL\n- Architected REST API backend with MySQL relational storage and automated stock alerts.\nEDUCATION\nB.S. in Computer Science | University of California, Berkeley (2022)",
+    "filename": "Alex_Chen_Resume.pdf",
+    "resume_hash": "fed98495c0a9554c1af55f72d1fc89be0b225577ad62182bbbbbe995f99d243a",
+    "validation_status": "VALID",
+    "resume_confidence": 1.0,
+    "detected_document_type": "RESUME",
+    "validation_signals": [
+      "Contact Information (Email / Phone / Profiles)",
+      "Skills & Technical Competencies",
+      "Work Experience / Employment History",
+      "Projects & Implementations",
+      "Education & Degrees",
+      "Professional Summary / Objective"
+    ],
+    "uploaded_at": "2026-08-18 05:38:44.942077+00:00",
+    "_id": "b7714e66-05d9-430e-9173-b2d993189d47"
+  },
+  {
+    "id": "7c89f027-6dcc-40e5-93f8-ab9fefdc55a3",
+    "name": "Alice Walker",
+    "email": "alice.w@example.com",
+    "phone": "(555) 111-2222",
+    "location": "San Francisco, CA",
+    "summary": "Alice Walker\nEmail: alice.w@example.com | Phone: (555) 111-2222 | San Francisco, CA\nFrontend Engineer with React and Next.js expertise.",
+    "skills": [
+      "HTML5",
+      "Tailwind CSS",
+      "CSS3",
+      "TypeScript",
+      "Next.js",
+      "React",
+      "JavaScript"
+    ],
+    "skill_categories": {
+      "Languages": [
+        "JavaScript",
+        "TypeScript",
+        "HTML5",
+        "CSS3"
+      ],
+      "Frontend": [
+        "React",
+        "Next.js",
+        "Tailwind CSS"
+      ]
+    },
+    "experience": [
+      {
+        "role": "Frontend Developer",
+        "company": "WebCorp (2022",
+        "duration": "2022 - 2024",
+        "location": null,
+        "responsibilities": [
+          "Developed responsive web interfaces in React."
+        ],
+        "technologies": [
+          "React"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "title": "SUMMARY",
+        "description": "Frontend Engineer with React and Next.js expertise.",
+        "technologies": [
+          "Next.js",
+          "React"
+        ],
+        "highlights": [
+          "Frontend Engineer with React and Next.js expertise."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "TECHNICAL SKILLS",
+        "description": "Languages: JavaScript, TypeScript, HTML, CSS Frameworks: React, Next.js, Tailwind CSS",
+        "technologies": [
+          "HTML5",
+          "Tailwind CSS",
+          "CSS3",
+          "TypeScript",
+          "Next.js",
+          "React",
+          "JavaScript"
+        ],
+        "highlights": [
+          "Languages: JavaScript, TypeScript, HTML, CSS",
+          "Frameworks: React, Next.js, Tailwind CSS"
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "Frontend Developer",
+        "description": "Developed responsive web interfaces in React.",
+        "technologies": [
+          "React"
+        ],
+        "highlights": [
+          "Developed responsive web interfaces in React."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "B.S. in Computer Science",
+        "description": "Project focused on B.S. in Computer Science.",
+        "technologies": [],
+        "highlights": [],
+        "role": null,
+        "link": null
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S. in Computer Science",
+        "institution": "Stanford University (2022)",
+        "year": "2022",
+        "grade": null
+      }
+    ],
+    "certifications": [],
+    "achievements": [],
+    "raw_text": "Alice Walker\nEmail: alice.w@example.com | Phone: (555) 111-2222 | San Francisco, CA\nSUMMARY\nFrontend Engineer with React and Next.js expertise.\nTECHNICAL SKILLS\nLanguages: JavaScript, TypeScript, HTML, CSS\nFrameworks: React, Next.js, Tailwind CSS\nEXPERIENCE\nFrontend Developer | WebCorp (2022 - 2024)\n- Developed responsive web interfaces in React.\nEDUCATION\nB.S. in Computer Science | Stanford University (2022)",
+    "filename": "resume.pdf",
+    "resume_hash": "b1131ac862661196db85e37bec3d13594483d0ee221738dbeba4eac19cc5c845",
+    "validation_status": "VALID",
+    "resume_confidence": 1.0,
+    "detected_document_type": "RESUME",
+    "validation_signals": [
+      "Contact Information (Email / Phone / Profiles)",
+      "Skills & Technical Competencies",
+      "Work Experience / Employment History",
+      "Projects & Implementations",
+      "Education & Degrees",
+      "Professional Summary / Objective"
+    ],
+    "uploaded_at": "2026-08-18 05:38:45.152051+00:00",
+    "_id": "cdcce516-6c82-4304-aa00-f05dc1216984"
+  },
+  {
+    "id": "98480506-9822-4d0d-b8ff-36898336ce2f",
+    "name": "Bob Miller",
+    "email": "bob.m@example.com",
+    "phone": "(555) 333-4444",
+    "location": "Seattle, WA",
+    "summary": "Bob Miller\nEmail: bob.m@example.com | Phone: (555) 333-4444 | Seattle, WA\nCloud Systems Engineer specializing in Go and Kubernetes infrastructure.",
+    "skills": [
+      "CI/CD",
+      "SQL",
+      "Go",
+      "Docker",
+      "Ci/Cd Pipelines",
+      "Terraform",
+      "Kubernetes",
+      "AWS"
+    ],
+    "skill_categories": {
+      "Languages": [
+        "Go",
+        "SQL"
+      ],
+      "Cloud & DevOps": [
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "Terraform"
+      ]
+    },
+    "experience": [
+      {
+        "role": "DevOps Engineer",
+        "company": "CloudInfra Inc (2021",
+        "duration": "2021 - Present",
+        "location": null,
+        "responsibilities": [
+          "Managed production Kubernetes clusters and automated CI/CD pipelines."
+        ],
+        "technologies": [
+          "Ci/Cd Pipelines",
+          "CI/CD",
+          "Kubernetes"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "title": "SUMMARY",
+        "description": "Cloud Systems Engineer specializing in Go and Kubernetes infrastructure.",
+        "technologies": [
+          "Go",
+          "Kubernetes"
+        ],
+        "highlights": [
+          "Cloud Systems Engineer specializing in Go and Kubernetes infrastructure."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "TECHNICAL SKILLS",
+        "description": "Languages: Go, Golang, SQL, Bash DevOps: Docker, Kubernetes, Terraform, AWS",
+        "technologies": [
+          "SQL",
+          "Go",
+          "Docker",
+          "Terraform",
+          "Kubernetes",
+          "AWS"
+        ],
+        "highlights": [
+          "Languages: Go, Golang, SQL, Bash",
+          "DevOps: Docker, Kubernetes, Terraform, AWS"
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "DevOps Engineer",
+        "description": "Managed production Kubernetes clusters and automated CI/CD pipelines.",
+        "technologies": [
+          "Ci/Cd Pipelines",
+          "CI/CD",
+          "Kubernetes"
+        ],
+        "highlights": [
+          "Managed production Kubernetes clusters and automated CI/CD pipelines."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "B.S. in Software Engineering",
+        "description": "Project focused on B.S. in Software Engineering.",
+        "technologies": [],
+        "highlights": [],
+        "role": null,
+        "link": null
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S. in Software Engineering",
+        "institution": "University of Washington (2021)",
+        "year": "2021",
+        "grade": null
+      }
+    ],
+    "certifications": [],
+    "achievements": [],
+    "raw_text": "Bob Miller\nEmail: bob.m@example.com | Phone: (555) 333-4444 | Seattle, WA\nSUMMARY\nCloud Systems Engineer specializing in Go and Kubernetes infrastructure.\nTECHNICAL SKILLS\nLanguages: Go, Golang, SQL, Bash\nDevOps: Docker, Kubernetes, Terraform, AWS\nEXPERIENCE\nDevOps Engineer | CloudInfra Inc (2021 - Present)\n- Managed production Kubernetes clusters and automated CI/CD pipelines.\nEDUCATION\nB.S. in Software Engineering | University of Washington (2021)",
+    "filename": "resume.pdf",
+    "resume_hash": "266aa9a63e64f23a444d1aae4fb5abaad9c81e0e1341cd03ba111319440a2153",
+    "validation_status": "VALID",
+    "resume_confidence": 0.95,
+    "detected_document_type": "RESUME",
+    "validation_signals": [
+      "Contact Information (Email / Phone / Profiles)",
+      "Skills & Technical Competencies",
+      "Work Experience / Employment History",
+      "Education & Degrees",
+      "Professional Summary / Objective"
+    ],
+    "uploaded_at": "2026-08-18 05:38:45.347854+00:00",
+    "_id": "984bbcf2-aa5a-4a2a-8a54-e72c276b4e72"
+  },
+  {
+    "id": "ed4a29af-ed5c-4ac4-9dc9-ac1c329a6a2a",
+    "name": "David Miller",
+    "email": "david.m@example.com",
+    "phone": "(555) 987-6543",
+    "location": "David Miller\nSeattle, WA",
+    "summary": "David Miller\nSeattle, WA | david.m@example.com | (555) 987-6543 | linkedin.com/in/davidmiller\nExperienced Software Engineer with 4 years designing distributed Python microservices and React frontends.",
+    "skills": [
+      "Redis",
+      "Microservices",
+      "CI/CD",
+      "AWS",
+      "SQL",
+      "PostgreSQL",
+      "FastAPI",
+      "REST APIs",
+      "Django",
+      "MongoDB",
+      "Docker",
+      "Node.js",
+      "Python",
+      "TypeScript",
+      "Git",
+      "React",
+      "Kafka",
+      "JavaScript"
+    ],
+    "skill_categories": {
+      "Languages": [
+        "Python",
+        "JavaScript",
+        "TypeScript",
+        "SQL"
+      ],
+      "Frontend": [
+        "React"
+      ],
+      "Backend & APIs": [
+        "Node.js",
+        "FastAPI",
+        "Django",
+        "REST APIs",
+        "Microservices"
+      ],
+      "Databases": [
+        "MongoDB",
+        "PostgreSQL",
+        "Redis"
+      ],
+      "Cloud & DevOps": [
+        "AWS",
+        "Docker",
+        "Git",
+        "CI/CD"
+      ]
+    },
+    "experience": [
+      {
+        "role": "Software Engineer",
+        "company": "TechCore Systems (2021",
+        "duration": "2021 - Present",
+        "location": null,
+        "responsibilities": [
+          "Developed asynchronous REST API endpoints using FastAPI and PostgreSQL.",
+          "Optimized Redis caching layer reducing database read load by 60%."
+        ],
+        "technologies": [
+          "PostgreSQL",
+          "FastAPI",
+          "REST APIs",
+          "Redis"
+        ]
+      }
+    ],
+    "projects": [
+      {
+        "title": "PROFESSIONAL SUMMARY",
+        "description": "Experienced Software Engineer with 4 years designing distributed Python microservices and React frontends.",
+        "technologies": [
+          "Python",
+          "Microservices",
+          "React"
+        ],
+        "highlights": [
+          "Experienced Software Engineer with 4 years designing distributed Python microservices and React frontends."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "TECHNICAL SKILLS",
+        "description": "Languages: Python, JavaScript, TypeScript, SQL Frameworks: FastAPI, Django, React, Node.js",
+        "technologies": [
+          "Redis",
+          "CI/CD",
+          "SQL",
+          "PostgreSQL",
+          "FastAPI",
+          "Django",
+          "Docker",
+          "MongoDB",
+          "Node.js",
+          "Python",
+          "TypeScript",
+          "Git",
+          "React",
+          "JavaScript",
+          "AWS"
+        ],
+        "highlights": [
+          "Languages: Python, JavaScript, TypeScript, SQL",
+          "Frameworks: FastAPI, Django, React, Node.js",
+          "Databases: PostgreSQL, Redis, MongoDB",
+          "DevOps: Docker, Git, CI/CD, AWS"
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "Software Engineer",
+        "description": "Developed asynchronous REST API endpoints using FastAPI and PostgreSQL. Optimized Redis caching layer reducing database read load by 60%.",
+        "technologies": [
+          "PostgreSQL",
+          "FastAPI",
+          "REST APIs",
+          "Redis"
+        ],
+        "highlights": [
+          "Developed asynchronous REST API endpoints using FastAPI and PostgreSQL.",
+          "Optimized Redis caching layer reducing database read load by 60%."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "Event Stream Processing Engine",
+        "description": "Implemented real-time Kafka consumer and event processing pipeline.",
+        "technologies": [
+          "Python",
+          "FastAPI",
+          "Redis",
+          "Kafka"
+        ],
+        "highlights": [
+          "Implemented real-time Kafka consumer and event processing pipeline."
+        ],
+        "role": null,
+        "link": null
+      },
+      {
+        "title": "B.S. in Computer Science",
+        "description": "Project focused on B.S. in Computer Science.",
+        "technologies": [],
+        "highlights": [],
+        "role": null,
+        "link": null
+      }
+    ],
+    "education": [
+      {
+        "degree": "B.S. in Computer Science",
+        "institution": "University of Washington (2021)",
+        "year": "2021",
+        "grade": null
+      }
+    ],
+    "certifications": [],
+    "achievements": [],
+    "raw_text": "David Miller\nSeattle, WA | david.m@example.com | (555) 987-6543 | linkedin.com/in/davidmiller\nPROFESSIONAL SUMMARY\nExperienced Software Engineer with 4 years designing distributed Python microservices and React frontends.\nTECHNICAL SKILLS\nLanguages: Python, JavaScript, TypeScript, SQL\nFrameworks: FastAPI, Django, React, Node.js\nDatabases: PostgreSQL, Redis, MongoDB\nDevOps: Docker, Git, CI/CD, AWS\nWORK EXPERIENCE\nSoftware Engineer | TechCore Systems (2021 - Present)\n- Developed asynchronous REST API endpoints using FastAPI and PostgreSQL.\n- Optimized Redis caching layer reducing database read load by 60%.\nPROJECTS\nEvent Stream Processing Engine | Python, FastAPI, Redis\n- Implemented real-time Kafka consumer and event processing pipeline.\nEDUCATION\nB.S. in Computer Science | University of Washington (2021)",
+    "filename": "David_Miller_Resume.pdf",
+    "resume_hash": "595f7b8a48d0703dd0db5bb8cca1fe370b8b5be50c6dd3a64976e9d5a64eaa20",
+    "validation_status": "VALID",
+    "resume_confidence": 1.0,
+    "detected_document_type": "RESUME",
+    "validation_signals": [
+      "Contact Information (Email / Phone / Profiles)",
+      "Skills & Technical Competencies",
+      "Work Experience / Employment History",
+      "Projects & Implementations",
+      "Education & Degrees",
+      "Professional Summary / Objective"
+    ],
+    "uploaded_at": "2026-08-18 05:38:47.673766+00:00",
+    "_id": "20ed7ae5-e36d-4e1b-b15f-2ca0de16dff3"
   }
 ]
