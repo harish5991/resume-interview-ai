@@ -1,9 +1,9 @@
 [
   {
-    "id": "b373572a-df3c-48cb-bcea-5a14ba6c87ad",
+    "id": "47f77b09-c70e-4724-926c-f7c39e5b09ce",
     "question_id": "q-opencv-01",
-    "question_attempt_id": "attempt_1_f4242c",
-    "session_id": "test-repeat-sess-b622a9",
+    "question_attempt_id": "attempt_1_0f3597",
+    "session_id": "test-repeat-sess-8e680e",
     "overall_score": 0,
     "relevance_score": 0,
     "technical_accuracy_score": 0,
@@ -51,7 +51,7 @@
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:38:47.691872+00:00",
+    "evaluated_at": "2026-08-18 05:48:30.848110+00:00",
     "resume_id": null,
     "resume_hash": null,
     "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
@@ -60,13 +60,13 @@
     "difficulty": "Medium",
     "based_on": "Resume Skill: OpenCV",
     "expected_points": [],
-    "_id": "302c26f8-9991-4aba-b77a-f2ef98ba4580"
+    "_id": "560b9a8b-3b67-447f-9e64-8dfa39b15cf9"
   },
   {
-    "id": "c31d2b10-48f1-4da0-8bfe-9bcb0ea85e73",
+    "id": "a5d0224d-c26e-4ecb-94e7-9915f84c8746",
     "question_id": "q-opencv-01",
-    "question_attempt_id": "attempt_2_247134",
-    "session_id": "test-repeat-sess-b622a9",
+    "question_attempt_id": "attempt_2_f63e46",
+    "session_id": "test-repeat-sess-8e680e",
     "overall_score": 85,
     "relevance_score": 82,
     "technical_accuracy_score": 96,
@@ -117,7 +117,7 @@
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:38:48.288348+00:00",
+    "evaluated_at": "2026-08-18 05:48:31.322020+00:00",
     "resume_id": null,
     "resume_hash": null,
     "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
@@ -126,13 +126,13 @@
     "difficulty": "Medium",
     "based_on": "Resume Skill: OpenCV",
     "expected_points": [],
-    "_id": "787b377c-3764-4cd0-85fb-ffb18dbe556f"
+    "_id": "e5d59768-1522-47c9-8f7c-5453f4da6879"
   },
   {
-    "id": "6fb51bf2-d7f9-4d1c-ad70-03da251b78bd",
+    "id": "16dd3c32-c75b-42e8-bc34-ddb25bebc39c",
     "question_id": "q-opencv-01",
-    "question_attempt_id": "attempt_3_a78a8a",
-    "session_id": "test-repeat-sess-b622a9",
+    "question_attempt_id": "attempt_3_69cfec",
+    "session_id": "test-repeat-sess-8e680e",
     "overall_score": 27,
     "relevance_score": 20,
     "technical_accuracy_score": 11,
@@ -182,7 +182,7 @@
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:38:48.794435+00:00",
+    "evaluated_at": "2026-08-18 05:48:31.812182+00:00",
     "resume_id": null,
     "resume_hash": null,
     "question_text": "How did you use OpenCV in your computer vision or image processing pipeline?",
@@ -191,13 +191,13 @@
     "difficulty": "Medium",
     "based_on": "Resume Skill: OpenCV",
     "expected_points": [],
-    "_id": "d9d901d3-82fd-4256-9e9c-3162d69ef471"
+    "_id": "9ceb6f8c-98e9-4841-85b8-1c18c67d0b4d"
   },
   {
-    "id": "6159c88b-6d6f-4f30-8c24-081d094d096f",
+    "id": "762cb917-c26a-4c56-aac6-498bc5c5edda",
     "question_id": "q-sql-02",
-    "question_attempt_id": "attempt_b_bdc49f",
-    "session_id": "test-repeat-sess-b622a9",
+    "question_attempt_id": "attempt_b_fd0ea8",
+    "session_id": "test-repeat-sess-8e680e",
     "overall_score": 80,
     "relevance_score": 85,
     "technical_accuracy_score": 94,
@@ -249,7 +249,7 @@
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:38:49.464138+00:00",
+    "evaluated_at": "2026-08-18 05:48:32.367078+00:00",
     "resume_id": null,
     "resume_hash": null,
     "question_text": "How do B-tree indexes and query execution plans optimize SQL database performance?",
@@ -258,200 +258,205 @@
     "difficulty": "Medium",
     "based_on": "Resume Skill: SQL",
     "expected_points": [],
-    "_id": "8ea98431-001a-472a-9bb6-e1da1d557e5a"
+    "_id": "436d80c8-4a5c-4286-b4ef-33e091dcc587"
   },
   {
-    "id": "a36357d8-07c7-46ce-966f-61e01839880a",
-    "question_id": "1e17b556-11d4-4df2-b139-6e3ffd21aa09",
-    "question_attempt_id": "attempt_4953831b4d45",
-    "session_id": "test-strict-attempt-2a65ea92",
-    "overall_score": 19,
-    "relevance_score": 12,
-    "technical_accuracy_score": 10,
-    "completeness_score": 15,
-    "clarity_score": 45,
-    "confidence_score": 50,
-    "communication_score": 50,
-    "verdict_rating": "Off-Topic / Domain Mismatch",
-    "question_intent": "TECHNICAL_DECISION",
-    "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
-    "relevance_verdict": "IRRELEVANT",
-    "concepts_covered": [],
-    "concepts_missed": [
-      "Box Model & Layout Engines (Grid / Flexbox)",
-      "Critical Rendering Path (Reflow & Repaint)",
-      "Hardware-Accelerated Transforms & Animations",
-      "Specificity & Cascade Architecture (BEM / CSS Modules)"
-    ],
-    "strengths": [
-      "Submitted technical text, but it focuses on Fastapi rather than Tailwind CSS."
-    ],
-    "weaknesses": [
-      "The response does not address Tailwind CSS or the core question asked.",
-      "Structure your answer around Tailwind CSS mechanisms, architectural choices, and project trade-offs."
-    ],
-    "improved_answer": "A key architectural decision in Resume Interview AI was choosing Tailwind CSS to enforce structured data flow and separation of concerns. In Resume Interview AI, selecting Tailwind CSS gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
-    "follow_up_question": "How would you address Box Model & Layout Engines (Grid / Flexbox) if this Tailwind CSS implementation experienced a 10x traffic spike?",
-    "next_recommended_difficulty": "Easy",
-    "feedback_summary": "Off-topic response (19/100). The answer discusses Fastapi instead of addressing Tailwind CSS.",
-    "star_feedback": {
-      "situation": "Context could frame real-world system scale and constraints more clearly.",
-      "task": "Target goal for Tailwind CSS needs sharper focus.",
-      "action": "Describe exact technical mechanisms of Tailwind CSS rather than high-level definitions.",
-      "result": "Missing quantitative metrics (e.g. % improvement, latency reduction, bundle savings)."
-    },
-    "answer_grounding": {
-      "status": "Resume Grounded",
-      "badge_variant": "info",
-      "answer_type": "Hypothetical / Technical",
-      "question_intent": "TECHNICAL_DECISION",
-      "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
-      "evidence_used": [
-        "Skill: Tailwind CSS",
-        "Project: Resume Interview AI"
-      ],
-      "unsupported_claims": [],
-      "caution_note": "Technical recommendations are hypothetical",
-      "claims_validation": []
-    },
-    "evaluated_at": "2026-08-18 05:38:50.472978+00:00",
-    "resume_id": "sample-fullstack",
-    "resume_hash": null,
-    "question_text": "How do CSS Grid and Flexbox differ, and when should you choose one over the other?",
-    "user_answer": "In Python and FastAPI, we optimize async routes using non-blocking I/O and Pydantic validation schemas to handle 5k requests per second with sub-25ms latency.",
-    "skill": "Tailwind CSS",
-    "difficulty": "Medium",
-    "based_on": "Resume Context",
-    "expected_points": [],
-    "_id": "002c61f0-a6e6-4140-beef-38f3b07682bf"
-  },
-  {
-    "id": "582b8a5a-e36a-4635-817e-5081dfd59b12",
-    "question_id": "1e17b556-11d4-4df2-b139-6e3ffd21aa09",
-    "question_attempt_id": "attempt_fb35e8ae28b0",
-    "session_id": "test-strict-attempt-2a65ea92",
-    "overall_score": 19,
-    "relevance_score": 12,
-    "technical_accuracy_score": 10,
-    "completeness_score": 15,
-    "clarity_score": 45,
-    "confidence_score": 50,
-    "communication_score": 50,
-    "verdict_rating": "Off-Topic / Domain Mismatch",
-    "question_intent": "TECHNICAL_DECISION",
-    "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
-    "relevance_verdict": "IRRELEVANT",
-    "concepts_covered": [],
-    "concepts_missed": [
-      "Box Model & Layout Engines (Grid / Flexbox)",
-      "Critical Rendering Path (Reflow & Repaint)",
-      "Hardware-Accelerated Transforms & Animations",
-      "Specificity & Cascade Architecture (BEM / CSS Modules)"
-    ],
-    "strengths": [
-      "Submitted technical text, but it focuses on an unrelated topic rather than Tailwind CSS."
-    ],
-    "weaknesses": [
-      "The response does not address Tailwind CSS or the core question asked.",
-      "Structure your answer around Tailwind CSS mechanisms, architectural choices, and project trade-offs."
-    ],
-    "improved_answer": "When designing Resume Interview AI, we decided to decouple compute-heavy operations from the primary request-response cycle. In Resume Interview AI, selecting Tailwind CSS gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
-    "follow_up_question": "How would you address Box Model & Layout Engines (Grid / Flexbox) if this Tailwind CSS implementation experienced a 10x traffic spike?",
-    "next_recommended_difficulty": "Easy",
-    "feedback_summary": "Off-topic response (19/100). The answer discusses an unrelated topic instead of addressing Tailwind CSS.",
-    "star_feedback": {
-      "situation": "Context could frame real-world system scale and constraints more clearly.",
-      "task": "Target goal for Tailwind CSS needs sharper focus.",
-      "action": "Describe exact technical mechanisms of Tailwind CSS rather than high-level definitions.",
-      "result": "Missing quantitative metrics (e.g. % improvement, latency reduction, bundle savings)."
-    },
-    "answer_grounding": {
-      "status": "Resume Grounded",
-      "badge_variant": "info",
-      "answer_type": "Hypothetical / Technical",
-      "question_intent": "TECHNICAL_DECISION",
-      "answer_structure": "Decision Context \u2192 Rationale vs Alternatives \u2192 Outcome",
-      "evidence_used": [
-        "Skill: Tailwind CSS",
-        "Project: Resume Interview AI"
-      ],
-      "unsupported_claims": [],
-      "caution_note": "Technical recommendations are hypothetical",
-      "claims_validation": []
-    },
-    "evaluated_at": "2026-08-18 05:38:51.089639+00:00",
-    "resume_id": "sample-fullstack",
-    "resume_hash": null,
-    "question_text": "How do CSS Grid and Flexbox differ, and when should you choose one over the other?",
-    "user_answer": "Updated answer: in FastAPI we use async def endpoints and dependency injection with connection pooling to sustain 10k rps with 20ms p99 latency.",
-    "skill": "Tailwind CSS",
-    "difficulty": "Medium",
-    "based_on": "Resume Context",
-    "expected_points": [],
-    "_id": "d792bfac-6941-4433-9b99-f76f846e2e0b"
-  },
-  {
-    "id": "44c5065f-5a60-405d-a90b-5755e2cafb31",
-    "question_id": "59464dde-048d-4d08-be9c-3462d93e8ef2",
-    "question_attempt_id": "attempt_956c945d575b",
-    "session_id": "test-strict-attempt-2a65ea92",
-    "overall_score": 19,
-    "relevance_score": 12,
-    "technical_accuracy_score": 10,
-    "completeness_score": 15,
-    "clarity_score": 45,
-    "confidence_score": 50,
-    "communication_score": 50,
-    "verdict_rating": "Off-Topic / Domain Mismatch",
-    "question_intent": "BEHAVIORAL",
-    "answer_structure": "Situation \u2192 Task \u2192 Action \u2192 Result \u2192 Learning",
+    "id": "f05d1fae-2e7d-4d8f-a0c8-f7ad6b3350e2",
+    "question_id": "d90794df-44b3-4342-a2a8-dad324079646",
+    "question_attempt_id": "attempt_a13aadb06c90",
+    "session_id": "test-strict-attempt-2bc905b9",
+    "overall_score": 52,
+    "relevance_score": 53,
+    "technical_accuracy_score": 31,
+    "completeness_score": 60,
+    "clarity_score": 75,
+    "confidence_score": 90,
+    "communication_score": 70,
+    "verdict_rating": "Needs Technical Depth",
+    "question_intent": "SCALABILITY",
+    "answer_structure": "Current Architecture \u2192 Bottleneck Analysis \u2192 Layered Scaling \u2192 Trade-offs",
     "relevance_verdict": "RELEVANT",
     "concepts_covered": [],
     "concepts_missed": [
-      "STAR Method Structure (Situation & Task Context)",
-      "Individual Technical Ownership & Action",
-      "Measurable Business & Engineering Result",
-      "Cross-Functional Collaboration & Resolution"
+      "Global Interpreter Lock (GIL) & Concurrency",
+      "Generators & Lazy Iterator Evaluation",
+      "Decorators & First-Class Function Closures",
+      "Reference Counting & Cyclic GC"
     ],
     "strengths": [
-      "Submitted technical text, but it focuses on an unrelated topic rather than Soft Skills & Communication."
+      "Provided clear causal reasoning explaining the rationale behind design and technical choices.",
+      "Supported assertions with concrete metrics and quantifiable engineering outcomes."
     ],
     "weaknesses": [
-      "The response does not address Soft Skills & Communication or the core question asked.",
-      "Structure your answer around Soft Skills & Communication mechanisms, architectural choices, and project trade-offs."
+      "Missed discussing core architectural points: Global Interpreter Lock (GIL) & Concurrency, Generators & Lazy Iterator Evaluation.",
+      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
     ],
-    "improved_answer": "In that situation, our team was managing competing priorities under tight delivery constraints. In Resume Interview AI, selecting Soft Skills & Communication gave us rapid prototyping capabilities and well-tested libraries, but required careful attention to concurrency and memory bounds. We addressed this by profiling hot paths, adding structured validation, and strictly isolating compute tasks to maintain high stability.",
-    "follow_up_question": "How would you address STAR Method Structure (Situation & Task Context) if this Soft Skills & Communication implementation experienced a 10x traffic spike?",
+    "improved_answer": "For a 10x increase in volume, my approach would focus on isolating bottlenecks through proactive profiling and metrics. I would first inspect slow database queries and execution plans to optimize indexing and eliminate full table scans. Next, I would introduce connection pooling, review read-heavy access patterns to evaluate in-memory caching where applicable, and configure read replicas if database reads become saturated. Since my background includes working with Python, I would apply these scaling optimizations incrementally based on measured production constraints.",
+    "follow_up_question": "How would you address Global Interpreter Lock (GIL) & Concurrency if this Python implementation experienced a 10x traffic spike?",
     "next_recommended_difficulty": "Easy",
-    "feedback_summary": "Off-topic response (19/100). The answer discusses an unrelated topic instead of addressing Soft Skills & Communication.",
+    "feedback_summary": "Developing answer (52/100). Mentions Python, but needs deeper coverage of implementation mechanisms and alternatives.",
     "star_feedback": {
-      "situation": "Context could frame real-world system scale and constraints more clearly.",
-      "task": "Target goal for Soft Skills & Communication needs sharper focus.",
-      "action": "Describe exact technical mechanisms of Soft Skills & Communication rather than high-level definitions.",
-      "result": "Missing quantitative metrics (e.g. % improvement, latency reduction, bundle savings)."
+      "situation": "Clearly framed project/architecture context.",
+      "task": "Directly addressed requirement for Python.",
+      "action": "Describe exact technical mechanisms of Python rather than high-level definitions.",
+      "result": "Quantified impact and metrics included."
     },
     "answer_grounding": {
       "status": "Resume Grounded",
       "badge_variant": "info",
       "answer_type": "Hypothetical / Technical",
-      "question_intent": "BEHAVIORAL",
-      "answer_structure": "Situation \u2192 Task \u2192 Action \u2192 Result \u2192 Learning",
+      "question_intent": "SCALABILITY",
+      "answer_structure": "Current Architecture \u2192 Bottleneck Analysis \u2192 Layered Scaling \u2192 Trade-offs",
       "evidence_used": [
+        "Skill: Python",
+        "Project: Resume Interview AI"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are framed conditionally to reflect honest scaling principles.",
+      "claims_validation": []
+    },
+    "evaluated_at": "2026-08-18 05:48:33.286052+00:00",
+    "resume_id": "sample-fullstack",
+    "resume_hash": null,
+    "question_text": "If 'Resume Interview AI' were to experience a 10x increase in volume, how would you scale your Python implementation?",
+    "user_answer": "In Python and FastAPI, we optimize async routes using non-blocking I/O and Pydantic validation schemas to handle 5k requests per second with sub-25ms latency.",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "based_on": "Resume Context",
+    "expected_points": [],
+    "_id": "d0f8d1db-54f8-49a5-b3ea-6ddc70ff133a"
+  },
+  {
+    "id": "e2a5c324-4b98-4def-9a18-11606b98a5b2",
+    "question_id": "d90794df-44b3-4342-a2a8-dad324079646",
+    "question_attempt_id": "attempt_597d931f54b4",
+    "session_id": "test-strict-attempt-2bc905b9",
+    "overall_score": 36,
+    "relevance_score": 20,
+    "technical_accuracy_score": 22,
+    "completeness_score": 40,
+    "clarity_score": 75,
+    "confidence_score": 90,
+    "communication_score": 70,
+    "verdict_rating": "Needs Technical Depth",
+    "question_intent": "SCALABILITY",
+    "answer_structure": "Current Architecture \u2192 Bottleneck Analysis \u2192 Layered Scaling \u2192 Trade-offs",
+    "relevance_verdict": "RELEVANT",
+    "concepts_covered": [
+      "AsyncIO Event Loop Execution"
+    ],
+    "concepts_missed": [
+      "Global Interpreter Lock (GIL) & Concurrency",
+      "Generators & Lazy Iterator Evaluation",
+      "Decorators & First-Class Function Closures",
+      "Reference Counting & Cyclic GC"
+    ],
+    "strengths": [
+      "Correctly addressed core mechanisms: AsyncIO Event Loop Execution.",
+      "Supported assertions with concrete metrics and quantifiable engineering outcomes."
+    ],
+    "weaknesses": [
+      "Missed discussing core architectural points: Global Interpreter Lock (GIL) & Concurrency, Generators & Lazy Iterator Evaluation.",
+      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
+    ],
+    "improved_answer": "For a 10x increase in volume, my approach would focus on isolating bottlenecks through proactive profiling and metrics. I would first inspect slow database queries and execution plans to optimize indexing and eliminate full table scans. Next, I would introduce connection pooling, review read-heavy access patterns to evaluate in-memory caching where applicable, and configure read replicas if database reads become saturated. Since my background includes working with Python, I would apply these scaling optimizations incrementally based on measured production constraints.",
+    "follow_up_question": "How would you address Global Interpreter Lock (GIL) & Concurrency if this Python implementation experienced a 10x traffic spike?",
+    "next_recommended_difficulty": "Easy",
+    "feedback_summary": "Developing answer (36/100). Mentions Python, but needs deeper coverage of implementation mechanisms and alternatives.",
+    "star_feedback": {
+      "situation": "Context could frame real-world system scale and constraints more clearly.",
+      "task": "Target goal for Python needs sharper focus.",
+      "action": "Explained concrete implementation choices (AsyncIO Event Loop Execution).",
+      "result": "Quantified impact and metrics included."
+    },
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "SCALABILITY",
+      "answer_structure": "Current Architecture \u2192 Bottleneck Analysis \u2192 Layered Scaling \u2192 Trade-offs",
+      "evidence_used": [
+        "Skill: Python",
+        "Project: Resume Interview AI"
+      ],
+      "unsupported_claims": [],
+      "caution_note": "Technical recommendations are framed conditionally to reflect honest scaling principles.",
+      "claims_validation": []
+    },
+    "evaluated_at": "2026-08-18 05:48:33.582275+00:00",
+    "resume_id": "sample-fullstack",
+    "resume_hash": null,
+    "question_text": "If 'Resume Interview AI' were to experience a 10x increase in volume, how would you scale your Python implementation?",
+    "user_answer": "Updated answer: in FastAPI we use async def endpoints and dependency injection with connection pooling to sustain 10k rps with 20ms p99 latency.",
+    "skill": "Python",
+    "difficulty": "Medium",
+    "based_on": "Resume Context",
+    "expected_points": [],
+    "_id": "884b7199-69de-4d14-818d-4b1aa948540e"
+  },
+  {
+    "id": "e08d72db-9896-42a3-9945-2aa39aed9999",
+    "question_id": "b9681081-0517-41bb-aecf-2955beee86f9",
+    "question_attempt_id": "attempt_8d67be62ac6c",
+    "session_id": "test-strict-attempt-2bc905b9",
+    "overall_score": 47,
+    "relevance_score": 45,
+    "technical_accuracy_score": 36,
+    "completeness_score": 40,
+    "clarity_score": 75,
+    "confidence_score": 90,
+    "communication_score": 70,
+    "verdict_rating": "Needs Technical Depth",
+    "question_intent": "PERFORMANCE",
+    "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
+    "relevance_verdict": "RELEVANT",
+    "concepts_covered": [],
+    "concepts_missed": [
+      "ACID Guarantees & Transaction Isolation Levels",
+      "Index Seek vs Scan & B-Tree Optimization",
+      "Relational JOIN Mechanics (Hash, Merge, Nested Loop)",
+      "Normalization (3NF) & Referential Integrity"
+    ],
+    "strengths": [
+      "Supported assertions with concrete metrics and quantifiable engineering outcomes."
+    ],
+    "weaknesses": [
+      "Missed discussing core architectural points: ACID Guarantees & Transaction Isolation Levels, Index Seek vs Scan & B-Tree Optimization.",
+      "Did not evaluate design trade-offs, potential drawbacks, or evaluated alternatives."
+    ],
+    "improved_answer": "To optimize performance in Resume Interview AI, I profiled execution times using runtime timers and eliminated redundant compute overhead. By profiling resource consumption in Resume Interview AI, we identified that serialization overhead and unindexed lookups were causing latency spikes. We resolved this by streamlining data validation schemas, batching database queries, and keeping memory allocations localized. These optimizations significantly reduced response variability across high-concurrency test runs.",
+    "follow_up_question": "How would you address ACID Guarantees & Transaction Isolation Levels if this PostgreSQL implementation experienced a 10x traffic spike?",
+    "next_recommended_difficulty": "Easy",
+    "feedback_summary": "Developing answer (47/100). Mentions PostgreSQL, but needs deeper coverage of implementation mechanisms and alternatives.",
+    "star_feedback": {
+      "situation": "Clearly framed project/architecture context.",
+      "task": "Target goal for PostgreSQL needs sharper focus.",
+      "action": "Describe exact technical mechanisms of PostgreSQL rather than high-level definitions.",
+      "result": "Quantified impact and metrics included."
+    },
+    "answer_grounding": {
+      "status": "Resume Grounded",
+      "badge_variant": "info",
+      "answer_type": "Hypothetical / Technical",
+      "question_intent": "PERFORMANCE",
+      "answer_structure": "Baseline Metric \u2192 Profiling & Bottleneck \u2192 Optimization \u2192 Measured Gain",
+      "evidence_used": [
+        "Skill: PostgreSQL",
         "Project: Resume Interview AI"
       ],
       "unsupported_claims": [],
       "caution_note": "Technical recommendations are hypothetical",
       "claims_validation": []
     },
-    "evaluated_at": "2026-08-18 05:38:51.705961+00:00",
+    "evaluated_at": "2026-08-18 05:48:34.202777+00:00",
     "resume_id": "sample-fullstack",
     "resume_hash": null,
-    "question_text": "Describe a situation where you had to quickly learn a new framework or technology to deliver a project feature.",
+    "question_text": "How do B-tree indexes improve query performance in relational databases, and when might an index degrade performance?",
     "user_answer": "In MongoDB, we establish compound indexes matching query filters and sort keys to avoid in-memory sorting, reducing query execution time from 400ms to 8ms.",
-    "skill": "Soft Skills & Communication",
+    "skill": "PostgreSQL",
     "difficulty": "Medium",
     "based_on": "Resume Context",
     "expected_points": [],
-    "_id": "bb038eda-cde6-4a47-bc23-4c6c49efba14"
+    "_id": "7e0dae92-472d-496e-9fe6-3e6e4150f4d8"
   }
 ]

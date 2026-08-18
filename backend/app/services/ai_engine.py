@@ -4,6 +4,7 @@ import json
 import logging
 import random
 import collections
+import asyncio
 from typing import List, Dict, Any, Optional, Tuple
 from backend.app.config import settings
 from backend.app.schemas.models import (
@@ -17,6 +18,24 @@ from backend.app.services.intent_classifier import QuestionIntentClassifier, Que
 from backend.app.services.diversity_manager import DiversityManager, MockInterviewSessionTracker
 
 logger = logging.getLogger("ai_engine")
+
+def _generate_content_sync(client, model: str, contents: str):
+    return client.models.generate_content(model=model, contents=contents)
+
+async def _call_gemini_async(client, prompt: str, timeout_seconds: float = 3.5) -> str:
+    """Non-blocking Gemini call executed in a thread pool with a fast timeout to prevent event loop starvation."""
+    for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash']:
+        try:
+            response = await asyncio.wait_for(
+                asyncio.to_thread(_generate_content_sync, client, m_name, prompt),
+                timeout=timeout_seconds
+            )
+            if response and response.text:
+                return response.text.strip()
+        except Exception as e:
+            logger.debug(f"Gemini {m_name} call failed/timed out: {e}")
+            continue
+    raise RuntimeError("Gemini model call failed or timed out")
 
 class QuestionCatalog:
     """Deterministic, highly grounded question templates linked to specific skills, project roles, and difficulty levels."""
@@ -582,23 +601,7 @@ Output valid JSON only: a JSON array of objects with keys:
 
 JSON Output:"""
 
-        response = None
-        for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro']:
-            try:
-                response = client.models.generate_content(
-                    model=m_name,
-                    contents=prompt,
-                )
-                if response and response.text:
-                    break
-            except Exception as e:
-                logger.debug(f"Gemini {m_name} failed in question generation: {e}")
-                continue
-
-        if not response or not response.text:
-            raise RuntimeError("Gemini model generation returned empty response")
-
-        text = response.text.strip()
+        text = await _call_gemini_async(client, prompt, timeout_seconds=4.0)
         if text.startswith("```json"):
             text = text.split("```json")[1].split("```")[0].strip()
         elif text.startswith("```"):
@@ -805,23 +808,7 @@ REQUIRED JSON OUTPUT FORMAT:
   }}
 }}"""
 
-                response = None
-                for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro']:
-                    try:
-                        response = client.models.generate_content(
-                            model=m_name,
-                            contents=prompt
-                        )
-                        if response and response.text:
-                            break
-                    except Exception as e:
-                        logger.debug(f"Gemini {m_name} failed in evaluation: {e}")
-                        continue
-
-                if not response or not response.text:
-                    raise RuntimeError("Gemini model evaluation returned empty response")
-
-                text = response.text.strip()
+                text = await _call_gemini_async(client, prompt, timeout_seconds=3.5)
                 if text.startswith("```json"):
                     text = text.split("```json")[1].split("```")[0].strip()
                 elif text.startswith("```"):
@@ -1897,23 +1884,7 @@ Provide an executive synthesis in valid JSON format:
   "actionable_recommendations": ["3-4 concrete next steps / study priorities the candidate should complete before live interviews"]
 }}"""
 
-                response = None
-                for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro']:
-                    try:
-                        response = client.models.generate_content(
-                            model=m_name,
-                            contents=prompt
-                        )
-                        if response and response.text:
-                            break
-                    except Exception as e:
-                        logger.debug(f"Gemini {m_name} failed in final evaluation: {e}")
-                        continue
-
-                if not response or not response.text:
-                    raise RuntimeError("Gemini model final evaluation returned empty response")
-
-                text = response.text.strip()
+                text = await _call_gemini_async(client, prompt, timeout_seconds=4.0)
                 if text.startswith("```json"):
                     text = text.split("```json")[1].split("```")[0].strip()
                 elif text.startswith("```"):
