@@ -69,19 +69,6 @@ async def get_analytics(session_id: str = "default"):
             except Exception:
                 pass
 
-    if resume_score is None:
-        try:
-            col_resumes = db_manager.get_collection("resumes")
-            recent_resumes = await col_resumes.find({}, limit=5)
-            if recent_resumes:
-                latest_resume = recent_resumes[-1]
-                res_obj = ExtractedResume(**latest_resume)
-                score_obj = ResumeParser.calculate_score(res_obj)
-                resume_breakdown = score_obj.model_dump()
-                resume_score = score_obj.overall_score
-        except Exception:
-            pass
-
     if evals:
         scores = [e.get("overall_score", 0) for e in evals]
         avg_score = int(sum(scores) / len(scores)) if scores else 0

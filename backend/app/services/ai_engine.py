@@ -580,7 +580,7 @@ Output valid JSON only: a JSON array of objects with keys:
   "expected_answer_points": list of strings (3-4 concise points),
   "sample_answer": string (realistic, grounded model answer)
 
-JSON Output:\"\"\"
+JSON Output:"""
 
         response = None
         for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro']:
