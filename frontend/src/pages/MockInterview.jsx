@@ -144,9 +144,19 @@ export const MockInterview = () => {
       };
 
       recognizer.onerror = (event) => {
-        console.error('Speech recognition error:', event.error);
+        console.warn('Speech recognition status:', event.error);
         setIsRecording(false);
-        showToast(`Speech recognition error: ${event.error}`, 'error');
+        if (event.error === 'network') {
+          showToast('Speech service network unreachable in this browser session. You can type your answer directly in the text box.', 'warning');
+        } else if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+          showToast('Microphone access was not granted. Please allow microphone permissions in your browser or type your answer.', 'warning');
+        } else if (event.error === 'no-speech') {
+          showToast('No speech was detected. Please speak closer to your microphone or type your answer.', 'info');
+        } else if (event.error === 'audio-capture') {
+          showToast('No microphone found on your system. You can type your answer directly.', 'warning');
+        } else {
+          showToast(`Voice input stopped (${event.error}). Please type your response directly.`, 'info');
+        }
       };
 
       recognizer.onend = () => {
