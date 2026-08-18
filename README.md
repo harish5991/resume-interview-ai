@@ -3,8 +3,8 @@
 <div align="center">
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
-[![React](https://img.shields.io/badge/React-18+-61DAFB.svg?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org)
-[![Vite](https://img.shields.io/badge/Vite-5+-646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+[![React](https://img.shields.io/badge/React-19+-61DAFB.svg?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-8+-646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4+-38B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-3776AB.svg?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
@@ -17,85 +17,99 @@
 
 ## 📌 Executive Summary
 
-**Resume Interview AI** is an intelligent, full-stack career readiness platform designed to solve the critical flaws of conventional AI interview prep tools: **generic, ungrounded questions and unexplained "black-box" scores**.
+**Resume Interview AI** is an enterprise-grade, full-stack career readiness platform designed to solve the critical pitfalls of conventional AI interview prep tools: **generic, hallucinated questions and unexplained "black-box" scores**.
 
-By parsing candidate resumes (PDF/DOCX) using high-precision document extraction and aligning them against target Job Descriptions (JDs) via TF-IDF cosine similarity, the application generates **strictly grounded questions** tied directly to verified projects, technical skills, and role requirements. The platform provides an **adaptive mock interview simulator** with real-time 6-axis answer scoring, voice dictation, duplicate-free question regeneration, system architecture deep-dives, skill gap roadmaps, and downloadable ReportLab PDF readiness reports.
+By parsing candidate resumes (PDF/DOCX) using high-precision document extraction, anti-spoofing validation, and aligning them against target Job Descriptions (JDs) via deterministic TF-IDF cosine similarity, the application generates **strictly grounded questions** tied directly to verified candidate projects, technical skills, and role requirements. The platform provides an **adaptive mock interview simulator** with real-time 6-axis answer scoring, voice dictation via the Web Speech API, zero-duplicate question regeneration, architectural deep-dives, skill gap roadmaps, STAR-format resume bullet optimization, Recharts visual analytics, and downloadable ReportLab PDF readiness reports.
 
 ---
 
 ## 🌟 Key Features & Innovations
 
-### 1. 📄 Explainable Resume Text Extraction & 6-Category Scoring
-- **Multi-Format Ingestion**: Parses PDF and DOCX files using PyMuPDF (`fitz`) and `python-docx` with contact, skill, project, work experience, and education extraction.
-- **Explainable Multi-Dimensional Score (0–100)**: Evaluates resumes across 6 key categories:
-  - *Skills Breadth & Depth* (25%)
-  - *Project Complexity & Verifiability* (25%)
-  - *Work Experience & Impact* (20%)
-  - *Education & Certifications* (10%)
-  - *Structural Completeness* (10%)
-  - *Relevance to Technical Standards* (10%)
-- **Natural Language Rationale**: Delivers actionable feedback and strength/gap justifications for every category score.
+### 1. 📄 Multi-Format Resume Ingestion & 8-Factor Explainable Scoring
+- **Multi-Format Extraction**: Ingests PDF and DOCX files using PyMuPDF (`fitz`) and `python-docx` with automated segmentation for contact details, technical skills, projects, work experience, education, certifications, and achievements.
+- **Document Anti-Spoofing & Validation**: Built-in `DocumentValidator` detects and filters out research papers, certificates, assignments, and non-resume documents using weighted pattern matching and negative marker heuristics.
+- **Explainable Multi-Dimensional Score (0–100)**: Evaluates resumes across 8 granular categories:
+  - 🛠️ *Skills Breadth & Category Diversity* (25%)
+  - 🏗️ *Project Complexity & Implementation Depth* (25%)
+  - 💼 *Work Experience & Documented Impact* (15%)
+  - 🎓 *Education & Degree Relevance* (10%)
+  - 📋 *Structural Completeness & Contact Metadata* (10%)
+  - 📜 *Industry Certifications* (5%)
+  - 🏆 *Verified Achievements & Awards* (5%)
+  - 🎯 *Job Description Alignment / Baseline Relevance* (5%)
+- **Natural Language Rationale**: Generates actionable strength summaries and specific improvement areas justifying every component score.
 
-### 2. 🎯 Semantic Resume-to-Job Matching
-- **Deterministic TF-IDF & Cosine Similarity Engine**: Mathematically measures semantic alignment between candidate experience and job descriptions.
+### 2. 🎯 Semantic Resume-to-Job Matching Engine
+- **Deterministic TF-IDF & Cosine Similarity**: Computes mathematical semantic alignment between candidate profile vectors and target job descriptions.
 - **Categorized Competency Breakdown**:
-  - ✅ **Matching Skills**: Verified overlap between resume and target role.
-  - ❌ **Missing Skills**: Core requirements absent from the candidate profile.
+  - ✅ **Matching Skills**: Verified overlap between candidate experience and role requirements.
+  - ❌ **Missing Critical Skills**: Key required competencies absent from the candidate resume.
   - ⚠️ **Partial / Related Skills**: Transferable competencies requiring domain adaptation.
-- **Project Tailoring**: Highlights the candidate's most relevant past projects tailored to the target job description.
+- **Project Tailoring & Relevance Ranking**: Identifies and ranks candidate projects most relevant to the target role with justification highlights.
 
-### 3. 💡 Strictly Grounded & Explainable Interview Questions
-- **Zero-Hallucination Guarantee**: Employs an anti-hallucination `grounding_validator` ensuring questions only reference verified projects, tools, and experiences in the resume.
-- **Rich Question Anatomy**:
+### 3. 💡 Strictly Grounded Interview Question Generation
+- **Zero-Hallucination Guarantee**: Features a strict `GroundingValidator` that cross-references all generated questions against verified resume items, preventing invented tools or hallucinated experiences.
+- **23-Archetype Diversity Manager**: Enforces balanced rotation across architectural, problem-solving, behavioral, trade-off, and debugging question archetypes.
+- **Comprehensive Question Anatomy**:
   - **Question Text**: Targeted technical, behavioral, or architectural prompt.
   - **Based On**: Explicit anchor point (e.g., `Project: Resume Interview AI`, `Skill: MongoDB`).
   - **Difficulty Level**: `Easy`, `Medium`, `Hard`, or `Expert`.
-  - **Why This Question?**: Clear explainability rationale linking the JD requirement to the resume item.
-  - **Expected Answer Talking Points & Model Strategy**: Guideposts for a structured candidate response.
+  - **Why This Question?**: Clear explainability rationale linking the JD requirement to the candidate resume item.
+  - **Expected Answer Talking Points & Model Strategy**: Architectural guideposts for a structured candidate response.
 
 ### 4. 🔄 Zero-Duplicate Question Regeneration Engine
-- **Session-Tracked Question Hashing**: Uses SHA-256 content hashing and session-level history tracking.
-- Clicking *"Generate Different Questions"* guarantees 100% fresh questions without repeating previously seen prompts within the same session.
+- **Session-Tracked Content Hashing**: Uses SHA-256 content hashing and session-level history tracking to prevent repetitive prompts.
+- Clicking *"Generate Different Questions"* guarantees 100% fresh questions without repeating previously seen questions within the active session.
 
 ### 5. 🎙️ Adaptive AI Mock Interview Simulator
-- **Dual-Input Modality**: Supports typed text and hands-free **Voice Dictation (Speech-to-Text via the Web Speech API)**.
-- **Real-Time 6-Axis Evaluation**:
-  1. *Relevance* (0–100) — Alignment with the core question prompt.
+- **Dual-Input Modality**: Supports typed text and hands-free **Voice Dictation (Speech-to-Text via browser-native Web Speech API)**.
+- **Real-Time 6-Axis Answer Evaluation**:
+  1. *Relevance* (0–100) — Direct alignment with the core question prompt.
   2. *Technical Accuracy* (0–100) — Precision of concepts, algorithms, and tooling.
-  3. *Completeness* (0–100) — Thoroughness in covering all required aspects.
-  4. *Clarity* (0–100) — Logical organization and conciseness.
+  3. *Completeness* (0–100) — Coverage of key requirements and edge cases.
+  4. *Clarity* (0–100) — Logical organization, conciseness, and readability.
   5. *Confidence* (0–100) — Assertive, authoritative communication style.
-  6. *Communication* (0–100) — Structure, vocabulary, and readability.
-- **Dynamic Difficulty Progression**: Scoring 85+ on Medium automatically adapts subsequent questions to Hard/Expert; scores below 50 gently scale down to reinforce foundational concepts.
+  6. *Communication* (0–100) — Structural flow, vocabulary, and delivery.
+- **Domain Concept Extraction & Misconception Penalties**: Detects mentioned domain terms while penalizing inaccurate technical claims.
+- **Dynamic Difficulty Progression**: Scoring 85+ on Medium automatically scales subsequent questions to Hard/Expert; scores below 50 gently adapt down to reinforce foundational concepts.
+- **Senior Model Answer Synthesis**: Provides ideal answer breakdowns and STAR feedback for candidate self-reflection.
 
 ### 6. 🏛️ Project Deep-Dive & Architecture Dossier
-- Comprehensive architectural breakdowns for candidate projects:
-  - **High-Level System Architecture & Component Interactions**
+- In-depth architectural dossiers for any parsed project:
+  - **High-Level System Architecture & Component Interaction Flow**
   - **Database Choice & Data Modeling Trade-offs**
-  - **API Contract Validation & Error Handling**
+  - **API Contract Validation & Error Handling Architecture**
   - **Security & Authentication Posture**
   - **10x Scalability Strategy & Bottleneck Mitigation**
-  - **5 Hard Project Defense Questions** with deep technical expected responses.
+  - **5 Hard Project Defense Questions** with expert expected responses.
 
 ### 7. 🧩 Skill Gap Analysis & 4-Week Study Roadmap
 - Side-by-side competency gap visualization.
-- Curates estimated learning hours, foundational concepts, best-practice methodologies, and recommended learning resources for every missing technology.
+- Curates estimated learning hours, foundational concepts, best-practice methodologies, and recommended learning resources for every missing technology across a 4-week timeline.
 
-### 8. ✍️ STAR-Format Resume Improvement Generator
-- Transforms passive resume bullet points into high-impact **STAR-method** (Situation, Task, Action, Result) accomplishments with quantified metrics.
+### 8. 🎓 Preparation Mode (Top 10 High-Yield Topics)
+- Curates the top 10 interview preparation topics dynamically prioritized from the candidate's resume and target JD, complete with key technical concepts and focus areas.
 
-### 9. 📊 Visual Analytics & Competency Radar
-- **Recharts Analytics Dashboard**:
-  - Multi-Axis Competency Radar Chart.
+### 9. ✍️ STAR-Format Resume Improvement Rewriter
+- Analyzes existing resume bullet points and rewrites them into high-impact **STAR-method** (Situation, Task, Action, Result) accomplishment statements with quantified business metrics.
+
+### 10. 📊 Visual Analytics & Competency Radar
+- **Interactive Recharts Dashboard**:
+  - Multi-Axis Competency Radar Chart (Architecture, Problem Solving, Domain Knowledge, Communication, System Design, Best Practices).
   - Mock Interview Score Progression Trendline.
   - Difficulty Pass Rate Bar Chart.
-  - Priority Weak Topic Alerts with remediation advice.
+  - Priority Weak Topic Alerts with immediate remediation advice.
 
-### 10. 📑 ReportLab PDF Readiness Report
-- One-click executive PDF export summarizing candidate metadata, resume score breakdown, JD match percentage, interview transcript, and personalized readiness recommendations.
+### 11. 🔖 Bookmarked Questions & Full Mock History Transcripts
+- **Saved Questions Collection**: Bookmark favorite questions across sessions for targeted review.
+- **Mock Interview History**: Complete transcript archives with candidate answers, 6-axis scorecards, and model answers.
 
-### 11. 💾 Dual-Mode Storage Architecture
-- **Automatic Fallback Engine**: Connects to **MongoDB** if available; seamlessly falls back to a **Local Persistent JSON Storage Engine** if MongoDB is absent. Requires zero database setup to run out of the box!
+### 12. 📑 ReportLab PDF Readiness Report Export
+- One-click executive PDF export summarizing candidate metadata, 8-factor resume scores, JD match percentage, interview transcript, competency radar, and personalized readiness recommendations.
+
+### 13. 💾 Dual-Mode Storage Architecture
+- **Automatic Fallback Engine**: Connects to **MongoDB** (via async Motor and PyMongo) if available; seamlessly falls back to a **Local Persistent JSON Storage Engine** (`backend/data/`) if MongoDB is absent. Requires **zero database setup** to run out of the box!
+- **Session Management**: Supports multi-session creation, switching, and auto-clear or persistent storage toggling.
 
 ---
 
@@ -103,15 +117,19 @@ By parsing candidate resumes (PDF/DOCX) using high-precision document extraction
 
 | Layer | Technologies & Libraries | Key Responsibilities |
 | :--- | :--- | :--- |
-| **Frontend UI** | React 18/19, Vite, Tailwind CSS | Responsive, accessible, high-performance user interface |
-| **Icons & Visuals** | Lucide React, Recharts | Modern UI iconography and dynamic interactive analytics |
-| **Voice & Audio** | Web Speech API | Real-time speech-to-text dictation for mock interviews |
-| **Backend Framework** | Python 3.10–3.13, FastAPI, Uvicorn | High-throughput async REST API with Pydantic v2 validation |
-| **Document Parsing** | PyMuPDF (`fitz`), `python-docx` | Fast, deterministic text and entity extraction from PDFs & DOCX |
-| **NLP & Matching** | `scikit-learn` (TF-IDF), `numpy` | Deterministic cosine similarity and keyword extraction |
+| **Frontend UI** | React 19, Vite 8, Tailwind CSS 3.4 | Modern, responsive, accessible single-page application |
+| **Icons & Visuals** | Lucide React, Recharts 3.x | Modern UI iconography and interactive analytics charts |
+| **Voice & Audio** | Web Speech API (`webkitSpeechRecognition`) | Real-time browser-native speech-to-text dictation |
+| **State Management** | React Context API (`SessionContext`), `sessionStorage` | Ephemeral & persistent session caching across refreshes |
+| **Backend Framework** | Python 3.10–3.13, FastAPI, Uvicorn | Asynchronous REST API with Pydantic v2 validation contracts |
+| **Document Parsing** | PyMuPDF (`fitz`), `python-docx` | Fast, deterministic text and entity extraction from PDF & DOCX |
+| **Document Validation** | `DocumentValidator` (Regex heuristics & weighted scoring) | Anti-spoofing filter rejecting non-resume files |
+| **NLP & Matching** | `scikit-learn` (`TfidfVectorizer`, `cosine_similarity`), `numpy` | Deterministic cosine similarity and keyword extraction |
 | **AI Question Engine** | Google Gemini API (`google-genai`) / Grounded Fallback Engine | Contextual question generation, 6-axis scoring, deduplication |
-| **Database & Persistence** | MongoDB (Motor/PyMongo) + Persistent JSON Fallback | Dual-mode storage ensuring 100% plug-and-play reliability |
-| **Reporting & Export** | ReportLab | Generation of downloadable executive PDF readiness reports |
+| **Anti-Hallucination** | `GroundingValidator`, `DiversityManager` | Anti-hallucination cross-checker & 23-archetype rotation |
+| **Database & Persistence** | MongoDB (Motor / PyMongo) + Local Persistent JSON Storage | Dual-mode storage engine ensuring 100% plug-and-play reliability |
+| **Reporting & Export** | ReportLab | Sub-100ms in-memory PDF readiness report generation |
+| **Automation & Launchers** | `run.py`, `run.bat`, `run.sh` | Cross-platform one-command dependency check and launch |
 
 ---
 
@@ -119,37 +137,44 @@ By parsing candidate resumes (PDF/DOCX) using high-precision document extraction
 
 ```mermaid
 flowchart TD
-    subgraph Client ["Frontend (React + Vite + Tailwind CSS)"]
-        UI[User Interface / Navigation]
+    subgraph Client ["Frontend (React 19 + Vite 8 + Tailwind CSS)"]
+        UI[User Interface & Sidebar Navigation]
         Voice[Web Speech API Voice Dictation]
-        Charts[Recharts Analytics Dashboard]
+        Charts[Recharts Analytics Dashboard & Radar]
+        SessionStore[SessionContext Store]
     end
 
     subgraph API ["Backend API (FastAPI + Uvicorn)"]
-        Routes[FastAPI Routers]
-        Parser[PyMuPDF / docx Parser]
-        Matcher[TF-IDF Matching Engine]
+        Routes[FastAPI Route Handlers]
+        DocVal[DocumentValidator Anti-Spoofing]
+        Parser[PyMuPDF / docx Resume Parser]
+        Matcher[TF-IDF Cosine Match Engine]
         AIEngine[Grounded Question & Evaluation Engine]
+        GroundVal[GroundingValidator Anti-Hallucination]
+        Diversity[DiversityManager & SHA-256 Deduplication]
         Report[ReportLab PDF Generator]
     end
 
     subgraph Storage ["Dual-Mode Data Layer"]
         DBRouter{MongoDB Available?}
-        MongoDB[(MongoDB Motor Engine)]
+        MongoDB[(MongoDB Motor Driver)]
         JSONDB[(Local Persistent JSON Storage)]
     end
 
     UI -->|Upload Resume / Input JD| Routes
-    Routes --> Parser
+    Routes --> DocVal
+    DocVal -->|Valid Resume| Parser
     Parser --> Matcher
     Matcher --> AIEngine
+    AIEngine --> GroundVal
+    GroundVal --> Diversity
     Voice -->|Transcribed Audio| Routes
-    AIEngine --> Routes
     Routes --> Report
     Routes --> DBRouter
     DBRouter -->|Yes| MongoDB
     DBRouter -->|No| JSONDB
     Routes --> Charts
+    Routes --> SessionStore
 ```
 
 ---
@@ -167,12 +192,12 @@ project/
 │   │   ├── schemas/
 │   │   │   └── models.py               # Pydantic v2 data models and request/response contracts
 │   │   ├── services/
-│   │   │   ├── parser.py               # PyMuPDF/docx extractor & 6-category scoring engine
+│   │   │   ├── parser.py               # PyMuPDF/docx extractor & 8-factor scoring engine
+│   │   │   ├── document_validator.py   # Anti-spoofing document validation and integrity check
 │   │   │   ├── matcher.py              # TF-IDF cosine matching & skill gap engine
 │   │   │   ├── ai_engine.py            # Grounded questions, 6-axis evaluation & deduplication
-│   │   │   ├── diversity_manager.py    # Topic distribution and difficulty balance manager
-│   │   │   ├── document_validator.py   # Document structure and file security validation
 │   │   │   ├── grounding_validator.py  # Anti-hallucination resume entity cross-checker
+│   │   │   ├── diversity_manager.py    # 23-archetype distribution and difficulty balance manager
 │   │   │   ├── intent_classifier.py    # Question intent & technical topic classification
 │   │   │   └── report_service.py       # ReportLab PDF interview readiness report generator
 │   │   └── routes/
@@ -222,6 +247,7 @@ project/
 ├── run.bat                             # Windows 1-click batch launcher
 ├── run.sh                              # macOS / Linux 1-click bash launcher
 ├── SETUP_GUIDE.md                      # Comprehensive multi-IDE execution guide
+├── CONTRIBUTIONS.md                    # Detailed architectural contribution matrix
 └── README.md                           # Main project documentation
 ```
 
@@ -252,6 +278,7 @@ python run.py
 
 **macOS / Linux**:
 ```bash
+chmod +x run.sh
 ./run.sh
 ```
 *or*
@@ -260,10 +287,10 @@ python3 run.py
 ```
 
 > **The launcher automatically:**
-> 1. Installs any missing Python packages from `requirements.txt`.
+> 1. Verifies and installs any missing Python packages from `requirements.txt`.
 > 2. Runs `npm install` in `frontend/` if `node_modules` is missing.
 > 3. Starts the FastAPI backend (`http://127.0.0.1:8000`) and React frontend (`http://localhost:5174`) concurrently.
-> 4. Provides clean shutdown on `Ctrl+C`.
+> 4. Frees occupied ports automatically and provides clean shutdown on `Ctrl+C`.
 
 ---
 
@@ -288,6 +315,7 @@ python3 -m uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
 - **Backend API**: `http://127.0.0.1:8000`
 - **Interactive Swagger Docs**: `http://127.0.0.1:8000/docs`
+- **API Health Check**: `http://127.0.0.1:8000/health`
 
 #### 3. Start the Frontend Server
 ```bash
@@ -301,6 +329,29 @@ npm install
 npm run dev
 ```
 - **Frontend App**: `http://localhost:5174` (or `http://localhost:5173`)
+
+---
+
+## ⚙️ Environment Variables
+
+Create a `.env` file in the root directory (based on `.env.example`):
+
+```env
+# Application Settings
+PROJECT_NAME="Resume Interview AI"
+API_PREFIX="/api"
+HOST="0.0.0.0"
+PORT=8000
+DEBUG=True
+
+# Database Configuration (Optional - falls back to local JSON if omitted/offline)
+MONGODB_URL="mongodb://localhost:27017"
+DATABASE_NAME="resume_interview_ai"
+
+# Google Gemini API Key (Optional - falls back to deterministic grounded engine if omitted)
+GEMINI_API_KEY=""
+GEMINI_MODEL="gemini-2.0-flash"
+```
 
 ---
 
@@ -333,8 +384,8 @@ Ran 8 tests in 0.039s — OK
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `GET` | `/api/health` | Service health status and active database engine mode |
-| `POST` | `/api/resume/upload` | Upload PDF/DOCX file and extract structured entities |
-| `POST` | `/api/resume/analyze` | Calculate explainable 6-category resume score and rationale |
+| `POST` | `/api/resume/upload` | Upload PDF/DOCX file, validate document type, and extract structured entities |
+| `POST` | `/api/resume/analyze` | Calculate explainable 8-factor resume score and natural language rationale |
 | `GET` | `/api/resume/samples` | Retrieve pre-configured demo candidate resumes |
 | `POST` | `/api/job/analyze` | Parse Job Description into requirements and tech taxonomy |
 | `GET` | `/api/job/samples` | Retrieve pre-configured demo Job Descriptions |
@@ -343,7 +394,7 @@ Ran 8 tests in 0.039s — OK
 | `POST` | `/api/questions/regenerate` | Regenerate questions with guaranteed zero duplicate collisions |
 | `POST` | `/api/questions/bookmark` | Bookmark / unbookmark a specific question |
 | `GET` | `/api/questions/saved` | Fetch all bookmarked questions for the active session |
-| `POST` | `/api/interview/answer` | Evaluate candidate response across 6 axes and adapt difficulty |
+| `POST` | `/api/interview/answer` | Evaluate candidate response across 6 axes, detect concepts, and adapt difficulty |
 | `GET` | `/api/interview/history` | Retrieve full mock interview question-and-answer transcripts |
 | `POST` | `/api/interview/project-deep-dive` | Generate architectural project dossier and 5 hard questions |
 | `POST` | `/api/interview/topics` | Curate Top 10 preparation topics based on resume & JD |
@@ -378,14 +429,15 @@ Ran 8 tests in 0.039s — OK
 | Feature Matrix | Generic ChatGPT Wrapper | Resume Interview AI 🎯 |
 | :--- | :--- | :--- |
 | **Question Grounding** | Frequent hallucinations; invents technologies | **Strict Grounding Validator** tied to verified resume entities |
-| **Score Explainability** | Black-box single numeric score | **6-Category Breakdown** with natural language justifications |
+| **Document Verification** | Accepts any text/file blindly | **DocumentValidator** with anti-spoofing heuristics |
+| **Score Explainability** | Black-box single numeric score | **8-Factor Breakdown** with natural language strength/gap justifications |
 | **Mock Interview Experience** | Static back-and-forth chat | **Adaptive Difficulty Engine** with real-time level scaling |
 | **Answer Evaluation** | Surface-level summary | **6-Axis Evaluation**: Relevance, Tech Accuracy, Completeness, Clarity, Confidence, Communication |
-| **Input Modalities** | Typed text only | **Text + Web Speech API Voice Dictation** |
+| **Input Modalities** | Typed text only | **Text + Browser-Native Web Speech API Voice Dictation** |
 | **Question Deduplication** | High rate of repeated questions | **SHA-256 Hash Engine** guaranteeing zero duplicate regeneration |
 | **System Architecture Defense** | None | **Project Deep-Dive Dossier** with 10x scalability & security analysis |
 | **Offline / DB Resilience** | Hard failure if DB drops | **Dual-Mode Persistence** (MongoDB + Local JSON Fallback) |
-| **Readiness Deliverable** | None | **ReportLab Executive PDF Export** |
+| **Readiness Deliverable** | None | **ReportLab Executive PDF Export** (<100ms in-memory rendering) |
 
 ---
 
