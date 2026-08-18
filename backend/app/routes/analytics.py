@@ -14,7 +14,14 @@ router = APIRouter(prefix="/analytics", tags=["Analytics"])
 @router.get("", response_model=AnalyticsSummary)
 async def get_analytics(session_id: str = "default"):
     col_evals = db_manager.get_collection("evaluations")
-    evals = await col_evals.find({"session_id": session_id})
+    docs = await col_evals.find({"session_id": session_id})
+    
+    # Deduplicate keeping latest evaluation per unique question
+    eval_map = {}
+    for d in docs:
+        k = d.get("question_id") or d.get("question_text")
+        eval_map[k] = d
+    evals = list(eval_map.values())
 
     # Pull session data strictly for this session
     col_sess = db_manager.get_collection("sessions")
@@ -48,6 +55,19 @@ async def get_analytics(session_id: str = "default"):
                 jd_match_pct = match_obj.match_percentage
             except Exception:
                 pass
+
+    if resume_score is None:
+        try:
+            col_resumes = db_manager.get_collection("resumes")
+            recent_resumes = await col_resumes.find({}, limit=5)
+            if recent_resumes:
+                latest_resume = recent_resumes[-1]
+                res_obj = ExtractedResume(**latest_resume)
+                score_obj = ResumeParser.calculate_score(res_obj)
+                resume_breakdown = score_obj.model_dump()
+                resume_score = score_obj.overall_score
+        except Exception:
+            pass
 
     if evals:
         scores = [e.get("overall_score", 0) for e in evals]

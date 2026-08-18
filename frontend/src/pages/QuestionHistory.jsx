@@ -120,21 +120,31 @@ export const QuestionHistory = () => {
     });
   };
 
-  // Aggregated Stats
-  const totalCount = history.length;
+  // Deduplicate history keeping latest evaluation per unique question
+  const uniqueHistory = React.useMemo(() => {
+    const map = new Map();
+    for (const item of history) {
+      const key = (item.question_id || item.question_text || '').trim() || (item.question ? item.question.id : '') || JSON.stringify(item);
+      map.set(key, item);
+    }
+    return Array.from(map.values());
+  }, [history]);
+
+  // Aggregated Stats based on unique questions attempted
+  const totalCount = uniqueHistory.length;
   const avgScore = totalCount > 0
     ? Math.round(
-        history.reduce((sum, item) => sum + (typeof item.overall_score === 'number' ? item.overall_score : (item.score ?? 0)), 0) / totalCount
+        uniqueHistory.reduce((sum, item) => sum + (typeof item.overall_score === 'number' ? item.overall_score : (item.score ?? 0)), 0) / totalCount
       )
     : 0;
-  const strongCount = history.filter((item) => {
+  const strongCount = uniqueHistory.filter((item) => {
     const s = typeof item.overall_score === 'number' ? item.overall_score : (item.score ?? 0);
     return s >= 70;
   }).length;
   const growthCount = totalCount - strongCount;
 
   // Filtered & Sorted History
-  const filteredHistory = history
+  const filteredHistory = uniqueHistory
     .filter((item) => {
       const s = typeof item.overall_score === 'number' ? item.overall_score : (item.score ?? 0);
       if (selectedDifficulty !== 'ALL' && item.difficulty?.toLowerCase() !== selectedDifficulty.toLowerCase()) {

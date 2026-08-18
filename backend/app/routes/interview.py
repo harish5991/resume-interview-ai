@@ -89,7 +89,13 @@ async def evaluate_full_interview(req: FinalInterviewEvaluationRequest):
 async def get_interview_history(session_id: str = "default"):
     col = db_manager.get_collection("evaluations")
     docs = await col.find({"session_id": session_id})
-    return docs
+    
+    # Deduplicate keeping the latest evaluation per unique question
+    eval_map = {}
+    for d in docs:
+        k = d.get("question_id") or d.get("question_text")
+        eval_map[k] = d
+    return list(eval_map.values())
 
 @router.delete("/history")
 async def clear_interview_history(session_id: str = "default"):

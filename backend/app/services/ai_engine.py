@@ -580,12 +580,23 @@ Output valid JSON only: a JSON array of objects with keys:
   "expected_answer_points": list of strings (3-4 concise points),
   "sample_answer": string (realistic, grounded model answer)
 
-JSON Output:"""
+JSON Output:\"\"\"
 
-        response = client.models.generate_content(
-            model='gemini-2.5-flash',
-            contents=prompt,
-        )
+        response = None
+        for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro']:
+            try:
+                response = client.models.generate_content(
+                    model=m_name,
+                    contents=prompt,
+                )
+                if response and response.text:
+                    break
+            except Exception as e:
+                logger.debug(f"Gemini {m_name} failed in question generation: {e}")
+                continue
+
+        if not response or not response.text:
+            raise RuntimeError("Gemini model generation returned empty response")
 
         text = response.text.strip()
         if text.startswith("```json"):
@@ -794,10 +805,22 @@ REQUIRED JSON OUTPUT FORMAT:
   }}
 }}"""
 
-                response = client.models.generate_content(
-                    model='gemini-2.5-flash',
-                    contents=prompt
-                )
+                response = None
+                for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro']:
+                    try:
+                        response = client.models.generate_content(
+                            model=m_name,
+                            contents=prompt
+                        )
+                        if response and response.text:
+                            break
+                    except Exception as e:
+                        logger.debug(f"Gemini {m_name} failed in evaluation: {e}")
+                        continue
+
+                if not response or not response.text:
+                    raise RuntimeError("Gemini model evaluation returned empty response")
+
                 text = response.text.strip()
                 if text.startswith("```json"):
                     text = text.split("```json")[1].split("```")[0].strip()
@@ -1874,10 +1897,22 @@ Provide an executive synthesis in valid JSON format:
   "actionable_recommendations": ["3-4 concrete next steps / study priorities the candidate should complete before live interviews"]
 }}"""
 
-                response = client.models.generate_content(
-                    model='gemini-2.5-flash',
-                    contents=prompt
-                )
+                response = None
+                for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-1.5-pro']:
+                    try:
+                        response = client.models.generate_content(
+                            model=m_name,
+                            contents=prompt
+                        )
+                        if response and response.text:
+                            break
+                    except Exception as e:
+                        logger.debug(f"Gemini {m_name} failed in final evaluation: {e}")
+                        continue
+
+                if not response or not response.text:
+                    raise RuntimeError("Gemini model final evaluation returned empty response")
+
                 text = response.text.strip()
                 if text.startswith("```json"):
                     text = text.split("```json")[1].split("```")[0].strip()

@@ -256,28 +256,9 @@ export const SessionProvider = ({ children }) => {
     initSessionsList();
   }, []);
 
-  // Cleanup on tab/window close or unload when autoClearOnClose is active
+  // Session persistence across SPA route transitions
   useEffect(() => {
-    const handleAppClose = () => {
-      if (autoClearOnClose) {
-        try {
-          const url = sessionsApi.resetUrl || '/api/sessions/reset';
-          if (navigator.sendBeacon) {
-            const blob = new Blob([], { type: 'application/json' });
-            navigator.sendBeacon(url, blob);
-          } else {
-            fetch(url, { method: 'POST', keepalive: true });
-          }
-        } catch (e) {}
-      }
-    };
-
-    window.addEventListener('pagehide', handleAppClose);
-    window.addEventListener('beforeunload', handleAppClose);
-    return () => {
-      window.removeEventListener('pagehide', handleAppClose);
-      window.removeEventListener('beforeunload', handleAppClose);
-    };
+    // Session state is preserved in sessionStorage and synced with backend
   }, [autoClearOnClose]);
 
   // Reset all workspaces back to clean default session
