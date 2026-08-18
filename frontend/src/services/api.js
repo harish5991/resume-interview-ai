@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+const RAW_API_URL = import.meta.env.VITE_API_URL || '';
+export const API_BASE_URL = RAW_API_URL ? `${RAW_API_URL.replace(/\/+$/, '')}/api` : '/api';
+export const HEALTH_CHECK_URL = RAW_API_URL ? `${RAW_API_URL.replace(/\/+$/, '')}/api/health` : '/health';
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -97,7 +101,7 @@ export const sessionsApi = {
   update: (id, data) => api.put(`/sessions/${id}`, data),
   delete: (id) => api.delete(`/sessions/${id}`),
   reset: () => api.post('/sessions/reset'),
-  resetUrl: '/api/sessions/reset',
+  resetUrl: `${API_BASE_URL}/sessions/reset`,
 };
 
 export default api;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSession } from '../../context/SessionContext';
-import { reportApi } from '../../services/api';
+import { reportApi, HEALTH_CHECK_URL } from '../../services/api';
 import axios from 'axios';
 import {
   FileDown,
@@ -24,7 +24,7 @@ const BackendStatusBadge = () => {
   useEffect(() => {
     const checkBackend = () => {
       axios
-        .get('/health', { timeout: 3000 })
+        .get(HEALTH_CHECK_URL, { timeout: 4000 })
         .then(() => setOnline(true))
         .catch(() => setOnline(false));
     };
