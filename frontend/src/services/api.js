@@ -12,18 +12,24 @@ const api = axios.create({
   timeout: 30000,
 });
 
-// Intercept 502 / network connection errors with friendly message
+// Intercept 502 / timeout / network connection errors with friendly message
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 502 || error.response?.status === 503 || error.code === 'ERR_NETWORK' || error.message?.includes('Network Error')) {
-      const friendlyDetail = 'Backend server is not running on http://127.0.0.1:8000. Please start the backend with "run.bat" or "python run.py".';
+    const isTimeout = error.code === 'ECONNABORTED' || error.message?.includes('timeout');
+    const isNetwork = error.response?.status === 502 || error.response?.status === 503 || error.code === 'ERR_NETWORK' || error.message?.includes('Network Error');
+    
+    if (isTimeout || isNetwork) {
+      const friendlyDetail = isTimeout
+        ? 'Request timed out after 30 seconds. Please check if the backend server is responsive on http://127.0.0.1:8000.'
+        : 'Backend server is not running on http://127.0.0.1:8000. Please start the backend with "run.bat" or "python run.py".';
+      
       if (error.response?.data) {
         error.response.data.detail = friendlyDetail;
       } else {
         error.response = {
-          status: 502,
-          data: { detail: friendlyDetail }
+          status: isTimeout ? 504 : 502,
+          data: { detail: friendlyDetail, is_connection_error: true }
         };
       }
     }

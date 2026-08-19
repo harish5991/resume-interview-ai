@@ -80,8 +80,22 @@ export const Home = () => {
     } catch (err) {
       console.error('Home upload error:', err);
       const detail = err.response?.data?.detail;
+      const isConnectionError =
+        err.response?.data?.is_connection_error ||
+        err.response?.status === 502 ||
+        err.response?.status === 503 ||
+        err.response?.status === 504 ||
+        err.code === 'ECONNABORTED' ||
+        err.code === 'ERR_NETWORK' ||
+        err.message?.includes('timeout') ||
+        err.message?.includes('Network Error');
+
       let msg = 'Invalid file. Please upload a valid resume PDF.';
-      if (typeof detail === 'string') {
+      if (isConnectionError) {
+        msg = err.message?.includes('timeout') || err.code === 'ECONNABORTED'
+          ? 'Upload timed out. Please check if the backend server is running on http://127.0.0.1:8000.'
+          : 'Backend server is offline or unreachable on http://127.0.0.1:8000. Please start the backend with "python run.py" or "./run.sh".';
+      } else if (typeof detail === 'string') {
         msg = detail;
       } else if (Array.isArray(detail)) {
         msg = detail.map((d) => d.msg || d.message).filter(Boolean).join(', ') || msg;
@@ -254,7 +268,7 @@ export const Home = () => {
         </div>
       </div>
 
-      {/* Validation Error Banner if upload rejected on Home */}
+      {/* Error Banner if upload rejected or server offline on Home */}
       {resumeStatus === 'INVALID_RESUME' && (
         <div className="p-5 bg-rose-50 border-2 border-rose-300 rounded-xl flex items-start gap-4 text-xs text-rose-950 shadow-sm animate-fadeIn">
           <div className="w-10 h-10 rounded-full bg-rose-100 border border-rose-300 flex items-center justify-center text-rose-700 flex-shrink-0">
@@ -262,17 +276,23 @@ export const Home = () => {
           </div>
           <div className="space-y-2 flex-1">
             <div>
-              <h3 className="text-sm font-bold text-rose-900">Upload Validation Error</h3>
+              <h3 className="text-sm font-bold text-rose-900">
+                {uploadError?.toLowerCase().includes('offline') || uploadError?.toLowerCase().includes('timeout') || uploadError?.toLowerCase().includes('8000')
+                  ? 'Server Connection / Timeout Error'
+                  : 'Upload Validation Error'}
+              </h3>
               <p className="text-xs text-rose-800 leading-relaxed mt-1 font-medium">
                 {uploadError}
               </p>
             </div>
-            <div className="p-3 bg-white/90 rounded-lg border border-rose-200 text-[11px] text-rose-900 space-y-1">
-              <div className="font-semibold">Expected Resume / CV Document:</div>
-              <p className="text-slate-600">
-                Please upload a genuine resume PDF containing your <b>Education</b>, <b>Technical Skills</b>, <b>Work Experience</b>, or <b>Projects</b>. (Non-resume documents such as academic research papers, certificates, textbooks, project reports, and invoices are rejected).
-              </p>
-            </div>
+            {!(uploadError?.toLowerCase().includes('offline') || uploadError?.toLowerCase().includes('timeout') || uploadError?.toLowerCase().includes('8000')) && (
+              <div className="p-3 bg-white/90 rounded-lg border border-rose-200 text-[11px] text-rose-900 space-y-1">
+                <div className="font-semibold">Expected Resume / CV Document:</div>
+                <p className="text-slate-600">
+                  Please upload a genuine resume PDF containing your <b>Education</b>, <b>Technical Skills</b>, <b>Work Experience</b>, or <b>Projects</b>. (Non-resume documents such as academic research papers, certificates, textbooks, project reports, and invoices are rejected).
+                </p>
+              </div>
+            )}
             <div className="pt-1 flex flex-wrap items-center gap-3">
               <label className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-rose-600 hover:bg-rose-700 active:bg-rose-800 text-white rounded-lg text-xs font-semibold cursor-pointer transition-colors shadow-sm">
                 <UploadCloud className="w-4 h-4" />
@@ -285,7 +305,7 @@ export const Home = () => {
                   className="hidden"
                 />
               </label>
-              <label className="inline-flex items-center gap-1.5 px-3 py-2 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-medium cursor-pointer transition-colors shadow-2xs">
+              <label className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg text-xs font-medium cursor-pointer transition-colors shadow-2xs">
                 <RotateCcw className="w-3.5 h-3.5 text-slate-500" />
                 <span>Try Again</span>
                 <input

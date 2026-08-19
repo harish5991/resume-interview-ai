@@ -22,7 +22,7 @@ logger = logging.getLogger("ai_engine")
 def _generate_content_sync(client, model: str, contents: str):
     return client.models.generate_content(model=model, contents=contents)
 
-async def _call_gemini_async(client, prompt: str, timeout_seconds: float = 3.5) -> str:
+async def _call_gemini_async(client, prompt: str, timeout_seconds: float = 3.0) -> str:
     """Non-blocking Gemini call executed in a thread pool with a fast timeout to prevent event loop starvation."""
     for m_name in ['gemini-2.0-flash', 'gemini-1.5-flash']:
         try:
@@ -34,6 +34,9 @@ async def _call_gemini_async(client, prompt: str, timeout_seconds: float = 3.5) 
                 return response.text.strip()
         except Exception as e:
             logger.debug(f"Gemini {m_name} call failed/timed out: {e}")
+            err_str = str(e).lower()
+            if "nodename nor servname" in err_str or "api_key" in err_str or "auth" in err_str or "forbidden" in err_str:
+                break
             continue
     raise RuntimeError("Gemini model call failed or timed out")
 

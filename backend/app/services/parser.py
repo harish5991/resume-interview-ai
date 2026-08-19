@@ -389,6 +389,7 @@ class ResumeParser:
         if settings.GEMINI_API_KEY:
             try:
                 import json
+                import concurrent.futures
                 from google import genai
                 client = genai.Client(api_key=settings.GEMINI_API_KEY)
                 prompt = f"""You are an expert resume parsing engine.
@@ -433,10 +434,16 @@ OUTPUT VALID JSON ONLY with this schema:
   "certifications": [{{"name": "Cert Name"}}],
   "achievements": ["Achievement 1"]
 }}"""
-                response = client.models.generate_content(
-                    model='gemini-2.5-flash',
-                    contents=prompt
-                )
+                def _do_generate():
+                    return client.models.generate_content(
+                        model='gemini-2.0-flash',
+                        contents=prompt
+                    )
+
+                with concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+                    future = executor.submit(_do_generate)
+                    response = future.result(timeout=3.0)
+
                 raw_json = response.text.strip()
                 if raw_json.startswith("```json"):
                     raw_json = raw_json.split("```json")[1].split("```")[0].strip()

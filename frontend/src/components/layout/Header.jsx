@@ -24,14 +24,18 @@ const BackendStatusBadge = () => {
   useEffect(() => {
     const checkBackend = () => {
       axios
-        .get(HEALTH_CHECK_URL, { timeout: 4000 })
+        .get(HEALTH_CHECK_URL, { timeout: 3000 })
         .then(() => setOnline(true))
         .catch(() => setOnline(false));
     };
 
     checkBackend();
-    const timer = setInterval(checkBackend, 8000);
-    return () => clearInterval(timer);
+    const timer = setInterval(checkBackend, 4000);
+    window.addEventListener('focus', checkBackend);
+    return () => {
+      clearInterval(timer);
+      window.removeEventListener('focus', checkBackend);
+    };
   }, []);
 
   return (
